@@ -1,0 +1,4 @@
+repository "My project GameCafe1@OrgStudioPolyGame@cloud"
+  path "/"
+    br "/main"
+    co "/main"
