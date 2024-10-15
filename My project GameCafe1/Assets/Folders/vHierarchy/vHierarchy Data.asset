@@ -25,6 +25,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-51c8cb51182fe61498288f7de20f89d5-480304742-0
         - globalObjectIdString: GlobalObjectId_V1-2-51c8cb51182fe61498288f7de20f89d5-105804862-0
         - globalObjectIdString: GlobalObjectId_V1-2-51c8cb51182fe61498288f7de20f89d5-6366313631177104126-2021698090
+        - globalObjectIdString: GlobalObjectId_V1-2-51c8cb51182fe61498288f7de20f89d5-6366313631177104126-1167791652
         values:
         - colorIndex: 7
           iconNameOrGuid: 
@@ -38,5 +39,7 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 0
           iconNameOrGuid: DirectionalLight Icon
+        - colorIndex: 7
+          iconNameOrGuid: 
         - colorIndex: 7
           iconNameOrGuid: 
