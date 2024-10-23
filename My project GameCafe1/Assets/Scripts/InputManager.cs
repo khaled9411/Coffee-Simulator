@@ -24,7 +24,14 @@ public class InputManager : MonoBehaviour
     }
     public bool IsRunning()
     {
-        // replace it by new input system
-        return Input.GetKey(KeyCode.LeftShift);
+        return playerInputActions.Player.Sprint.ReadValue<float>() > 0f;
+    }
+    public bool IsJumping()
+    {
+        return playerInputActions.Player.Jump.triggered;
+    }
+    public Vector2 GetLookVector()
+    {
+        return playerInputActions.Player.Look.ReadValue<Vector2>();
     }
 }

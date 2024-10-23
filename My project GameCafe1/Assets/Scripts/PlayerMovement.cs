@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -10,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float walkSpeed = 6f;
     [SerializeField] private float runSpeed = 12f;
-    [SerializeField] private float jumpPower = 7f;
-    [SerializeField] private float gravity = 10f;
+    [SerializeField] private float jumpHeight = 7f;
+    [SerializeField] private float gravityValue = -10f;
+    private Transform cameraTransform;
+    private bool groundedPlayer;
+    private Vector3 playerVelocity;
 
     Vector3 moveDirection = Vector3.zero;
 
@@ -19,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        cameraTransform = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -32,9 +37,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canMove) { return; }
 
+        groundedPlayer = characterController.isGrounded;
+
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        // get the input direciton 
         moveDirection =  new Vector3(InputManager.Instance.GetMovementVectorNormalized().x, 0, InputManager.Instance.GetMovementVectorNormalized().y);
+        // this to move based on the camera direction 
+        moveDirection = cameraTransform.forward *  moveDirection.z + cameraTransform.right * moveDirection.x;
+        moveDirection.y = 0f;
+        // check if run
         float currentSpeed = InputManager.Instance.IsRunning() ? runSpeed : walkSpeed;
         
         characterController.Move(moveDirection * Time.deltaTime * currentSpeed);
+
+       
+
+        if (InputManager.Instance.IsJumping() && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        characterController.Move(playerVelocity * Time.deltaTime);
     }
 }
