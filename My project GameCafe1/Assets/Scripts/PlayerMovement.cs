@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     CharacterController characterController;
 
-    [SerializeField] private Camera playerCamera;
     [SerializeField] private float walkSpeed = 6f;
     [SerializeField] private float runSpeed = 12f;
     [SerializeField] private float jumpHeight = 7f;
@@ -17,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool groundedPlayer;
     private Vector3 playerVelocity;
 
-    Vector3 moveDirection = Vector3.zero;
+    private Vector3 moveDirection = Vector3.zero;
 
     private bool canMove = true;
 
