@@ -155,8 +155,19 @@
                 },
                 {
                     "name": "",
-                    "id": "10ea3e8d-41ab-42ad-b4e0-8101aff2f1ef",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "55057800-3959-414f-b321-c3cab41ce8c1",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9ae5419-02c7-497d-ac0c-33f0ca487c4a",
+                    "path": "<Touchscreen>/primaryTouch/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
