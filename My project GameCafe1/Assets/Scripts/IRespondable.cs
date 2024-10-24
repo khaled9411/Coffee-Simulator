@@ -6,7 +6,7 @@ using UnityEngine;
 [SerializeField]
 public interface IRespondable 
 {
-    public string Name { get; set; }
+    public string respondableName { get; set; }
 
     public string verbName {  get; set; }  
     

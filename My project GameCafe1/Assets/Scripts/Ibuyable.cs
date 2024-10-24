@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Ibayable 
+public interface Ibuyable 
 {
     public float GetPrice();
 }

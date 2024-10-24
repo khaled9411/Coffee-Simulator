@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Targetable : MonoBehaviour
 {
-    [SerializeField] private string name;
+    [SerializeField] private string targetName;
     public string GetName()
     {
-        return name;
+        return targetName;
     }
     public void SetName(string name)
     {
-        this.name = name;
+        this.targetName = name;
     }
 }

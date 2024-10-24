@@ -5,37 +5,83 @@ using UnityEngine;
 public class InteractionZone : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject respondableGameObject;
-    private IRespondable respondable;
+    protected IRespondable respondable;
     public string verbName { get { return respondable.verbName; } set { respondable.verbName = value; } }
 
+    [SerializeField] private GameObject visualsParent;
+    [SerializeField] private float distanceToEnable = 5;
+    private float distanceToPlayer;
+
+    private Collider interactionZoneCollider;
     private void Start()
     {
         respondable = respondableGameObject.GetComponent<IRespondable>();
-        if ( respondable == null ) Debug.LogError("the refreranced gameObject does not inclde IRespodable interface"); 
+        if ( respondable == null ) Debug.LogError("the refreranced gameObject does not inclde IRespodable interface");
+        interactionZoneCollider = GetComponent<Collider>();
+    }
+    private void Update()
+    {
+        distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
+        if(distanceToPlayer <= distanceToEnable)
+        {
+            EnableCollider();
+            ShowVisuals();
+        }
+        else
+        {
+            DisableCollider();
+            HideVisuals();
+        }
     }
 
-    public void Interact()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsShowable())
+        {
+            if (Player.IsPlayer(other.gameObject))
+            {
+                (respondable as IShowable).ShowPreview();
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsShowable())
+        {
+            if (Player.IsPlayer(other.gameObject))
+            {
+                (respondable as IShowable).HidePreview();
+            }
+        }
+    }
+    
+    private bool IsShowable()
+    {
+        return respondable is IShowable;
+    }
+    public virtual void Interact()
     {
         respondable.respond();
     }
 
     public string GetName()
     {
-        return respondable.Name;
+        return respondable.respondableName;
     }
-    private void OnTriggerEnter(Collider other)
+    private void EnableCollider()
     {
-        if (IsShowable())
-        {
-            if (TryGetComponent<PlayerCollision>(out _))
-            {
-                (respondable as IShowable).ShowPreview();
-            }
-        }
+        interactionZoneCollider.enabled = true;
     }
-
-    private bool IsShowable()
+    private void DisableCollider()
     {
-        return respondable is IShowable;
+        interactionZoneCollider.enabled = false;
+    }
+    private void ShowVisuals()
+    {
+        visualsParent.SetActive(true);
+    }
+    private void HideVisuals()
+    {
+        visualsParent.SetActive(false);
     }
 }

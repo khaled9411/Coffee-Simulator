@@ -33,9 +33,9 @@ public class InteractHandler : MonoBehaviour
         ShowTargetName(name);
         ShowInteractButton(interactable.verbName);
         // still did't make the BayableInteractionZone
-        if(interactable is Ibayable)
+        if(interactable is Ibuyable)
         {
-            ShowPrice((interactable as Ibayable).GetPrice());
+            ShowPrice((interactable as Ibuyable).GetPrice());
         }
     }
 
@@ -63,7 +63,7 @@ public class InteractHandler : MonoBehaviour
                 this.interactable = interactable;
                 ShowInteractButton(interactable.verbName);
             }
-            if(target.TryGetComponent<Ibayable>(out Ibayable bayable))
+            if(target.TryGetComponent<Ibuyable>(out Ibuyable bayable))
             {
                 ShowPrice(bayable.GetPrice());
             }
@@ -80,6 +80,7 @@ public class InteractHandler : MonoBehaviour
        if(interactable != null)
         {
             interactable.Interact();
+            if (isTrigged) PlayerCollision_OnplayerTriggerExitFromInteractZone();
         }
     }
     private void ShowTargetName(string name)

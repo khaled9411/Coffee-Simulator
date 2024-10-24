@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour, IInteractable , Ibayable
+public class Food : MonoBehaviour, IInteractable , Ibuyable
 {
     public string verbName { get; set; } = "Eat";
     [SerializeField] private FoodSO foodSO;
