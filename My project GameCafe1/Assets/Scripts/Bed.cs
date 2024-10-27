@@ -10,6 +10,8 @@ public class Bed : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        SaveSystem.SaveGame();
         Debug.Log("you are sleeeeeepiiing");
+        Debug.Log("Saveing...");
     }
 }

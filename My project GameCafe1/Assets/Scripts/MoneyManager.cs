@@ -1,77 +1,77 @@
 using UnityEngine;
 
-public class MoneyManager : MonoBehaviour
+public class MoneyManager : MonoBehaviour, ISaveable
 {
-    // Singleton instance for easy access to the MoneyManager
     public static MoneyManager Instance;
-
-    // Key to store the money value in PlayerPrefs
-    private const string MoneyKey = "PlayerMoney";
-
-    // Property to get and set the money value
-    private int _money;
-    public int Money
+    private float _money;
+    public float Money
     {
         get { return _money; }
         private set
         {
             _money = value;
-            SaveMoney(); // Save the money value whenever it changes
+            Debug.Log($"Money updated: {_money}");
         }
     }
 
-    // Awake is called before the first frame update
     private void Awake()
     {
-        // Implement Singleton pattern to ensure only one instance of MoneyManager exists
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep the MoneyManager alive across scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Destroy duplicate instances
+            Destroy(gameObject);
         }
-
-        LoadMoney(); // Load saved money value from PlayerPrefs
     }
 
-    // Method to add money to the current balance
-    public void AddMoney(int amount)
+    public void AddMoney(float amount)
     {
         Money += amount;
+        Debug.Log($"Added {amount} money. New total: {Money}");
     }
 
-    // Method to subtract money from the current balance
-    public void SubtractMoney(int amount)
+    public void SubtractMoney(float amount)
     {
-        if (Money >= amount) // Ensure that there is enough money to subtract
+        if (Money >= amount)
         {
             Money -= amount;
+            Debug.Log($"Subtracted {amount} money. New total: {Money}");
         }
         else
         {
-            Debug.LogWarning("Not enough money to subtract");
+            Debug.LogWarning($"Not enough money to subtract {amount}. Current money: {Money}");
         }
     }
 
-    // Method to save the money value in PlayerPrefs
-    private void SaveMoney()
+    public void SubtractMoney(float amount, out bool canBuy)
     {
-        PlayerPrefs.SetInt(MoneyKey, Money);
-        PlayerPrefs.Save();
+        if (Money >= amount)
+        {
+            Money -= amount;
+            canBuy = true;
+            Debug.Log($"Subtracted {amount} money. New total: {Money}");
+        }
+        else
+        {
+            Debug.LogWarning($"Not enough money to subtract {amount}. Current money: {Money}");
+            canBuy = false;
+        }
     }
 
-    // Method to load the money value from PlayerPrefs
-    private void LoadMoney()
+    public SaveData SaveData()
     {
-        Money = PlayerPrefs.GetInt(MoneyKey, 0); // Default to 0 if no value is found
+        return new FloatSaveData(Money);
     }
 
-    // Method to reset money value (optional)
-    public void ResetMoney()
+    public void LoadData(SaveData data)
     {
-        Money = 0;
+        if (data is FloatSaveData floatData)
+        {
+            Money = floatData.value;
+            Debug.Log($"Loaded money value: {Money}");
+        }
     }
 }
