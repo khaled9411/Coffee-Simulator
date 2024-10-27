@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,12 @@ public class InteractHandler : MonoBehaviour
     private Targetable previuseTarget;
     private IInteractable interactable;
     private bool isTrigged;
+    
 
+    public event Action<string> OnTargetTarget;
+    public event Action<string> OnTargetInteractbale;
+    public event Action<float> OnTargetBuyable;
+    public event Action OnNoTarget;
     void Start()
     {
         InputManager.Instance.OnInteract += InputManager_OnInteract;
@@ -24,6 +30,7 @@ public class InteractHandler : MonoBehaviour
     {
         interactable = null;
         isTrigged = false;
+        HideAllUIElements();
     }
 
     private void PlayerCollision_OnPlayerTriggerWithInteractZone(IInteractable obj,string name)
@@ -33,7 +40,7 @@ public class InteractHandler : MonoBehaviour
         ShowTargetName(name);
         ShowInteractButton(interactable.verbName);
         // still did't make the BayableInteractionZone
-        if(interactable is Ibuyable)
+        if(IsBuyable())
         {
             ShowPrice((interactable as Ibuyable).GetPrice());
         }
@@ -79,24 +86,39 @@ public class InteractHandler : MonoBehaviour
     {
        if(interactable != null)
         {
-            interactable.Interact();
-            if (isTrigged) PlayerCollision_OnplayerTriggerExitFromInteractZone();
+            if (IsBuyable())
+            {
+                if (MoneyManager.Instance.TryBuy((interactable as Ibuyable).GetPrice()))
+                {
+                    interactable.Interact();
+                    if (isTrigged) PlayerCollision_OnplayerTriggerExitFromInteractZone();
+                }
+            }
+            else
+            {
+                interactable.Interact();
+            }
         }
     }
     private void ShowTargetName(string name)
     {
-        Debug.Log(name);
+        OnTargetTarget?.Invoke(name);
     }
     private void ShowInteractButton(string verbName)
     {
-        Debug.Log(verbName);
+        OnTargetInteractbale?.Invoke(verbName);
     }
     private void ShowPrice(float price)
     {
-        Debug.Log(price);
+        OnTargetBuyable?.Invoke(price);
     }
     private void HideAllUIElements()
     {
-
+        Debug.Log("hide");
+        OnNoTarget?.Invoke();
+    }
+    private bool IsBuyable()
+    {
+        return interactable is Ibuyable;
     }
 }

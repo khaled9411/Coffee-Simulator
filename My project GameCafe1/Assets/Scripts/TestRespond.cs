@@ -7,7 +7,7 @@ public class TestRespond : MonoBehaviour, IRespondable
     [field: SerializeField] public string respondableName { get; set; }
     [field: SerializeField] public string verbName { get; set; }
 
-    public void respond()
+    public void Respond()
     {
         Debug.Log("interaction zone and respond working");
     }

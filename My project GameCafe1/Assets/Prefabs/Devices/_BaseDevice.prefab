@@ -105,6 +105,7 @@ MonoBehaviour:
   <respondableName>k__BackingField: Device
   <verbName>k__BackingField: Buy
   visualsParent: {fileID: 782667673183514681}
+  DeviceCollider: {fileID: 5644906109209704430}
 --- !u!114 &-5524298347115607986
 MonoBehaviour:
   m_ObjectHideFlags: 0

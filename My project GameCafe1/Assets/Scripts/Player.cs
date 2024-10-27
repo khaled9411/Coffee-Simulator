@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  public static Player Instance;
+    public static Player Instance;
+    public InteractHandler interactHandler { get; private set; }
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("you have two players");
         }
+        interactHandler = GetComponent<InteractHandler>();
     }
     
     public static bool IsPlayer(GameObject gameObject)

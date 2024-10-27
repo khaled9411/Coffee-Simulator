@@ -11,5 +11,5 @@ public interface IRespondable
     public string verbName {  get; set; }  
     
 
-    public void respond();
+    public void Respond();
 }

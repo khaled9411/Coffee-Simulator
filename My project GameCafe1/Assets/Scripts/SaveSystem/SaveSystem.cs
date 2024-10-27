@@ -41,7 +41,17 @@ public static class SaveSystem
             Debug.LogError($"Error saving game: {e.Message}");
         }
     }
-
+    public static void ClearData()
+    {
+        try
+        {
+            File.WriteAllText(saveFilePath, "");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error clearing game data: {e.Message}");
+        }
+    }
     public static void LoadGame()
     {
         if (!File.Exists(saveFilePath))

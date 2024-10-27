@@ -11,6 +11,11 @@ public class SaveManagerEditor : Editor
             SaveManager saveManager = (SaveManager)target;
             saveManager.FindAllISaveableObjects();
         }
+        if(GUILayout.Button("Clear Data"))
+        {
+            SaveManager saveManager = (SaveManager) target;
+            saveManager.ClearData();
+        }
         DrawDefaultInspector();
     }
 }

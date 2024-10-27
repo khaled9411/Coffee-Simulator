@@ -7,41 +7,21 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
     [field: SerializeField] public string respondableName { get; set; }
     [field: SerializeField] public string verbName { get; set; }
     [SerializeField] private GameObject visualsParent;
-    private Collider DeviceCollider;
-    private bool canBuy = false;
+    [SerializeField]private Collider DeviceCollider;
     private bool isPurchased = false;
 
     public event Action OnShowPreview;
     public event Action OnHidePreview;
 
-    private void Start()
+    
+
+    public void Respond()
     {
-        DeviceCollider = GetComponent<Collider>();
-        DisableCollider();
-        HideVisuals();
+        Debug.Log($"you bought a new {respondableName} with {price}$");
+        isPurchased = true;
+        EnableCollider();
+        ShowVisuals();
         HidePreview();
-    }
-
-    public void respond()
-    {
-        if (isPurchased)
-        {
-            EnableCollider();
-            ShowVisuals();
-            HidePreview();
-            return;
-        }
-
-        MoneyManager.Instance.SubtractMoney(price, out canBuy);
-        if (canBuy)
-        {
-            Debug.Log($"you bought a new {respondableName} with {price}$");
-            isPurchased = true;
-            EnableCollider();
-            ShowVisuals();
-            HidePreview();
-        }
-        canBuy = false;
     }
 
     private void ShowVisuals()
@@ -110,6 +90,12 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
                 DisableCollider();
                 HideVisuals();
             }
+            HidePreview();
         }
+    }
+
+    public bool IsPurchased()
+    {
+        return isPurchased;
     }
 }

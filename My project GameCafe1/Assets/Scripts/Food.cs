@@ -22,17 +22,7 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
 
     public void Interact()
     {
-        MoneyManager.Instance.SubtractMoney(GetPrice(), out canBuy);
-
-        if (canBuy)
-        {
-            Debug.Log($"you buoght a {foodSO.name} with {GetPrice()} and got {foodSO.hungerRecoveryAmount}");
-            Destroy(gameObject);
-        }
-        else
-        {
-
-        }
-        canBuy = false;
+        Debug.Log($"you buoght a {foodSO.name} with {GetPrice()} and got {foodSO.hungerRecoveryAmount}");
+        gameObject.SetActive(false);
     }
 }

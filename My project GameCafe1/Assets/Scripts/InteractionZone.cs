@@ -21,6 +21,14 @@ public class InteractionZone : MonoBehaviour, IInteractable
     }
     private void Update()
     {
+        if(respondable is IBuyableRespondable)
+        {
+            if((respondable as IBuyableRespondable).IsPurchased())
+            {
+                Destroy(gameObject);
+            }
+        }
+
         distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
         if(distanceToPlayer <= distanceToEnable)
         {
@@ -61,7 +69,7 @@ public class InteractionZone : MonoBehaviour, IInteractable
     }
     public virtual void Interact()
     {
-        respondable.respond();
+        respondable.Respond();
     }
 
     public string GetName()

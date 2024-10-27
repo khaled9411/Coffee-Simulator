@@ -9,11 +9,13 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         SaveSystem.SaveableObjects = saveableObjects;
+        SaveSystem.LoadGame();
     }
 
-    private void Start()
+
+    public void ClearData()
     {
-        SaveSystem.LoadGame();
+        SaveSystem.ClearData();
     }
 
     public void FindAllISaveableObjects()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MoneyManager : MonoBehaviour, ISaveable
@@ -11,8 +12,11 @@ public class MoneyManager : MonoBehaviour, ISaveable
         {
             _money = value;
             Debug.Log($"Money updated: {_money}");
+            OnMoneyChange?.Invoke();
         }
     }
+
+    public event Action OnMoneyChange;
 
     private void Awake()
     {
@@ -46,18 +50,18 @@ public class MoneyManager : MonoBehaviour, ISaveable
         }
     }
 
-    public void SubtractMoney(float amount, out bool canBuy)
+    public bool TryBuy(float amount)
     {
         if (Money >= amount)
         {
             Money -= amount;
-            canBuy = true;
             Debug.Log($"Subtracted {amount} money. New total: {Money}");
+            return true;
         }
         else
         {
             Debug.LogWarning($"Not enough money to subtract {amount}. Current money: {Money}");
-            canBuy = false;
+            return false;
         }
     }
 
