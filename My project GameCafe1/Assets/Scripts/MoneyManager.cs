@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class MoneyManager : MonoBehaviour, ISaveable
 {
+    [SerializeField]
+    private string uniqueID;
+    public string UniqueID
+    {
+        get { return uniqueID; }
+        private set { uniqueID = value; }
+    }
+
     public static MoneyManager Instance;
     private float _money;
     public float Money

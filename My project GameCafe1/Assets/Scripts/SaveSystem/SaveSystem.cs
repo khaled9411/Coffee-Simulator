@@ -25,11 +25,12 @@ public static class SaveSystem
                 string jsonData = JsonUtility.ToJson(saveData);
                 allData.Add(new GameData
                 {
+                    uniqueID = saveable.UniqueID,
                     typeName = saveable.GetType().FullName,
                     dataType = saveData.GetType().FullName,
                     jsonData = jsonData
                 });
-                Debug.Log($"Saved data for {saveable.GetType().Name}: {jsonData}");
+                Debug.Log($"Saved data for {saveable.GetType().Name} (ID: {saveable.UniqueID}): {jsonData}");
             }
 
             string finalJson = JsonUtility.ToJson(new SerializationWrapper { allData = allData });
@@ -41,6 +42,7 @@ public static class SaveSystem
             Debug.LogError($"Error saving game: {e.Message}");
         }
     }
+
     public static void ClearData()
     {
         try
@@ -52,6 +54,7 @@ public static class SaveSystem
             Debug.LogError($"Error clearing game data: {e.Message}");
         }
     }
+
     public static void LoadGame()
     {
         if (!File.Exists(saveFilePath))
@@ -76,7 +79,7 @@ public static class SaveSystem
             {
                 foreach (var saveable in SaveableObjects)
                 {
-                    if (saveable.GetType().FullName == gameData.typeName)
+                    if (saveable.UniqueID == gameData.uniqueID)
                     {
                         try
                         {
@@ -85,13 +88,14 @@ public static class SaveSystem
                             {
                                 SaveData loadedData = (SaveData)JsonUtility.FromJson(gameData.jsonData, dataType);
                                 saveable.LoadData(loadedData);
-                                Debug.Log($"Loaded data for {gameData.typeName}: {gameData.jsonData}");
+                                Debug.Log($"Loaded data for {gameData.typeName} (ID: {gameData.uniqueID}): {gameData.jsonData}");
                             }
                         }
                         catch (System.Exception e)
                         {
-                            Debug.LogError($"Error loading data for {gameData.typeName}: {e.Message}");
+                            Debug.LogError($"Error loading data for {gameData.typeName} (ID: {gameData.uniqueID}): {e.Message}");
                         }
+                        break;
                     }
                 }
             }
@@ -119,6 +123,7 @@ public static class SaveSystem
     [System.Serializable]
     private class GameData
     {
+        public string uniqueID;
         public string typeName;
         public string dataType;
         public string jsonData;
@@ -129,4 +134,5 @@ public static class SaveSystem
     {
         public List<GameData> allData;
     }
+
 }

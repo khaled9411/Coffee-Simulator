@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
 {
+    [SerializeField]
+    private string uniqueID;
+
+    public string UniqueID
+    {
+        get { return uniqueID; }
+        private set { uniqueID = value; }
+    }
+
     [field: SerializeField] public float price { get; set; }
     [field: SerializeField] public string respondableName { get; set; }
     [field: SerializeField] public string verbName { get; set; }

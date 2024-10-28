@@ -25,4 +25,5 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
         Debug.Log($"you buoght a {foodSO.name} with {GetPrice()} and got {foodSO.hungerRecoveryAmount}");
         gameObject.SetActive(false);
     }
+
 }

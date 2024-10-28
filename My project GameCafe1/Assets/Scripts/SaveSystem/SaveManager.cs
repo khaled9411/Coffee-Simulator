@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening.Core.Easing;
+using UnityEditor;
 
 public class SaveManager : MonoBehaviour
 {
@@ -30,12 +32,30 @@ public class SaveManager : MonoBehaviour
             if (saveable != null)
             {
                 saveableObjects.Add(saveable);
+                NewID(saveable as MonoBehaviour);
             }
         }
 
         SaveSystem.SaveableObjects = saveableObjects;
 
         Debug.Log($"Found {saveableObjects.Count} ISaveable objects.");
+    }
+
+    private void NewID(Object obj)
+    {
+        SerializedObject serializedObject = new SerializedObject(obj);
+        SerializedProperty idProperty = serializedObject.FindProperty("uniqueID");
+
+        if (idProperty != null)
+        {
+            idProperty.stringValue = System.Guid.NewGuid().ToString();
+            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(obj);
+        }
+        else
+        {
+            Debug.LogWarning($"Property 'uniqueID' not found in {obj.name}. Make sure it's defined as [SerializeField].");
+        }
     }
 
     public void TestSaveSystem()
