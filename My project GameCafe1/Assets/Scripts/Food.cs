@@ -23,6 +23,7 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
     public void Interact()
     {
         Debug.Log($"you buoght a {foodSO.name} with {GetPrice()} and got {foodSO.hungerRecoveryAmount}");
+        HungerSystem.Instance.OnEatFood?.Invoke(foodSO.hungerRecoveryAmount);
         gameObject.SetActive(false);
     }
 
