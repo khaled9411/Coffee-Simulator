@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     public InteractHandler interactHandler { get; private set; }
-
     private void Awake()
     {
         if (Instance == null)
@@ -19,7 +18,7 @@ public class Player : MonoBehaviour
         }
         interactHandler = GetComponent<InteractHandler>();
     }
-    
+
     public static bool IsPlayer(GameObject gameObject)
     {
         return gameObject == Instance.gameObject;

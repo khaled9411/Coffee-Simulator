@@ -58,6 +58,19 @@ public class MoneyManager : MonoBehaviour, ISaveable
         }
     }
 
+    public void RequiredSubtractMoney(float amount)
+    {
+        if (Money >= amount)
+        {
+            Money -= amount;
+            Debug.Log($"Subtracted {amount} money. New total: {Money}");
+        }
+        else
+        {
+            Money = 0;
+        }
+    }
+
     public bool TryBuy(float amount)
     {
         if (Money >= amount)

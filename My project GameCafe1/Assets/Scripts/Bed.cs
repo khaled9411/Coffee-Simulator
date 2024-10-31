@@ -10,7 +10,15 @@ public class Bed : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        SleepEffect();
+    }
+
+    private void SleepEffect()
+    {
+        FadeEvent.TriggerFade();
         SaveSystem.SaveGame();
+        GameTimeManager.instance.ResetDayTime();
+
         Debug.Log("you are sleeeeeepiiing");
         Debug.Log("Saveing...");
     }

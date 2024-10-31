@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class GameTimeManager : MonoBehaviour
 {
@@ -58,6 +59,18 @@ public class GameTimeManager : MonoBehaviour
 
             OnTimeUpdated?.Invoke(gameHour, gameMinute);
         }
+    }
+
+    public void ResetDayTime()
+    {
+        StartCoroutine(ResetDayTimeCoroutine());
+    }
+
+    private IEnumerator ResetDayTimeCoroutine()
+    {
+        yield return new WaitForSeconds(1F);
+        gameHour = StartHour;
+        gameMinute = StartMinute;
     }
 
     public string GetFormattedTime()

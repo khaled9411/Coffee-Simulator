@@ -63,4 +63,11 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
     }
+
+    public void SetCanMove(bool can)
+    {
+        canMove = can;
+    }
+
+    public bool CanMove() { return canMove; }
 }
