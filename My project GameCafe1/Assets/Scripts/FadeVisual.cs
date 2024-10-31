@@ -10,14 +10,15 @@ public class FadeVisual : MonoBehaviour
     [SerializeField] private float pauseTime = 3;
     private bool isPlaying = false;
 
+
     private void OnEnable()
     {
-        FadeEvent.OnFade += PlayEffect;
+        FadeEvent.OnFadeInStart += PlayEffect;
     }
 
     private void OnDisable()
     {
-        FadeEvent.OnFade -= PlayEffect;
+        FadeEvent.OnFadeInStart -= PlayEffect;
     }
 
     public void PlayEffect()
@@ -31,9 +32,15 @@ public class FadeVisual : MonoBehaviour
         isPlaying = true;
         fadeImage.gameObject.SetActive(true);
 
+
         yield return FadeIn();
-        yield return new WaitForSeconds(pauseTime); 
-        yield return FadeOut(); 
+        FadeEvent.TriggerFadeInEnd();
+        yield return new WaitForSeconds(pauseTime);
+        PlayerMovement.Instance.SetCanMove(true);
+        FadeEvent.TriggerFideOutStart();
+        yield return FadeOut();
+        FadeEvent.TriggerFideOutEnd();
+
 
         fadeImage.gameObject.SetActive(false);
         isPlaying = false;

@@ -22,9 +22,6 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     [SerializeField] private Collider DeviceCollider;
     private bool isPurchased = false;
 
-    public event Action OnShowPreview;
-    public event Action OnHidePreview;
-
 
     public void Respond()
     {

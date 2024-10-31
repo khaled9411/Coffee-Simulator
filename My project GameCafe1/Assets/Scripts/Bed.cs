@@ -13,11 +13,24 @@ public class Bed : MonoBehaviour, IInteractable
         SleepEffect();
     }
 
+    private void Start()
+    {
+        FadeEvent.OnFadeInEnd += FadeEvent_OnFadeInEnd;
+    }
+    private void FadeEvent_OnFadeInEnd()
+    {
+        GameTimeManager.instance.ResetDayTime();
+        Player.Instance.SpwanInStartPoint();
+    }
+    private void OnDestroy()
+    {
+        FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;
+    }
+
     private void SleepEffect()
     {
-        FadeEvent.TriggerFade();
+        FadeEvent.TriggerFadeInStart();
         SaveSystem.SaveGame();
-        GameTimeManager.instance.ResetDayTime();
 
         Debug.Log("you are sleeeeeepiiing");
         Debug.Log("Saveing...");

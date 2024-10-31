@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     public InteractHandler interactHandler { get; private set; }
+
+    [SerializeField] private Transform spwanPoint;
     private void Awake()
     {
         if (Instance == null)
@@ -22,5 +24,11 @@ public class Player : MonoBehaviour
     public static bool IsPlayer(GameObject gameObject)
     {
         return gameObject == Instance.gameObject;
+    }
+
+    public void SpwanInStartPoint()
+    {
+        PlayerMovement.Instance.SetCanMove(false);
+        transform.position = spwanPoint.position;
     }
 }

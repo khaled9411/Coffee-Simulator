@@ -11,12 +11,24 @@ public class Faint : MonoBehaviour
     {
         Instance = this;
     }
-
+    private void Start()
+    {
+        FadeEvent.OnFadeInEnd += FadeEvent_OnFadeInEnd;
+    }
+    private void FadeEvent_OnFadeInEnd()
+    {
+        GameTimeManager.instance.ResetDayTime();
+        Player.Instance.SpwanInStartPoint();
+    }
+    private void OnDestroy()
+    {
+        FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;
+    }
     public void StartFaint()
     {
         MoneyManager.Instance.RequiredSubtractMoney(moneyPenalty);
-        FadeEvent.TriggerFade();
+        FadeEvent.TriggerFadeInStart();
         SaveSystem.SaveGame();
-        GameTimeManager.instance.ResetDayTime();
+
     }
 }

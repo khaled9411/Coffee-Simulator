@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
     CharacterController characterController;
 
     [SerializeField] private float walkSpeed = 6f;
@@ -18,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     private bool canMove = true;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -62,4 +68,7 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
     }
+
+    public void SetCanMove(bool can){canMove = can;}
+    public bool CanMove() {return canMove;}
 }
