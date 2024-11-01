@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     public void SpwanInStartPoint()
     {
-        PlayerMovement.Instance.SetCanMove(false);
         transform.position = spwanPoint.position;
     }
 }

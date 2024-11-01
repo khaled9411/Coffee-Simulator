@@ -35,7 +35,10 @@ public class FadeVisual : MonoBehaviour
 
         yield return FadeIn();
         FadeEvent.TriggerFadeInEnd();
+        PlayerMovement.Instance.SetCanMove(false);
+
         yield return new WaitForSeconds(pauseTime);
+
         PlayerMovement.Instance.SetCanMove(true);
         FadeEvent.TriggerFideOutStart();
         yield return FadeOut();
