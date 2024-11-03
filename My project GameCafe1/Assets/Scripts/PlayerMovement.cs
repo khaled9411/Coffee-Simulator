@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     private bool canMove = true;
+
+    public event Action OnJump;
 
     private void Awake()
     {
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.Instance.IsJumping() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            OnJump?.Invoke();
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;

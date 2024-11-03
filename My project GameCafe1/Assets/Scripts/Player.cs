@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public static Player Instance;
     public InteractHandler interactHandler { get; private set; }
 
+    public PlayerMovement playerMovement { get; private set; }
+
     [SerializeField] private Transform spwanPoint;
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
             Debug.LogError("you have two players");
         }
         interactHandler = GetComponent<InteractHandler>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public static bool IsPlayer(GameObject gameObject)
