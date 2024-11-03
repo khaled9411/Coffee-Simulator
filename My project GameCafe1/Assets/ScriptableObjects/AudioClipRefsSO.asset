@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 705c832bb3f683742a2ac81b667d9b44, type: 3}
   jump: {fileID: 8300000, guid: 74ed616413f1d03489057fa23d879555, type: 3}
   sit: {fileID: 8300000, guid: 25e5efc62d2300a4194d26bc6fb3fb7e, type: 3}
-  buy: {fileID: 8300000, guid: bd2e0075112ab9046b58f06b0f916b36, type: 3}
+  buy: {fileID: 8300000, guid: 29c9229df62292148a3ee1375817fa8e, type: 3}
   eat: {fileID: 0}

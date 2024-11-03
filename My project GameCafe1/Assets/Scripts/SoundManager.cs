@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
 
     private void MoneyManager_OnMoneyChange()
     {
-        PlaySound(audioClipRefsSO.buy, Player.Instance.transform.position);
+        PlaySound(audioClipRefsSO.buy, Player.Instance.transform.position , .4f);
     }
 
     private void HungerSystem_OnEatFood(float _)
