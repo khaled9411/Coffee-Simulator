@@ -7,7 +7,7 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
     public string verbName { get; set; } = "Eat";
     [SerializeField] private FoodSO foodSO;
 
-    private bool canBuy = false;
+    //private bool canBuy = false;
     void Start()
     {
         if(TryGetComponent<Targetable>(out Targetable targetable))
