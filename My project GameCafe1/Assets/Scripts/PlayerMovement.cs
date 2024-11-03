@@ -71,4 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetCanMove(bool can){canMove = can;}
     public bool CanMove() {return canMove;}
+
+    public bool IsWalking()
+    {
+        return moveDirection != Vector3.zero;
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class FoodSO : ScriptableObject
 {
 
-    public string name;
+    public string foodName;
 
     public float price;
 
