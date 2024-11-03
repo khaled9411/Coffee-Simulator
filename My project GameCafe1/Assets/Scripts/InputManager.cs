@@ -10,6 +10,9 @@ public class InputManager : MonoBehaviour
     private PlayerInputAction playerInputActions;
 
     public event Action OnInteract;
+
+    [SerializeField] LookField lookField;
+
     private void Awake()
     {
         Instance = this;
@@ -41,6 +44,6 @@ public class InputManager : MonoBehaviour
     }
     public Vector2 GetLookVector()
     {
-        return playerInputActions.Player.Look.ReadValue<Vector2>();
+        return lookField.GetPointerDist();
     }
 }
