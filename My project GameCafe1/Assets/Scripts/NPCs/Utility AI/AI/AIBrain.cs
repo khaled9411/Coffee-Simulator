@@ -36,6 +36,8 @@ namespace TL.UtilityAI
         // Give me the highest scoring action
         public void DecideBestAction()
         {
+            finishedExecutingBestAction = false;
+
             float score = 0f;
             int nextBestActionIndex = 0;
             for (int i = 0; i < actionsAvailable.Length; i++)

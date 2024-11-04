@@ -57,7 +57,7 @@ namespace TL.Core
             else if (currentState == State.move)
             {
                 float distance = Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position);
-                //Debug.Log($"Destination: {mover.destination.name} | Distance: {distance}");
+                Debug.Log($"Destination: {mover.destination.name} | Distance: {distance}");
                 if (distance < 2f)
                 {
                     currentState = State.execute;

@@ -67,7 +67,7 @@ namespace TL.Core
         {
             hunger = Random.Range(20, 80);
             energy = Random.Range(20, 80);
-            money = Random.Range(10, 100);
+            money = Random.Range(10, 1000);
             cafe = Random.Range(10, 100);
 
             // Test case: NPC will likely work

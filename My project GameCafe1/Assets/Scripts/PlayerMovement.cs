@@ -78,6 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsWalking()
     {
-        return moveDirection != Vector3.zero;
+        return moveDirection != Vector3.zero && groundedPlayer;
     }
 }
