@@ -6,8 +6,8 @@ namespace TL.Core
 {
     public class NPCStats : MonoBehaviour
     {
-        private int _energy;
-        public int energy
+        private float _energy;
+        public float energy
         {
             get { return _energy; }
             set
@@ -17,8 +17,8 @@ namespace TL.Core
             }
         }
 
-        private int _hunger;
-        public int hunger
+        private float _hunger;
+        public float hunger
         {
             get { return _hunger; }
             set
@@ -28,26 +28,24 @@ namespace TL.Core
             }
         }
 
-        private int _money;
-        public int money
+        private float _money;
+        public float money
         {
             get { return _money; }
             set
             {
-                _money = value;
+                _money = Mathf.Clamp(value, 0, 1000);
                 OnStatValueChanged?.Invoke();
             }
         }
 
-        private int _cafe;
-        public int cafe
+        private float _cafe;
+        public float cafe
         {
             get { return _cafe; }
             set
             {
-                
-                _cafe = value;
-                _hunger = Mathf.Clamp(value, 0, 100);
+                _cafe = Mathf.Clamp(value, 0, 100);
                 OnStatValueChanged?.Invoke();
 
             }
@@ -94,6 +92,8 @@ namespace TL.Core
             //money = 500;
             //cafe = 90;
         }
+
+
 
         public void UpdateHunger()
         {

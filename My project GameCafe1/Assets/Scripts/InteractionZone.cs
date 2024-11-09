@@ -19,6 +19,7 @@ public class InteractionZone : MonoBehaviour, IInteractable
         if ( respondable == null ) Debug.LogError("the refreranced gameObject does not inclde IRespodable interface");
         interactionZoneCollider = GetComponent<Collider>();
     }
+
     private void Update()
     {
         if(respondable is IBuyableRespondable)

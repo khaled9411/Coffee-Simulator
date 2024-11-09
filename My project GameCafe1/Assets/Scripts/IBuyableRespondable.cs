@@ -5,6 +5,7 @@ using UnityEngine;
 
 public interface IBuyableRespondable : IRespondable
 {
+   public bool isAvailable {  get; set; }
    public float price {  get; set; }
     public bool IsPurchased();
 }

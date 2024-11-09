@@ -88,8 +88,18 @@ public class InteractHandler : MonoBehaviour
         {
             if (IsBuyable())
             {
+                //Debug.LogError(interactable is BuyableInteractionZone is Area);
+                //if (interactable is Area 
+                //     && CafeManager.instance.CanOpenNextArea() 
+                //     && MoneyManager.Instance.TryBuy((interactable as Ibuyable).GetPrice()))
+                //{
+                //    interactable.Interact();
+                //    if (isTrigged) PlayerCollision_OnplayerTriggerExitFromInteractZone();
+                //}
+
                 if (MoneyManager.Instance.TryBuy((interactable as Ibuyable).GetPrice()))
                 {
+                    
                     interactable.Interact();
                     if (isTrigged) PlayerCollision_OnplayerTriggerExitFromInteractZone();
                 }

@@ -18,6 +18,8 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     [field: SerializeField] public float price { get; set; }
     [field: SerializeField] public string respondableName { get; set; }
     [field: SerializeField] public string verbName { get; set; }
+    public bool isAvailable { get; set; } = false;
+
     [SerializeField] private GameObject visualsParent;
     [SerializeField] private Collider DeviceCollider;
     private bool isPurchased = false;
@@ -26,6 +28,7 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");
+        CafeManager.instance.AddToCurrentAreaIndex();
         isPurchased = true;
         DisableCollider();
         HideVisuals();

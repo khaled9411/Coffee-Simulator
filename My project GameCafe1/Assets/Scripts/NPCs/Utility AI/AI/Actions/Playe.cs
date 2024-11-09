@@ -13,18 +13,15 @@ namespace TL.UtilityAI.Actions
         {
             Debug.Log("I am Playe in the cafe!");
             // Logic for updating everything involved with Playing
-            npc.stats.hunger += 10;
-            npc.stats.money -= 20;
-            npc.stats.energy -= 20;
-            npc.stats.cafe -= 10;
-            npc.aiBrain.finishedExecutingBestAction = true;
+            npc.DoPlay(3);
             //npc.OnFinishedAction();
         }
 
         public override void SetRequiredDestination(NPCController npc)
         {
-            RequiredDestination = npc.context.cafe.transform;
+            RequiredDestination = npc.availableDevice;
             npc.mover.destination = RequiredDestination;
+            //Debug.LogWarning($"I am {npc} and my Destination is {RequiredDestination} in vector3 {RequiredDestination?.position}");
         }
     }
 }

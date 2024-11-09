@@ -13,9 +13,7 @@ namespace TL.UtilityAI.Actions
         {
             Debug.Log("I ate food!");
             // Logic for updating everything involved with eating
-            npc.stats.hunger -= 30;
-            npc.stats.money -= 10;
-            npc.aiBrain.finishedExecutingBestAction = true;
+            npc.DoEat(2);
             //npc.OnFinishedAction();
         }
 

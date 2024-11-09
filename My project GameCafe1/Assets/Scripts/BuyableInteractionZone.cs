@@ -12,6 +12,6 @@ public class BuyableInteractionZone : InteractionZone , Ibuyable
     public override void Interact()
     {
         base.Interact();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

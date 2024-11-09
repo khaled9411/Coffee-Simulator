@@ -4,6 +4,7 @@ using UnityEngine;
 using TL.UtilityAI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using TL.UtilityAI.Actions;
 
 namespace TL.Core
 {
@@ -21,10 +22,26 @@ namespace TL.Core
         public NPCStats stats { get; set; }
 
         public Context context;
-        
 
-        public State currentState { get; set; }
 
+        private State currentState;
+
+        public State GetCurrentState() {  return currentState; }
+        public void SetCurrentState(State state) 
+        { 
+            currentState = state;
+
+            if (currentState == State.execute)
+            {
+                aiBrain.bestAction.Execute(this);
+            }
+        }
+
+        public Transform availableDevice {  get; set; }
+        private bool hasActiveDevice = false;
+        private IBuyableRespondable currentDevice = null;
+        public Transform previousRequiredDestination;
+        public Transform currentDestination;
         // Start is called before the first frame update
         void Start()
         {
@@ -37,49 +54,92 @@ namespace TL.Core
         void Update()
         {
             FSMTick();
+
+            stats.UpdateEnergy(AmIAtRestDestination());
+            stats.UpdateHunger();
         }
 
         public void FSMTick()
         {
-            if (currentState == State.decide)
+            if (GetCurrentState() == State.decide)
             {
+                if (hasActiveDevice && currentDevice != null)
+                {
+                    Debug.Log($"Releasing device for NPC {gameObject.name}");
+                    CafeManager.instance.LeaveItem(currentDevice);
+                    hasActiveDevice = false;
+                    currentDevice = null;
+                }
+
+                previousRequiredDestination = aiBrain.bestAction?.RequiredDestination;
                 aiBrain.DecideBestAction();
 
-                if (Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position) < 2f)
+                if (aiBrain.bestAction is Playe)
                 {
-                    currentState = State.execute;
+                    availableDevice = CafeManager.instance.GetAvailableItemTransform();
+                    if (availableDevice != null)
+                    {
+                        currentDevice = availableDevice.GetComponent<IBuyableRespondable>();
+                        hasActiveDevice = true;
+
+                        aiBrain.bestAction.SetRequiredDestination(this);
+                        SetCurrentState(State.move);
+                    }
                 }
                 else
                 {
-                    currentState = State.move;
+                    if (Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position) < 2f)
+                    {
+                        SetCurrentState(State.execute);
+                    }
+                    else
+                    {
+                        SetCurrentState(State.move);
+                    }
                 }
             }
-            else if (currentState == State.move)
+            else if (GetCurrentState() == State.move)
             {
                 float distance = Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position);
-                Debug.Log($"Destination: {mover.destination.name} | Distance: {distance}");
                 if (distance < 2f)
                 {
-                    currentState = State.execute;
+                    SetCurrentState(State.execute);
                 }
                 else
                 {
-                    Debug.Log("Still moving!");
                     mover.MoveTo(aiBrain.bestAction.RequiredDestination.position);
                 }
             }
-            else if (currentState == State.execute)
+            else if (GetCurrentState() == State.execute)
             {
-                if (aiBrain.finishedExecutingBestAction == false)
-                {
-                    Debug.Log("Executing action");
-                    aiBrain.bestAction.Execute(this);
-                }
-                else if (aiBrain.finishedExecutingBestAction == true)
+                if (aiBrain.finishedExecutingBestAction == true)
                 {
                     Debug.Log("Exit execute state");
-                    currentState = State.decide;
+                    if (aiBrain.bestAction is Playe && hasActiveDevice && currentDevice != null)
+                    {
+                        Debug.Log($"Releasing device after execution for NPC {gameObject.name}");
+                        CafeManager.instance.LeaveItem(currentDevice);
+                        hasActiveDevice = false;
+                        currentDevice = null;
+                    }
+                    SetCurrentState(State.decide);
                 }
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (hasActiveDevice && currentDevice != null)
+            {
+                CafeManager.instance.LeaveItem(currentDevice);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (hasActiveDevice && currentDevice != null)
+            {
+                CafeManager.instance.LeaveItem(currentDevice);
             }
         }
 
@@ -93,6 +153,11 @@ namespace TL.Core
         public bool AmIAtRestDestination()
         {
             return Vector3.Distance(this.transform.position, context.home.transform.position) <= context.MinDistance;
+        }
+
+        public bool TheCafeHasAvalibleSeats()
+        {
+            return context.currentCafe < context.maxCafe;
         }
 
         #endregion
@@ -109,6 +174,16 @@ namespace TL.Core
             StartCoroutine(SleepCoroutine(time));
         }
 
+        public void DoPlay(int time)
+        {
+            StartCoroutine(PlayCoroutine(time));
+        }
+
+        public void DoEat(int time) 
+        {
+            StartCoroutine(EatCoroutine(time));
+        }
+
         IEnumerator WorkCoroutine(int time)
         {
             int counter = time;
@@ -120,7 +195,8 @@ namespace TL.Core
 
             Debug.Log("I AM WORKING!");
             // Logic to update things involved with work
-            stats.money += 10;
+            stats.money += 10f;
+
 
             // Decide our new best action after you finished this one
             //OnFinishedAction();
@@ -139,15 +215,48 @@ namespace TL.Core
 
             Debug.Log("I slept and gained 1 energy!");
             // Logic to update energy
-            stats.energy += 1;
-
+            stats.energy += 10f;
+            stats.cafe += 10f;
+            
             // Decide our new best action after you finished this one
             //OnFinishedAction();
             aiBrain.finishedExecutingBestAction = true;
             yield break;
         }
 
+        IEnumerator PlayCoroutine(int time)
+        {
+            int counter = time;
+            while (counter > 0)
+            {
+                yield return new WaitForSeconds(1);
+                counter--;
+            }
 
+            stats.hunger += 10f;
+            stats.money -= 20f;
+            stats.energy -= 10f;
+            stats.cafe -= 10f;
+
+
+            aiBrain.finishedExecutingBestAction = true;
+            yield break;
+        }
+
+        IEnumerator EatCoroutine(int time) 
+        {
+            int counter = time;
+            while (counter > 0)
+            {
+                yield return new WaitForSeconds(1);
+                counter--;
+            }
+
+            stats.hunger -= 30f;
+            stats.money -= 10f;
+            aiBrain.finishedExecutingBestAction = true;
+            yield break;
+        }
         #endregion
     }
 }

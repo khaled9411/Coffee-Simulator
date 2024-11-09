@@ -17,17 +17,43 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
     [field: SerializeField] public string verbName { get; set; }
     [SerializeField] private GameObject visualsParent;
     [SerializeField]private Collider DeviceCollider;
-    private bool isPurchased = false;
+    private bool _isPurchased = false;
+    public bool isPurchased
+    {
+        get { return _isPurchased; }
+        set
+        {
+            _isPurchased = value;
+            if (_isPurchased)
+            {
+                isAvailable = true;
+                Debug.Log($"Device {respondableName} purchased and now available");
+            }
+            OnPurchased?.Invoke();
+        }
+    }
+
+    private bool _isAvailable = false;
+    public bool isAvailable
+    {
+        get { return _isAvailable; }
+        set
+        {
+            _isAvailable = value && isPurchased;
+            Debug.Log($"Device {respondableName} availability changed to: {_isAvailable}");
+        }
+    }
 
     public event Action OnShowPreview;
     public event Action OnHidePreview;
+    public event Action OnPurchased;
 
-    
 
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");
         isPurchased = true;
+        isAvailable = true;
         EnableCollider();
         ShowVisuals();
         HidePreview();
@@ -106,5 +132,10 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
     public bool IsPurchased()
     {
         return isPurchased;
+    }
+
+    public void LogStatus()
+    {
+        Debug.Log($"Device {respondableName} Status - Purchased: {isPurchased}, Available: {isAvailable}");
     }
 }

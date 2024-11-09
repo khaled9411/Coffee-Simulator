@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Playe
   considerations:
   - {fileID: 11400000, guid: 9b18a04f2faee8f498846e29187661c7, type: 2}
+  - {fileID: 11400000, guid: 7979f196c742c8947ac40682bed6a901, type: 2}
