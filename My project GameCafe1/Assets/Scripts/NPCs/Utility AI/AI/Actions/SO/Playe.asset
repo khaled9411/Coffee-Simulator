@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Playe
   m_EditorClassIdentifier: 
   Name: Playe
-  minTimeToExecute: 60
-  maxTimeToExecute: 200
+  minTimeToExecute: 6
+  maxTimeToExecute: 20
   considerations:
   - {fileID: 11400000, guid: 7979f196c742c8947ac40682bed6a901, type: 2}
