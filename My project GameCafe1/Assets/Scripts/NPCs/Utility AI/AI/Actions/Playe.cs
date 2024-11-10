@@ -13,7 +13,7 @@ namespace TL.UtilityAI.Actions
         {
             Debug.Log("I am Playe in the cafe!");
             // Logic for updating everything involved with Playing
-            npc.DoPlay(3);
+            npc.DoPlay(Random.Range(minTimeToExecute, maxTimeToExecute));
             //npc.OnFinishedAction();
         }
 

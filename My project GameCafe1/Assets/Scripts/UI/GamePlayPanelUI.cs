@@ -36,7 +36,7 @@ public class GamePlayPanelUI : MonoBehaviour
 
     private void UpdateMoneyText()
     {
-        moneyText.text = MoneyManager.Instance.Money.ToString();
+        moneyText.text = MoneyManager.Instance.Money.ToString("F2");
     }
 
     private void ShowTargetName(string name)

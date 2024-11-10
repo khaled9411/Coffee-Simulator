@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Eat
   m_EditorClassIdentifier: 
   Name: Eat
+  minTimeToExecute: 30
+  maxTimeToExecute: 60
   considerations:
   - {fileID: 11400000, guid: e5475917f7e415e40af5fcecb82c440d, type: 2}

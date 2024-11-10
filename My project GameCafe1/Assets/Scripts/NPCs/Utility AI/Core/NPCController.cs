@@ -15,11 +15,20 @@ namespace TL.Core
         execute
     }
 
+    public enum NPCType
+    {
+        Worker,
+        Walker,
+        Troublemaker,
+        Citizen
+    }
+
     public class NPCController : MonoBehaviour
     {
         public MoveController mover { get; set; }
         public AIBrain aiBrain { get; set; }
         public NPCStats stats { get; set; }
+        [field: SerializeField] public NPCType type { get; set; }
 
         public Context context;
 
@@ -41,10 +50,8 @@ namespace TL.Core
             }
         }
 
-        public Transform availableDevice { get; set; }
-        private bool hasActiveDevice = false;
+
         private IBuyableRespondable currentDevice = null;
-        public Transform previousRequiredDestination;
         public Transform currentDestination;
         // Start is called before the first frame update
         void Start()
@@ -64,35 +71,28 @@ namespace TL.Core
         }
 
         public void FSMTick()
-        {
+        { 
             if (GetCurrentState() == State.decide)
             {
-                //if (hasActiveDevice && currentDevice != null)
-                //{
-                //    Debug.Log($"Releasing device for NPC {gameObject.name}");
-                //    CafeManager.instance.LeaveItem(currentDevice);
-                //    hasActiveDevice = false;
-                //    currentDevice = null;
-                //}
-
-                previousRequiredDestination = aiBrain.bestAction?.RequiredDestination;
+                aiBrain.previouBsestAction = aiBrain.bestAction;
                 aiBrain.DecideBestAction();
 
-                //if (aiBrain.bestAction is Playe)
+                ////Don't play twice
+                //if (aiBrain.previouBsestAction == aiBrain.bestAction && aiBrain.bestAction is Playe)
                 //{
-                //    //availableDevice = CafeManager.instance.GetAvailableItemTransform();
-                //    //if (availableDevice != null)
-                //    //{
-                //        //currentDevice = availableDevice.GetComponent<IBuyableRespondable>();
-                //        //hasActiveDevice = true;
+                //    if(type == NPCType.Walker)
+                //    {
+                //        aiBrain.bestAction = new Walk();
+                //        aiBrain.bestAction.SetRequiredDestination(this);
+                //    }
 
-                //        SetCurrentState(State.move);
-                //    //}
+                //    stats.energy = Random.Range(20, 40);
+                //    stats.money = Random.Range(100, 300);
+                //    stats.hunger = Random.Range(50, 80);
+                //    return;
                 //}
-                //else
-                //{
+
                 SetCurrentState(State.move);
-                //}
             }
             else if (GetCurrentState() == State.move)
             {
@@ -111,7 +111,7 @@ namespace TL.Core
                     {
                         Debug.Log($"Releasing device after execution for NPC {gameObject.name}");
                         CafeManager.instance.LeaveItem(currentDevice);
-                        hasActiveDevice = false;
+                        CafeManager.instance.AddMoney((Device)currentDevice);
                         currentDevice = null;
                     }
                     SetCurrentState(State.decide);

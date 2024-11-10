@@ -6,17 +6,17 @@ using TL.Core;
 
 namespace TL.UtilityAI.Actions
 {
-    [CreateAssetMenu(fileName = "Sleep", menuName = "UtilityAI/Actions/Sleep")]
-    public class Sleep : Action
+    [CreateAssetMenu(fileName = "Walk", menuName = "UtilityAI/Actions/Walk")]
+    public class Walk : Action
     {
         public override void Execute(NPCController npc)
         {
-            npc.DoSleep(Random.Range(minTimeToExecute, maxTimeToExecute));
+            npc.aiBrain.finishedExecutingBestAction = true;
         }
 
         public override void SetRequiredDestination(NPCController npc)
         {
-            RequiredDestination = npc.context.home.transform;
+            RequiredDestination = npc.context.walkPoints[Random.Range(0, npc.context.walkPoints.Length)];
             npc.mover.destination = RequiredDestination;
         }
     }

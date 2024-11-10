@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9f887fca522fc4fbd61df7695cf1c1, type: 3}
-  m_Name: Work
+  m_Script: {fileID: 11500000, guid: 2b0130e3846958944855679b1165a637, type: 3}
+  m_Name: Walk
   m_EditorClassIdentifier: 
-  Name: Work
-  minTimeToExecute: 60
-  maxTimeToExecute: 100
+  Name: Walk
+  minTimeToExecute: 1
+  maxTimeToExecute: 10
   considerations:
-  - {fileID: 11400000, guid: 7f74fb1b525fa4b4a8ca1a35ffc0d6b7, type: 2}
+  - {fileID: 11400000, guid: 7979f196c742c8947ac40682bed6a901, type: 2}

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Sleep
   m_EditorClassIdentifier: 
   Name: Sleep
+  minTimeToExecute: 60
+  maxTimeToExecute: 100
   considerations:
   - {fileID: 11400000, guid: 247428f7e3e02e54d883442bfac17e8e, type: 2}

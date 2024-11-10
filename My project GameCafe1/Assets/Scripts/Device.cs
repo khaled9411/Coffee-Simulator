@@ -48,7 +48,7 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
     public event Action OnHidePreview;
     public event Action OnPurchased;
 
-
+    public Area ownArea { get; set; }
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");

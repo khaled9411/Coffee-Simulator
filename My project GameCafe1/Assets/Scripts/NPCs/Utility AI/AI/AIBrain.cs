@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TL.Core;
+using TL.UtilityAI.Actions;
 
 namespace TL.UtilityAI
 {
@@ -10,9 +11,12 @@ namespace TL.UtilityAI
         public bool finishedDeciding { get; set; }
         public bool finishedExecutingBestAction { get; set; } = false;
         public Action bestAction { get; set; }
+        public Action previouBsestAction { get; set; }
         private NPCController npc;
 
         [SerializeField ] private Action[] actionsAvailable;
+
+        public static float lastPlayTime = 0;
 
 
         // Start is called before the first frame update
@@ -49,6 +53,8 @@ namespace TL.UtilityAI
             }
 
             bestAction = actionsAvailable[nextBestActionIndex];
+
+            if(bestAction is Playe) lastPlayTime = Time.time;
             //bestAction.SetRequiredDestination(npc);
 
             finishedDeciding = true;

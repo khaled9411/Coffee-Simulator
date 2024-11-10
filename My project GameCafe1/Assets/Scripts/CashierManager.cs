@@ -51,9 +51,10 @@ public class CashierManager : MonoBehaviour
             }
         }
     }
+
+    //There is Error in Here
     private bool IsFirstNPCArrived()
     {
-        Debug.Log($"first: {HasCustomer()} , second: {Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < .2f}");
         return HasCustomer() && Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < 1.1f;
     }
     private bool HasCustomer()

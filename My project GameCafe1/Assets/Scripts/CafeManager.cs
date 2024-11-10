@@ -36,9 +36,10 @@ public class CafeManager : MonoBehaviour
         {
             foreach (var item in areaItemsList[i].items) 
             {
-                if(item is Device)
+                if(item is Device device)
                 {
-                    (item as Device).OnPurchased += Device_OnPurchased;
+                    device.ownArea = areaItemsList[i].area;
+                    device.OnPurchased += Device_OnPurchased;
                 }
             }
             buyableZone[i] = areaItemsList[i].area.GetComponentInChildren<BuyableInteractionZone>()?.gameObject;
@@ -151,6 +152,14 @@ public class CafeManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Attempted to leave a null item.");
+        }
+    }
+
+    public void AddMoney(Device device)
+    {
+        if(device != null)
+        {
+            MoneyManager.Instance.AddMoney(UnityEngine.Random.Range(device.ownArea.minPriceInTheArea, device.ownArea.maxPriceInTheArea));
         }
     }
 

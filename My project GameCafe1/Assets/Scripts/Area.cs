@@ -24,7 +24,8 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     [SerializeField] private Collider DeviceCollider;
     private bool isPurchased = false;
 
-
+    [field : SerializeField] public float minPriceInTheArea { get; set; }
+    [field: SerializeField] public float maxPriceInTheArea { get; set; }
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");

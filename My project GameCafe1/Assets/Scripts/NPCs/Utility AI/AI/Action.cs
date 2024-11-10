@@ -9,6 +9,8 @@ namespace TL.UtilityAI
     public abstract class Action : ScriptableObject
     {
         public string Name;
+        public int minTimeToExecute;
+        public int maxTimeToExecute;
         private float _score;
         public float score
         {

@@ -13,6 +13,7 @@ namespace TL.Core
         public float MinDistance = 5f;
         public int maxCafe = 2;
         public int currentCafe = 0;
+        public Transform[] walkPoints;
         
         [HideInInspector] public string resourceTag = "resource";
         public Dictionary<DestinationType, List<Transform>> Destinations { get; private set; }

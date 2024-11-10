@@ -13,7 +13,7 @@ namespace TL.UtilityAI.Actions
         {
             Debug.Log("I ate food!");
             // Logic for updating everything involved with eating
-            npc.DoEat(2);
+            npc.DoEat(Random.Range(minTimeToExecute, maxTimeToExecute));
             //npc.OnFinishedAction();
         }
 
