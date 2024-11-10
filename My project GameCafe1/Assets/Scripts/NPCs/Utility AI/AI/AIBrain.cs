@@ -8,7 +8,7 @@ namespace TL.UtilityAI
     public class AIBrain : MonoBehaviour
     {
         public bool finishedDeciding { get; set; }
-        public bool finishedExecutingBestAction { get; set; }
+        public bool finishedExecutingBestAction { get; set; } = false;
         public Action bestAction { get; set; }
         private NPCController npc;
 
@@ -20,7 +20,6 @@ namespace TL.UtilityAI
         {
             npc = GetComponent<NPCController>();
             finishedDeciding = false;
-            finishedExecutingBestAction = false;
         }
 
         // Update is called once per frame

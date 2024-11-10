@@ -53,7 +53,8 @@ public class CashierManager : MonoBehaviour
     }
     private bool IsFirstNPCArrived()
     {
-        return HasCustomer() && Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < .2f;
+        Debug.Log($"first: {HasCustomer()} , second: {Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < .2f}");
+        return HasCustomer() && Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < 1.1f;
     }
     private bool HasCustomer()
     {
@@ -95,15 +96,20 @@ public class CashierManager : MonoBehaviour
             if (i + 1 < customerPos.Count)
             {
                 customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customerPos[i + 1].Item2);
+
                 if (customerPos[i].Item2 == null)
                 {
                     //*
+                   
+                    return;
+                }
+                else
+                {
                     MoveController moveController = customerPos[i].Item2.GetComponent<MoveController>();
                     if (moveController != null)
                     {
                         moveController.destination = customerPos[i].Item1;
                     }
-                    return;
                 }
             }
             else if (customersQueue.Count > 0)

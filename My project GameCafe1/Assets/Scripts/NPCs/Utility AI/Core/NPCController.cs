@@ -67,39 +67,32 @@ namespace TL.Core
         {
             if (GetCurrentState() == State.decide)
             {
-                if (hasActiveDevice && currentDevice != null)
-                {
-                    Debug.Log($"Releasing device for NPC {gameObject.name}");
-                    CafeManager.instance.LeaveItem(currentDevice);
-                    hasActiveDevice = false;
-                    currentDevice = null;
-                }
+                //if (hasActiveDevice && currentDevice != null)
+                //{
+                //    Debug.Log($"Releasing device for NPC {gameObject.name}");
+                //    CafeManager.instance.LeaveItem(currentDevice);
+                //    hasActiveDevice = false;
+                //    currentDevice = null;
+                //}
 
                 previousRequiredDestination = aiBrain.bestAction?.RequiredDestination;
                 aiBrain.DecideBestAction();
 
-                if (aiBrain.bestAction is Playe)
-                {
-                    availableDevice = CafeManager.instance.GetAvailableItemTransform();
-                    if (availableDevice != null)
-                    {
-                        currentDevice = availableDevice.GetComponent<IBuyableRespondable>();
-                        hasActiveDevice = true;
+                //if (aiBrain.bestAction is Playe)
+                //{
+                //    //availableDevice = CafeManager.instance.GetAvailableItemTransform();
+                //    //if (availableDevice != null)
+                //    //{
+                //        //currentDevice = availableDevice.GetComponent<IBuyableRespondable>();
+                //        //hasActiveDevice = true;
 
-                        SetCurrentState(State.move);
-                    }
-                }
-                else
-                {
-                    if (Vector3.Distance(mover.destination.position, this.transform.position) < 2f)
-                    {
-                        SetCurrentState(State.execute);
-                    }
-                    else
-                    {
-                        SetCurrentState(State.move);
-                    }
-                }
+                //        SetCurrentState(State.move);
+                //    //}
+                //}
+                //else
+                //{
+                SetCurrentState(State.move);
+                //}
             }
             else if (GetCurrentState() == State.move)
             {
@@ -114,7 +107,7 @@ namespace TL.Core
                 if (aiBrain.finishedExecutingBestAction == true)
                 {
                     Debug.Log("Exit execute state");
-                    if (aiBrain.bestAction is Playe && hasActiveDevice && currentDevice != null)
+                    if (aiBrain.bestAction is Playe)
                     {
                         Debug.Log($"Releasing device after execution for NPC {gameObject.name}");
                         CafeManager.instance.LeaveItem(currentDevice);
@@ -126,21 +119,7 @@ namespace TL.Core
             }
         }
 
-        private void OnDisable()
-        {
-            if (hasActiveDevice && currentDevice != null)
-            {
-                CafeManager.instance.LeaveItem(currentDevice);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (hasActiveDevice && currentDevice != null)
-            {
-                CafeManager.instance.LeaveItem(currentDevice);
-            }
-        }
+       
 
         #region Workhorse methods
 
@@ -226,6 +205,7 @@ namespace TL.Core
 
         IEnumerator PlayCoroutine(int time)
         {
+            currentDevice = mover.destination.GetComponent<Device>();
             yield return new WaitForSeconds(time);
 
             stats.hunger += 10f;

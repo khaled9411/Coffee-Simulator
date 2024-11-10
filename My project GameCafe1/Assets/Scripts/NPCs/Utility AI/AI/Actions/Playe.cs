@@ -19,7 +19,7 @@ namespace TL.UtilityAI.Actions
 
         public override void SetRequiredDestination(NPCController npc)
         {
-            RequiredDestination = npc.availableDevice;
+            RequiredDestination = CafeManager.instance.GetAvailableItemTransform();
             npc.mover.destination = RequiredDestination;
             //Debug.LogWarning($"I am {npc} and my Destination is {RequiredDestination} in vector3 {RequiredDestination?.position}");
         }
