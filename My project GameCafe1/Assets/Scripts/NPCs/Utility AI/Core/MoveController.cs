@@ -8,7 +8,16 @@ namespace TL.Core
     public class MoveController : MonoBehaviour
     {
         private NavMeshAgent agent;
-        public Transform destination { set; get; }
+
+        private Transform _destination;
+        public Transform destination { 
+            get { return _destination; } 
+            set {
+                _destination = value;
+                Move();
+            } 
+        }
+
 
         // Start is called before the first frame update
         void Start()
@@ -16,11 +25,6 @@ namespace TL.Core
             agent = GetComponent<NavMeshAgent>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public void Move()
         {

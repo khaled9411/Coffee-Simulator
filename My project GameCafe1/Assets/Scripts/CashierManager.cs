@@ -1,35 +1,95 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class CashierManager : MonoBehaviour
 {
-    public Transform[] queuePositions;
-    public List<GameObject> customersQueue = new List<GameObject>();
+    public static CashierManager instance {  get; private set; }
 
-    public void AddCustomer(GameObject customer)
+    public Transform[] queuePositions;
+    public List<Tuple<Transform, Transform>> customerPos = new List<Tuple<Transform, Transform>>();
+    public Queue<Transform> customersQueue =new Queue<Transform>();
+    private bool IsPlayerOnCashier;
+    [SerializeField] private float customerCashierTime = 1;
+    private float currentCustomerCashierTime;
+
+
+    private void Awake()
     {
-        customersQueue.Add(customer);
-        UpdateQueuePositions();
+        if (instance == null)
+        {
+            instance = this;
+        }else
+        {
+            Debug.LogError("HI I have a brother");
+        }
+    }
+
+
+    private void Start()
+    {
+        currentCustomerCashierTime = customerCashierTime;
+        foreach (Transform pos in queuePositions)
+        {
+            customerPos.Add(new Tuple<Transform, Transform>(pos, null));
+        }
+    }
+    private void Update()
+    {
+        if (IsPlayerOnCashier && IsFirstNPCArrived()) // and the npc arrived to the cashier
+        {
+            currentCustomerCashierTime -= Time.deltaTime;
+            if (currentCustomerCashierTime <= 0)
+            {
+                currentCustomerCashierTime = customerCashierTime;
+                RemoveCustomer();
+            } 
+        }
+    }
+    private bool IsFirstNPCArrived()
+    {
+        return HasCustomer() && Vector3.Distance(customerPos[0].Item1.transform.position, customerPos[0].Item2.transform.position) < .2f;
+    }
+    private bool HasCustomer()
+    {
+        return customerPos.Count > 0;
+    }
+    public void AddCustomer(Transform customer)
+    {
+        
+       for(int i =0; i< customerPos.Count; i++)
+        {
+            if (customerPos[i].Item2 == null)
+            {
+                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customer);
+                return;
+            }
+        }
+        customersQueue.Enqueue(customer);
     }
 
     public void RemoveCustomer()
     {
-        if (customersQueue.Count > 0)
+        for(int i = 0; i< customerPos.Count; i++)
         {
-            GameObject firstCustomer = customersQueue[0];
-            customersQueue.RemoveAt(0);
-            // make the customer go to another action
-            UpdateQueuePositions();
+            if(i+1 < customerPos.Count)
+            {
+                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1 , customerPos[i+1].Item2);
+                if (customerPos[i].Item2 == null)
+                {
+                    return;
+                }
+            }else if(customersQueue.Count > 0)
+            {
+                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customersQueue.Dequeue());
+            }
+            else
+            {
+                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, null);
+            }
         }
     }
 
-    private void UpdateQueuePositions()
-    {
-        for (int i = 0; i < customersQueue.Count; i++)
-        {
-            customersQueue[i].transform.position = queuePositions[i].position;
-        }
-    }
 }

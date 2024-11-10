@@ -38,7 +38,6 @@ namespace TL.Core
             else if (currentState == State.move)
             {
                 aiBrain.bestAction.SetRequiredDestination(this);
-                mover.Move();
             }
         }
 
@@ -227,17 +226,14 @@ namespace TL.Core
 
         IEnumerator PlayCoroutine(int time)
         {
-            int counter = time;
-            while (counter > 0)
-            {
-                yield return new WaitForSeconds(1);
-                counter--;
-            }
+            yield return new WaitForSeconds(time);
 
             stats.hunger += 10f;
             stats.money -= 20f;
             stats.energy -= 10f;
             stats.cafe -= 10f;
+
+            CashierManager.instance.AddCustomer(this.transform);
 
 
             aiBrain.finishedExecutingBestAction = true;
