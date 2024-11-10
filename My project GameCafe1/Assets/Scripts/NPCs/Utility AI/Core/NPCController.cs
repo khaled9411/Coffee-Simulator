@@ -236,7 +236,7 @@ namespace TL.Core
             CashierManager.instance.AddCustomer(this.transform);
 
 
-            aiBrain.finishedExecutingBestAction = true;
+            //aiBrain.finishedExecutingBestAction = true;
             yield break;
         }
 

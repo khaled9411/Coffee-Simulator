@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using TL.Core;
+using TL.UtilityAI;
 using UnityEngine;
 
 public class CashierManager : MonoBehaviour
 {
-    public static CashierManager instance {  get; private set; }
+    public static CashierManager instance { get; private set; }
 
     public Transform[] queuePositions;
     public List<Tuple<Transform, Transform>> customerPos = new List<Tuple<Transform, Transform>>();
-    public Queue<Transform> customersQueue =new Queue<Transform>();
-    private bool IsPlayerOnCashier;
+    public Queue<Transform> customersQueue = new Queue<Transform>();
+    [SerializeField] private bool IsPlayerOnCashier;
     [SerializeField] private float customerCashierTime = 1;
     private float currentCustomerCashierTime;
 
@@ -21,7 +23,8 @@ public class CashierManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        }else
+        }
+        else
         {
             Debug.LogError("HI I have a brother");
         }
@@ -45,7 +48,7 @@ public class CashierManager : MonoBehaviour
             {
                 currentCustomerCashierTime = customerCashierTime;
                 RemoveCustomer();
-            } 
+            }
         }
     }
     private bool IsFirstNPCArrived()
@@ -58,12 +61,20 @@ public class CashierManager : MonoBehaviour
     }
     public void AddCustomer(Transform customer)
     {
-        
-       for(int i =0; i< customerPos.Count; i++)
+        MoveController moveController = customer.GetComponent<MoveController>();
+
+        for (int i = 0; i < customerPos.Count; i++)
         {
             if (customerPos[i].Item2 == null)
             {
                 customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customer);
+
+                //*
+                if (moveController != null)
+                {
+                    moveController.destination = customerPos[i].Item1;
+                }
+
                 return;
             }
         }
@@ -72,18 +83,40 @@ public class CashierManager : MonoBehaviour
 
     public void RemoveCustomer()
     {
-        for(int i = 0; i< customerPos.Count; i++)
+        //*
+        AIBrain aIBrain = customerPos[0].Item2.GetComponent<AIBrain>();
+        if (aIBrain != null)
         {
-            if(i+1 < customerPos.Count)
+            aIBrain.finishedExecutingBestAction = true;
+        }
+
+        for (int i = 0; i < customerPos.Count; i++)
+        {
+            if (i + 1 < customerPos.Count)
             {
-                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1 , customerPos[i+1].Item2);
+                customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customerPos[i + 1].Item2);
                 if (customerPos[i].Item2 == null)
                 {
+                    //*
+                    MoveController moveController = customerPos[i].Item2.GetComponent<MoveController>();
+                    if (moveController != null)
+                    {
+                        moveController.destination = customerPos[i].Item1;
+                    }
                     return;
                 }
-            }else if(customersQueue.Count > 0)
+            }
+            else if (customersQueue.Count > 0)
             {
                 customerPos[i] = new Tuple<Transform, Transform>(customerPos[i].Item1, customersQueue.Dequeue());
+
+                //*
+                MoveController moveController = customerPos[i].Item2.GetComponent<MoveController>();
+                if (moveController != null)
+                {
+                    moveController.destination = customerPos[i].Item1;
+                }
+
             }
             else
             {

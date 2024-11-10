@@ -50,7 +50,7 @@ namespace TL.UtilityAI
             }
 
             bestAction = actionsAvailable[nextBestActionIndex];
-            bestAction.SetRequiredDestination(npc);
+            //bestAction.SetRequiredDestination(npc);
 
             finishedDeciding = true;
         }
