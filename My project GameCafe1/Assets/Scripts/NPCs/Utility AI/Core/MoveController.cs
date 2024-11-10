@@ -8,7 +8,7 @@ namespace TL.Core
     public class MoveController : MonoBehaviour
     {
         private NavMeshAgent agent;
-        public Transform destination;
+        public Transform destination { set; get; }
 
         // Start is called before the first frame update
         void Start()
@@ -22,9 +22,11 @@ namespace TL.Core
 
         }
 
-        public void MoveTo(Vector3 position)
+        public void Move()
         {
-            agent.destination = position;
+            agent.destination = destination.position;
         }
+
+        
     }
 }

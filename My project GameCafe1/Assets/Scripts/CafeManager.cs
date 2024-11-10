@@ -147,7 +147,6 @@ public class CafeManager : MonoBehaviour
         if (buyableItem != null)
         {
             buyableItem.isAvailable = true;
-            Debug.Log($"Item is now available: {(buyableItem as MonoBehaviour)?.name}");
         }
         else
         {

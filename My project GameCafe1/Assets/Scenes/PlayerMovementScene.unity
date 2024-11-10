@@ -1180,7 +1180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &243789618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,6 +1210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!4 &243789620
 Transform:
   m_ObjectHideFlags: 0
@@ -4595,7 +4596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1047463235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4609,6 +4609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1047463236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4816,7 +4818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1115942640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4830,6 +4831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1115942641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5203,7 +5206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1202465987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5217,6 +5219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1202465988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6674,7 +6678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1503069737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6688,6 +6691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1503069738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6808,7 +6813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1550123632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6822,6 +6826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1550123633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7522,7 +7528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &1824881021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7536,6 +7541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &1824881022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8566,6 +8573,8 @@ MonoBehaviour:
   cafe: {fileID: 516645830}
   restaurant: {fileID: 1061783432}
   MinDistance: 5
+  maxCafe: 2
+  currentCafe: 0
   resourceTag: resource
 --- !u!4 &2061667723
 Transform:
@@ -8797,7 +8806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985e41ba6dea6c4abac29312f3a5f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &2099377183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8811,6 +8819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 2061667722}
+  previousRequiredDestination: {fileID: 0}
+  currentDestination: {fileID: 0}
 --- !u!114 &2099377184
 MonoBehaviour:
   m_ObjectHideFlags: 0

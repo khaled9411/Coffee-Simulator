@@ -26,18 +26,23 @@ namespace TL.Core
 
         private State currentState;
 
-        public State GetCurrentState() {  return currentState; }
-        public void SetCurrentState(State state) 
-        { 
+        public State GetCurrentState() { return currentState; }
+        public void SetCurrentState(State state)
+        {
             currentState = state;
 
             if (currentState == State.execute)
             {
                 aiBrain.bestAction.Execute(this);
             }
+            else if (currentState == State.move)
+            {
+                aiBrain.bestAction.SetRequiredDestination(this);
+                mover.Move();
+            }
         }
 
-        public Transform availableDevice {  get; set; }
+        public Transform availableDevice { get; set; }
         private bool hasActiveDevice = false;
         private IBuyableRespondable currentDevice = null;
         public Transform previousRequiredDestination;
@@ -82,13 +87,12 @@ namespace TL.Core
                         currentDevice = availableDevice.GetComponent<IBuyableRespondable>();
                         hasActiveDevice = true;
 
-                        aiBrain.bestAction.SetRequiredDestination(this);
                         SetCurrentState(State.move);
                     }
                 }
                 else
                 {
-                    if (Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position) < 2f)
+                    if (Vector3.Distance(mover.destination.position, this.transform.position) < 2f)
                     {
                         SetCurrentState(State.execute);
                     }
@@ -100,14 +104,10 @@ namespace TL.Core
             }
             else if (GetCurrentState() == State.move)
             {
-                float distance = Vector3.Distance(aiBrain.bestAction.RequiredDestination.position, this.transform.position);
+                float distance = Vector3.Distance(mover.destination.position, this.transform.position);
                 if (distance < 2f)
                 {
                     SetCurrentState(State.execute);
-                }
-                else
-                {
-                    mover.MoveTo(aiBrain.bestAction.RequiredDestination.position);
                 }
             }
             else if (GetCurrentState() == State.execute)
@@ -179,7 +179,7 @@ namespace TL.Core
             StartCoroutine(PlayCoroutine(time));
         }
 
-        public void DoEat(int time) 
+        public void DoEat(int time)
         {
             StartCoroutine(EatCoroutine(time));
         }
@@ -217,12 +217,13 @@ namespace TL.Core
             // Logic to update energy
             stats.energy += 10f;
             stats.cafe += 10f;
-            
+
             // Decide our new best action after you finished this one
             //OnFinishedAction();
             aiBrain.finishedExecutingBestAction = true;
             yield break;
         }
+
 
         IEnumerator PlayCoroutine(int time)
         {
@@ -243,7 +244,7 @@ namespace TL.Core
             yield break;
         }
 
-        IEnumerator EatCoroutine(int time) 
+        IEnumerator EatCoroutine(int time)
         {
             int counter = time;
             while (counter > 0)
@@ -258,5 +259,6 @@ namespace TL.Core
             yield break;
         }
         #endregion
+
     }
 }
