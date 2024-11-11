@@ -77,20 +77,22 @@ namespace TL.Core
                 aiBrain.previouBsestAction = aiBrain.bestAction;
                 aiBrain.DecideBestAction();
 
-                ////Don't play twice
-                //if (aiBrain.previouBsestAction == aiBrain.bestAction && aiBrain.bestAction is Playe)
-                //{
-                //    if(type == NPCType.Walker)
-                //    {
-                //        aiBrain.bestAction = new Walk();
-                //        aiBrain.bestAction.SetRequiredDestination(this);
-                //    }
+                //Don't play twice
+                if (aiBrain.previouBsestAction == aiBrain.bestAction && aiBrain.bestAction is Playe)
+                {
+                    if (type == NPCType.Walker)
+                    {
+                        aiBrain.bestAction = new Walk();
+                        aiBrain.bestAction.SetRequiredDestination(this);
+                        SetCurrentState(State.move);
+                        return;
+                    }
 
-                //    stats.energy = Random.Range(20, 40);
-                //    stats.money = Random.Range(100, 300);
-                //    stats.hunger = Random.Range(50, 80);
-                //    return;
-                //}
+                    stats.energy = Random.Range(20, 40);
+                    stats.money = Random.Range(100, 300);
+                    stats.hunger = Random.Range(50, 80);
+                    return;
+                }
 
                 SetCurrentState(State.move);
             }
