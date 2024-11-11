@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085e7a3370394a498ce7eb225255dfe, type: 3}
   m_Name: Make Trouble
   m_EditorClassIdentifier: 
-  Name: 
-  minTimeToExecute: 0
-  maxTimeToExecute: 0
-  considerations: []
+  Name: Make Trouble
+  minTimeToExecute: 10
+  maxTimeToExecute: 20
+  considerations:
+  - {fileID: 11400000, guid: c76d3820237c3754a89f953c0b55ba34, type: 2}
