@@ -20,6 +20,11 @@ public class CafeManager : MonoBehaviour
         set { _isOpen = value; 
             OnIsOpenChanage?.Invoke(_isOpen); } }
 
+    private float _overallSatisfactionRate = 1;
+    public float overallSatisfactionRate { 
+        get { return _overallSatisfactionRate; } 
+        set { _overallSatisfactionRate = Mathf.Clamp01(value); } }
+
     [SerializeField] private List<AreaItems> areaItemsList;
     private int currentAreaIndex = 0;
 
@@ -112,7 +117,6 @@ public class CafeManager : MonoBehaviour
     {
         if (!HasAvailableSeats())
         {
-            Debug.LogWarning($"No Set");
             return null;
         }
 
@@ -135,10 +139,8 @@ public class CafeManager : MonoBehaviour
             Transform selectedTransform = availableTransforms[randomIndex];
 
             (availableTransforms[randomIndex].GetComponent<IBuyableRespondable>()).isAvailable = false;
-            Debug.LogWarning($"1 the transform is {selectedTransform}");
             return selectedTransform;
         }
-        Debug.LogWarning($"2 the transform is {null}");
         return null;
     }
 

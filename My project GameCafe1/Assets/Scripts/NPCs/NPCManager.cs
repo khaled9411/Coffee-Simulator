@@ -41,10 +41,10 @@ public class NPCManager : MonoBehaviour
     }
 
     // Method to spawn a troublemaker NPC
-    public void SpawnTroublemaker(string name)
-    {
-        TroublemakerNPC troublemaker = new GameObject(name).AddComponent<TroublemakerNPC>();
-        troublemaker.npcName = name;
-        AddNPC(troublemaker);
-    }
+    //public void SpawnTroublemaker(string name)
+    //{
+    //    TroublemakerNPC troublemaker = new GameObject(name).AddComponent<TroublemakerNPC>();
+    //    troublemaker.npcName = name;
+    //    AddNPC(troublemaker);
+    //}
 }

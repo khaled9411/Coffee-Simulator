@@ -53,12 +53,17 @@ namespace TL.Core
 
         private IBuyableRespondable currentDevice = null;
         public Transform currentDestination;
+
+        public TroublemakerNPC troublemaker { get; private set; }
         // Start is called before the first frame update
         void Start()
         {
             mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
             stats = GetComponent<NPCStats>();
+
+            if(type == NPCType.Troublemaker)
+                troublemaker = GetComponent<TroublemakerNPC>();
         }
 
         // Update is called once per frame
