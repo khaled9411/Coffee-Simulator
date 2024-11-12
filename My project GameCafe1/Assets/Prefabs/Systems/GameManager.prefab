@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2665392496457783843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5590760832323903622}
+  - component: {fileID: 6189401875532037675}
+  - component: {fileID: 8983209632462425043}
+  - component: {fileID: 3581006844273943227}
+  - component: {fileID: 5880625828799669051}
+  - component: {fileID: 7913058069390149208}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5590760832323903622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6189401875532037675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c1d778ac443b14b8a5f50557f3b2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8983209632462425043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830ad51a4834a7d448e9eead866e0e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyPenalty: 30
+--- !u!114 &3581006844273943227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf073171a27624479b950ea3987ce21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionalLight: {fileID: 0}
+  lightColor:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.8667122, b: 0.3226415, a: 1}
+    key1: {r: 1, g: 0.9780825, b: 0.7905661, a: 1}
+    key2: {r: 1, g: 0.80083394, b: 0.28490567, a: 0}
+    key3: {r: 1, g: 0.61581045, b: 0.1415093, a: 0}
+    key4: {r: 0.609718, g: 0.5137255, b: 1, a: 0}
+    key5: {r: 0.3869811, g: 0.2471698, b: 1, a: 0}
+    key6: {r: 0.17047735, g: 0.13396227, b: 1, a: 0}
+    key7: {r: 0.111320674, g: 0.18133777, b: 1, a: 0}
+    ctime0: 1465
+    ctime1: 22282
+    ctime2: 44949
+    ctime3: 53585
+    ctime4: 59136
+    ctime5: 62220
+    ctime6: 64533
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  lightIntensity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.16666794
+      value: 0.99905396
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.243819
+      value: 0.7362644
+      inSlope: -0.6661666
+      outSlope: -0.6661666
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06604468
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1.3664932
+      value: 0.31458402
+      inSlope: -1.4871107
+      outSlope: -1.4871107
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16874501
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  daySkybox: {fileID: 2100000, guid: cd7645d412b38ea4ab292ac3434a0c15, type: 2}
+  nightSkybox: {fileID: 2100000, guid: df89362b832bbc74f846544a4c7542f1, type: 2}
+  dayStartHour: 6
+  nightStartHour: 19
+--- !u!114 &5880625828799669051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2381a3c1ab568c4995ed78832a94236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaItemsList:
+  - area: {fileID: 0}
+    items:
+    - {fileID: 0}
+    - {fileID: 0}
+  - area: {fileID: 0}
+    items:
+    - {fileID: 0}
+    - {fileID: 0}
+--- !u!114 &7913058069390149208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665392496457783843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dd495c662ce8b4eaf6bfb84e81f3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queuePositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  IsPlayerOnCashier: 0
+  customerCashierTime: 1
