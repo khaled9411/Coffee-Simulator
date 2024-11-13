@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
     {
         volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
@@ -65,6 +66,11 @@ public class SoundManager : MonoBehaviour
         Debug.Log(footStepNumber);
         PlaySound(audioClipRefsSO.footsteps[footStepNumber], position, volumeMultiplier * volume);
         footStepNumber = (footStepNumber + 1) % audioClipRefsSO.footsteps.Length;
+    }
+    public void SetVolume(float volume)
+    {
+        this.volume = volume;
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
     }
 
 }
