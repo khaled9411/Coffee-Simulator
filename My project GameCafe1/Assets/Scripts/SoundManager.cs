@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class SoundManager : MonoBehaviour
 {
-    private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
+    public const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
 
 
 
@@ -20,7 +20,6 @@ public class SoundManager : MonoBehaviour
     {
         volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {

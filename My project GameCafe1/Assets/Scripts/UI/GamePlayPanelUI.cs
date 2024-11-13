@@ -11,6 +11,8 @@ public class GamePlayPanelUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI buyablePriceText;
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] Button interactButton;
+    [SerializeField] Button storeButton;
+    [SerializeField] Button pauseButton;
 
 
 
@@ -20,13 +22,33 @@ public class GamePlayPanelUI : MonoBehaviour
         HideInteractButton();
         HideBuyablePriceText();
         UpdateMoneyText();
+
         MoneyManager.Instance.OnMoneyChange += UpdateMoneyText;
         Player.Instance.interactHandler.OnTargetTarget += ShowTargetName;
         Player.Instance.interactHandler.OnTargetInteractbale += ShowInteractButton;
         Player.Instance.interactHandler.OnTargetBuyable += ShowBuyablePriceText;
         Player.Instance.interactHandler.OnNoTarget += InteractHandler_OnNoTarget;
-    }
 
+        storeButton.onClick.AddListener(() =>
+        {
+            StopTime();
+            StoreMenuUI.Instance.Show(PlayTime);
+        });
+        pauseButton.onClick.AddListener(() =>
+        {
+            StopTime();
+            SettingMenuUI.Instance.Show(PlayTime);
+        });
+    }
+    // it should be static function in one of the game managers
+    private void StopTime()
+    {
+        Time.timeScale = 0;
+    }
+    private void PlayTime()
+    {
+        Time.timeScale = 1;
+    }
     private void InteractHandler_OnNoTarget()
     {
         HideTargetnName();

@@ -7,7 +7,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance { get; private set; }
 
-    private const string MUSIC_VOLUME_PLAYER_PREFS = "MusicVolume";
+    public const string MUSIC_VOLUME_PLAYER_PREFS = "MusicVolume";
 
     [SerializeField] private MusicClipRefsSO musicClipRefsSO;
     [SerializeField] private bool playOnStart;
@@ -22,18 +22,18 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(gameObject);
+        
     }
 
     private void Start()
     {
+        volume = PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREFS, 1f);
         musicSource = GetComponent<AudioSource>();
         if (playOnStart)
         {
             StartMusic();
         }
-
-        volume = PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREFS, 1f);
-        musicSource.volume = volume;
     }
     private void Update()
     {
@@ -43,7 +43,7 @@ public class MusicManager : MonoBehaviour
             musicSource.volume = fadeoutCurve.Evaluate(currentFadeInTime) * volume ;
             if (currentFadeInTime < 0)
             {
-                musicSource.volume = 1;
+                musicSource.volume = volume;
             }
         }else if (currentFadeOutTime > 0)
         {
@@ -113,6 +113,7 @@ public class MusicManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         this.volume = volume;
+        musicSource.volume = volume;
         PlayerPrefs.SetFloat(MUSIC_VOLUME_PLAYER_PREFS, volume);
     }
 }

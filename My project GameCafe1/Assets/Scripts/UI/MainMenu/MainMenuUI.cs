@@ -18,6 +18,7 @@ public class MainMenuUI : MonoBehaviour
     }
     private void Start()
     {
+        // check if first time to close the continue button
         newGameButton.onClick.AddListener(() =>
         {
 
@@ -28,7 +29,7 @@ public class MainMenuUI : MonoBehaviour
         });
         settingButton.onClick.AddListener(() =>
         {
-            SettingMenuUI.Instance.Show();
+            SettingMenuUI.Instance.Show(null);
         });
         quitButton.onClick.AddListener(() =>
         {
