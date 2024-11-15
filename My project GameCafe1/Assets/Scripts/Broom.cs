@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Broom : MonoBehaviour
+public class Broom : MonoBehaviour , IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [field: SerializeField] public string verbName { get; set; } = "Pick";
+
+    public void Interact()
     {
-        
+        Player.Instance.interactHandler.PickBroom();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

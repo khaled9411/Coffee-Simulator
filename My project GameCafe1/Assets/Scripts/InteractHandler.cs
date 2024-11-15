@@ -16,14 +16,25 @@ public class InteractHandler : MonoBehaviour
     public event Action<string> OnTargetInteractbale;
     public event Action<float> OnTargetBuyable;
     public event Action OnNoTarget;
+    private bool hasBroom;
     void Start()
     {
         InputManager.Instance.OnInteract += InputManager_OnInteract;
+        InputManager.Instance.OnInteractWithPicked += InputManager_OnInteractWithPicked; ;
         rayCaster = GetComponent<PlayerRayCaster>();
 
         PlayerCollision playerCollision = GetComponent<PlayerCollision>();
         playerCollision.OnPlayerTriggerWithInteractZone += PlayerCollision_OnPlayerTriggerWithInteractZone;
         playerCollision.OnplayerTriggerExitFromInteractZone += PlayerCollision_OnplayerTriggerExitFromInteractZone;
+
+    }
+
+    private void InputManager_OnInteractWithPicked()
+    {
+        if(hasBroom)
+        {
+            hasBroom = false;
+        }
     }
 
     private void PlayerCollision_OnplayerTriggerExitFromInteractZone()
@@ -63,8 +74,13 @@ public class InteractHandler : MonoBehaviour
         if (target != null)
         {
             previuseTarget = target;
-
+           
             ShowTargetName(target.GetName());
+
+            if (hasBroom && target.TryGetComponent<Trash>(out Trash trash))
+            {
+                trash.Clean();
+            }
             if (target.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
                 this.interactable = interactable;
@@ -131,4 +147,8 @@ public class InteractHandler : MonoBehaviour
     {
         return interactable is Ibuyable;
     }
+    public void PickBroom()
+    {
+        hasBroom = true;
+    } 
 }

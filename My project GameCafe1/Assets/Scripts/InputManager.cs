@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private PlayerInputAction playerInputActions;
 
     public event Action OnInteract;
+    public event Action OnInteractWithPicked;
 
     [SerializeField] LookField lookField;
 
@@ -27,11 +28,17 @@ public class InputManager : MonoBehaviour
         playerInputActions = new PlayerInputAction();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Interact.performed += Interact_performed;
+        playerInputActions.Player.InteractWithPicked.performed += InteractWithPicked_performed; ;
 
         EnhancedTouchSupport.Enable();
         Touch.onFingerDown += HandleFingerDown;
         Touch.onFingerMove += HandleFingerMove;
         Touch.onFingerUp += HandleFingerUp;
+    }
+
+    private void InteractWithPicked_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        InteractWithPicked?.Invoke();
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

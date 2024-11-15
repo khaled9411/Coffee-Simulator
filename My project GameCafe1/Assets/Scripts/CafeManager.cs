@@ -31,6 +31,7 @@ public class CafeManager : MonoBehaviour
     private GameObject[] buyableZone;
 
     public Action<bool> OnIsOpenChanage;
+    public Action OnAreaOppened;
     private void Awake()
     {
         instance = this;
@@ -192,5 +193,6 @@ public class CafeManager : MonoBehaviour
     public void AddToCurrentAreaIndex()
     {
         currentAreaIndex++;
+        OnAreaOppened?.Invoke();
     }
 }
