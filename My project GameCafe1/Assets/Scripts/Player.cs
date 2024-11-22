@@ -33,4 +33,9 @@ public class Player : MonoBehaviour
     {
         transform.position = spwanPoint.position;
     }
+
+    public void SetPos(Vector3 pos)
+    {
+        transform.position = pos;
+    }
 }

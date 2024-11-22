@@ -98,7 +98,7 @@ public class InputManager : MonoBehaviour
     private bool IsLookField(Vector2 screenPosition)
     {
         // Check UI elements first
-        if (EventSystem.current != null)
+        if (EventSystem.current != null && PlayerMovement.Instance.CanMove())
         {
             PointerEventData eventData = new PointerEventData(EventSystem.current);
             eventData.position = screenPosition;

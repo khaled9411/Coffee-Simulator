@@ -36,7 +36,7 @@ public class CafeManager : MonoBehaviour
     {
         instance = this;
         buyableZone = new GameObject[areaItemsList.Count];
-
+            
 
         for (int i = 0; i < areaItemsList.Count; i++)
         {
@@ -64,12 +64,15 @@ public class CafeManager : MonoBehaviour
     }
     private void Device_OnPurchased()
     {
+        if ((currentAreaIndex + 1) >= areaItemsList.Count) return;
+
         foreach (var item in areaItemsList[currentAreaIndex].items)
         {
             if (item is IBuyableRespondable buyableItem && !buyableItem.IsPurchased())
                 return;
         }
-        buyableZone[currentAreaIndex].SetActive(true);
+
+        buyableZone[currentAreaIndex + 1].SetActive(true);
     }
 
     public bool CanOpenNextArea()

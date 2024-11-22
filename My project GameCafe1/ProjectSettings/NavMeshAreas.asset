@@ -12,7 +12,7 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Cars
-    cost: 1
+    cost: 5
   - name: Pedestrian Walkway
     cost: 1
   - name: InBuilding
@@ -92,8 +92,8 @@ NavMeshProjectSettings:
   - serializedVersion: 3
     agentTypeID: -1372625422
     agentRadius: 2
-    agentHeight: 1.5
-    agentSlope: 20
+    agentHeight: 0.5
+    agentSlope: 15
     agentClimb: 0.2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0

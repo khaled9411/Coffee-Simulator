@@ -42,10 +42,12 @@ namespace TL.Core
 
             if (currentState == State.execute)
             {
+                GetComponentInChildren<Animator>().SetBool("IsWalking", false);
                 aiBrain.bestAction.Execute(this);
             }
             else if (currentState == State.move)
             {
+                GetComponentInChildren<Animator>().SetBool("IsWalking", true);
                 aiBrain.bestAction.SetRequiredDestination(this);
             }
         }

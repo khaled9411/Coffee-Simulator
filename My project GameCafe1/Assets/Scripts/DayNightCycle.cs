@@ -8,6 +8,7 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField] private Material daySkybox;
     [SerializeField] private Material nightSkybox;
+    [SerializeField] private GameObject nightLight;
     [SerializeField] private int dayStartHour = 6;
     [SerializeField] private int nightStartHour = 18;
 
@@ -30,6 +31,15 @@ public class DayNightCycle : MonoBehaviour
 
         float rotationAngle = Mathf.Lerp(-90f, 270f, timePercent);
         directionalLight.transform.localRotation = Quaternion.Euler(rotationAngle, 0, 0);
+
+        if (hour > 17)
+        {
+            nightLight.SetActive(true);
+        }
+        else if (hour != 0)
+        {
+            nightLight.SetActive(false);
+        }
 
         if (hour >= dayStartHour && hour < nightStartHour)
         {

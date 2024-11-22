@@ -28,7 +28,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     {
         if (vcam.Follow)
         {
-            if(stage == CinemachineCore.Stage.Aim)
+            if(stage == CinemachineCore.Stage.Aim && PlayerMovement.Instance.CanMove())
             {
                 if (startingRotation == null) startingRotation = transform.localRotation.eulerAngles;
                 Vector2 DeltaInput = InputManager.Instance.GetLookVector();

@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Peripheral_Mouse_2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7654869969352287299, guid: f494931bf66677f41a00158f266c0c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 344899307306958561, guid: f494931bf66677f41a00158f266c0c97, type: 3}
     m_RemovedGameObjects: []
@@ -102,6 +107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906472406438828313, guid: d6e799f7829a376499139175716d90c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9030439607359681185, guid: d6e799f7829a376499139175716d90c1,
         type: 3}
@@ -189,6 +199,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 782667673183514681, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1498655234557066925, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -267,7 +282,12 @@ PrefabInstance:
     - target: {fileID: 4614405052581152829, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.404
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567406942748859573, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5644906109209704430, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
@@ -398,6 +418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654329280086568530, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7897051832076806262, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
@@ -602,6 +627,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Furniture_Chair_2_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 6759062150661152532, guid: f19e6c2437c44714e904b01648ccce74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3449186817942642454, guid: f19e6c2437c44714e904b01648ccce74, type: 3}
     m_RemovedGameObjects: []
@@ -690,6 +720,11 @@ PrefabInstance:
     - target: {fileID: 6759062150661152532, guid: f19e6c2437c44714e904b01648ccce74,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759062150661152532, guid: f19e6c2437c44714e904b01648ccce74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -783,6 +818,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4809509371795509414, guid: a573644fe1965b94caa0eb89cd6608a3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5801792813401930826, guid: a573644fe1965b94caa0eb89cd6608a3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -833,6 +873,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087279926978674454, guid: c1136f2906efa164fbe5034ee68071a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7869810328805614244, guid: c1136f2906efa164fbe5034ee68071a7,
         type: 3}
@@ -925,6 +970,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Peripheral_Keyboard_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4663895901505329362, guid: 26376a3e912037743aafd0ed5862eeda,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5282296323524091205, guid: 26376a3e912037743aafd0ed5862eeda,
         type: 3}
       propertyPath: m_RootOrder
@@ -1004,6 +1054,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Peripheral_MousePad_1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906472406438828313, guid: d6e799f7829a376499139175716d90c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9030439607359681185, guid: d6e799f7829a376499139175716d90c1,
         type: 3}
@@ -1089,6 +1144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886720104866461056, guid: 39cc5609c12188d42984bf77f55ec665,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5217850501778316092, guid: 39cc5609c12188d42984bf77f55ec665,
         type: 3}
@@ -1236,6 +1296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_PC_1
       objectReference: {fileID: 0}
+    - target: {fileID: 5539487992637181356, guid: ecbf87b68403cb548ae6da39b52957b5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1462052488655549703, guid: ecbf87b68403cb548ae6da39b52957b5, type: 3}
     m_RemovedGameObjects: []
@@ -1316,6 +1381,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Monitor_2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4809509371795509414, guid: a573644fe1965b94caa0eb89cd6608a3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6536479187132248373, guid: a573644fe1965b94caa0eb89cd6608a3, type: 3}
     m_RemovedGameObjects: []
@@ -1340,6 +1410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Peripheral_Headphones_4 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087279926978674454, guid: c1136f2906efa164fbe5034ee68071a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7869810328805614244, guid: c1136f2906efa164fbe5034ee68071a7,
         type: 3}
@@ -1486,6 +1561,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5539487992637181356, guid: ecbf87b68403cb548ae6da39b52957b5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8943014817353605956, guid: ecbf87b68403cb548ae6da39b52957b5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1587,6 +1667,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7654869969352287299, guid: f494931bf66677f41a00158f266c0c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 344899307306958561, guid: f494931bf66677f41a00158f266c0c97, type: 3}
     m_RemovedGameObjects: []
@@ -1627,6 +1712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663895901505329362, guid: 26376a3e912037743aafd0ed5862eeda,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5282296323524091205, guid: 26376a3e912037743aafd0ed5862eeda,
         type: 3}
@@ -1713,6 +1803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Furniture_Desk_2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886720104866461056, guid: 39cc5609c12188d42984bf77f55ec665,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8608667039591849676, guid: 39cc5609c12188d42984bf77f55ec665,
         type: 3}

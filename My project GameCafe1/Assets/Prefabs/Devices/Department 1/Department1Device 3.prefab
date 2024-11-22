@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Peripheral_Mouse_2 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7654869969352287299, guid: f494931bf66677f41a00158f266c0c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 344899307306958561, guid: f494931bf66677f41a00158f266c0c97, type: 3}
     m_RemovedGameObjects: []
@@ -92,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 782667673183514681, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1498655234557066925, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
@@ -211,7 +221,12 @@ PrefabInstance:
     - target: {fileID: 4614405052581152829, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.543
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567406942748859573, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5644906109209704430, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
@@ -347,6 +362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654329280086568530, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7897051832076806262, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
@@ -551,6 +571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Peripheral_Keyboard_1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3023098873027470875, guid: d065a1791b7a46d45a786a40bfc59c23,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 999110738906184799, guid: d065a1791b7a46d45a786a40bfc59c23, type: 3}
     m_RemovedGameObjects: []
@@ -575,6 +600,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Peripheral_MousePad_1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906472406438828313, guid: d6e799f7829a376499139175716d90c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9030439607359681185, guid: d6e799f7829a376499139175716d90c1,
         type: 3}
@@ -660,6 +690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886720104866461056, guid: 39cc5609c12188d42984bf77f55ec665,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5217850501778316092, guid: 39cc5609c12188d42984bf77f55ec665,
         type: 3}
@@ -757,6 +792,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1356968296407066213, guid: 19b01a69ef042454abe6418ef2dca8c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1757918664440201769, guid: 19b01a69ef042454abe6418ef2dca8c6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -848,6 +888,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Monitor_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1719100334238078046, guid: 9f0e881b17a864e4f98305612a42090e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909138679311667821, guid: 9f0e881b17a864e4f98305612a42090e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344887421144219217, guid: 9f0e881b17a864e4f98305612a42090e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7748900776408339847, guid: 9f0e881b17a864e4f98305612a42090e,
         type: 3}
       propertyPath: m_RootOrder
@@ -905,6 +960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6629382521299691240, guid: 9f0e881b17a864e4f98305612a42090e, type: 3}
+    - {fileID: 1909138679311667821, guid: 9f0e881b17a864e4f98305612a42090e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -927,6 +983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Furniture_Desk_2 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886720104866461056, guid: 39cc5609c12188d42984bf77f55ec665,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8608667039591849676, guid: 39cc5609c12188d42984bf77f55ec665,
         type: 3}
@@ -1063,6 +1124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Furniture_Chair_2_Black (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6759062150661152532, guid: f19e6c2437c44714e904b01648ccce74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3449186817942642454, guid: f19e6c2437c44714e904b01648ccce74, type: 3}
     m_RemovedGameObjects: []
@@ -1087,6 +1153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_PC_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356968296407066213, guid: 19b01a69ef042454abe6418ef2dca8c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4735511771939342606, guid: 19b01a69ef042454abe6418ef2dca8c6,
         type: 3}
@@ -1228,6 +1299,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3023098873027470875, guid: d065a1791b7a46d45a786a40bfc59c23,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6353407705689718875, guid: d065a1791b7a46d45a786a40bfc59c23,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1329,6 +1405,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6759062150661152532, guid: f19e6c2437c44714e904b01648ccce74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3449186817942642454, guid: f19e6c2437c44714e904b01648ccce74, type: 3}
     m_RemovedGameObjects: []
@@ -1369,6 +1450,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906472406438828313, guid: d6e799f7829a376499139175716d90c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9030439607359681185, guid: d6e799f7829a376499139175716d90c1,
         type: 3}
@@ -1465,6 +1551,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087279926978674454, guid: c1136f2906efa164fbe5034ee68071a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7869810328805614244, guid: c1136f2906efa164fbe5034ee68071a7,
         type: 3}
@@ -1622,6 +1713,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7654869969352287299, guid: f494931bf66677f41a00158f266c0c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 344899307306958561, guid: f494931bf66677f41a00158f266c0c97, type: 3}
     m_RemovedGameObjects: []
@@ -1652,6 +1748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Peripheral_Headphones_4 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087279926978674454, guid: c1136f2906efa164fbe5034ee68071a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7869810328805614244, guid: c1136f2906efa164fbe5034ee68071a7,
         type: 3}
@@ -1743,6 +1844,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1719100334238078046, guid: 9f0e881b17a864e4f98305612a42090e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344887421144219217, guid: 9f0e881b17a864e4f98305612a42090e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4355838782243133351, guid: 9f0e881b17a864e4f98305612a42090e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1815,6 +1926,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9d2853b85ec83924da97df6d94044736, type: 2}
     m_RemovedComponents:
     - {fileID: 6629382521299691240, guid: 9f0e881b17a864e4f98305612a42090e, type: 3}
+    - {fileID: 1909138679311667821, guid: 9f0e881b17a864e4f98305612a42090e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

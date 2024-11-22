@@ -546,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 7005293643316732952, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
       propertyPath: m_Name
-      value: Department3Device 3
+      value: Department4Device 3
       objectReference: {fileID: 0}
     - target: {fileID: 7013993511734136471, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}

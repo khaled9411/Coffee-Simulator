@@ -63,14 +63,14 @@ public class GameTimeManager : MonoBehaviour
 
     public void ResetDayTime()
     {
-        StartCoroutine(ResetDayTimeCoroutine());
+        FadeEvent.OnFadeInEnd += FadeEvent_OnFadeInEnd;
     }
 
-    private IEnumerator ResetDayTimeCoroutine()
+    private void FadeEvent_OnFadeInEnd()
     {
-        yield return new WaitForSeconds(1F);
         gameHour = StartHour;
         gameMinute = StartMinute;
+        FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;
     }
 
     public string GetFormattedTime()
