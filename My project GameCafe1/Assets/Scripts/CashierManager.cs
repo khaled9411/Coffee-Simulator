@@ -59,7 +59,13 @@ public class CashierManager : MonoBehaviour
     }
     private bool HasCustomer()
     {
-        return customerPos.Count > 0;
+        //*
+        for (int i = 0; i < customerPos.Count; i++)
+        {
+            if(customerPos[i].Item2 != null)
+                return true;
+        }
+        return false;
     }
     public void AddCustomer(Transform customer)
     {
@@ -132,4 +138,14 @@ public class CashierManager : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IsPlayerOnCashier = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        IsPlayerOnCashier = false;  
+    }
 }

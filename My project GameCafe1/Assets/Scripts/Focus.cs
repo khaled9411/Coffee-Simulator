@@ -14,7 +14,7 @@ public class Focus : MonoBehaviour, IInteractable
     [Header("Camera Settings")]
     [SerializeField] private float transitionDuration = 1.0f;
     [SerializeField] private Ease transitionEase = Ease.InOutQuad;
-    [SerializeField] private float rotationSmoothness = 5f;
+    //[SerializeField] private float rotationSmoothness = 5f;
 
     [Header("==Debuging==")]
     [SerializeField] private KeyCode exitKey = KeyCode.Escape;

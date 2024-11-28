@@ -28,6 +28,7 @@ namespace TL.Core
 
         public void Move()
         {
+            GetComponent<NavMeshAgent>().enabled = true;
             agent.destination = destination.position;
         }
 

@@ -25,6 +25,11 @@ public class CafeManager : MonoBehaviour
         get { return _overallSatisfactionRate; } 
         set { _overallSatisfactionRate = Mathf.Clamp01(value); } }
 
+    private int _currentCustomerCount;
+    public int currentCustomerCount { 
+        get { return _currentCustomerCount; } 
+        set { _currentCustomerCount = value; if (value < 0) Debug.Log($"The currentCustomerCount is {currentCustomerCount}"); }}
+
     [SerializeField] private List<AreaItems> areaItemsList;
     private int currentAreaIndex = 0;
 
@@ -32,6 +37,7 @@ public class CafeManager : MonoBehaviour
 
     public Action<bool> OnIsOpenChanage;
     public Action OnAreaOppened;
+
     private void Awake()
     {
         instance = this;
@@ -75,6 +81,21 @@ public class CafeManager : MonoBehaviour
         buyableZone[currentAreaIndex + 1].SetActive(true);
     }
 
+    public float GetOverallPricePercentage()
+    {
+        if (areaItemsList.Count == 0)
+            return 0;
+
+        float totalPercentage = 0;
+
+        foreach (var item in areaItemsList) 
+        {
+            totalPercentage += item.area.pricePercentageMultiplicand;
+        }
+
+        return Mathf.Clamp(totalPercentage / areaItemsList.Count, -50, 100);
+    }
+
     public bool CanOpenNextArea()
     {
 
@@ -100,6 +121,7 @@ public class CafeManager : MonoBehaviour
 
     public bool HasAvailableSeats()
     {
+
         int availableItems = 0;
 
         for (int i = 0; i <= currentAreaIndex; i++)
@@ -114,7 +136,7 @@ public class CafeManager : MonoBehaviour
             }
         }
 
-        return availableItems > 0;
+        return availableItems > 0 && areaItemsList[currentAreaIndex].area.GetMaxCustomerCount() > currentCustomerCount;
     }
 
     public Transform GetAvailableItemTransform()
@@ -142,7 +164,12 @@ public class CafeManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, availableTransforms.Count);
             Transform selectedTransform = availableTransforms[randomIndex];
 
-            (availableTransforms[randomIndex].GetComponent<IBuyableRespondable>()).isAvailable = false;
+            (selectedTransform.GetComponent<IBuyableRespondable>()).isAvailable = false;
+            currentCustomerCount++;
+
+            if(selectedTransform.TryGetComponent<Device>(out Device device))
+                return device.GetCustomerSeat();
+
             return selectedTransform;
         }
         return null;
@@ -153,6 +180,7 @@ public class CafeManager : MonoBehaviour
     {
         if (buyableItem != null)
         {
+            currentCustomerCount--;
             buyableItem.isAvailable = true;
         }
         else
@@ -165,7 +193,7 @@ public class CafeManager : MonoBehaviour
     {
         if(device != null)
         {
-            MoneyManager.Instance.AddMoney(UnityEngine.Random.Range(device.ownArea.minPriceInTheArea, device.ownArea.maxPriceInTheArea));
+            MoneyManager.Instance.AddMoney(UnityEngine.Random.Range(device.ownArea.GetMinPriceInTheArea(), device.ownArea.GetMaxPriceInTheArea()));
         }
     }
 

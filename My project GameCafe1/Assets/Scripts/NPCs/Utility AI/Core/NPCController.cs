@@ -5,6 +5,7 @@ using TL.UtilityAI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using TL.UtilityAI.Actions;
+using UnityEngine.AI;
 
 namespace TL.Core
 {
@@ -42,8 +43,22 @@ namespace TL.Core
 
             if (currentState == State.execute)
             {
-                GetComponentInChildren<Animator>().SetBool("IsWalking", false);
+
+                Animator animator = GetComponentInChildren<Animator>();
+                if (animator != null)
+                {
+                    animator.SetBool("IsWalking", false);
+                }
+
                 aiBrain.bestAction.Execute(this);
+
+                if (aiBrain.bestAction is Playe)
+                {
+                    Transform seat = mover.destination;
+                    transform.position = seat.position;
+                    transform.rotation = seat.rotation;
+                    GetComponent<NavMeshAgent>().enabled = false;
+                }
             }
             else if (currentState == State.move)
             {
@@ -106,7 +121,7 @@ namespace TL.Core
             else if (GetCurrentState() == State.move)
             {
                 float distance = Vector3.Distance(mover.destination.position, this.transform.position);
-                if (distance < 2f)
+                if (distance < 1f)
                 {
                     SetCurrentState(State.execute);
                 }
@@ -214,13 +229,17 @@ namespace TL.Core
 
         IEnumerator PlayCoroutine(int time)
         {
-            currentDevice = mover.destination.GetComponent<Device>();
+            currentDevice = mover.destination.GetComponentInParent<Device>();
+            GetComponentInChildren<Animator>().SetBool("Sitting", (currentDevice as Device).GetHasSeat());
+
             yield return new WaitForSeconds(time);
 
             stats.hunger += 10f;
             stats.money -= 20f;
             stats.energy -= 10f;
             stats.cafe -= 10f;
+
+            GetComponentInChildren<Animator>().SetBool("Sitting", false);
 
             CashierManager.instance.AddCustomer(this.transform);
 

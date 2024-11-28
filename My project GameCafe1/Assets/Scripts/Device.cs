@@ -44,6 +44,18 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
         }
     }
 
+    [SerializeField] private Transform customerSeat;
+    public Transform GetCustomerSeat()
+    {
+        return customerSeat;
+    }
+
+    [SerializeField] private bool hasSeat;
+    public bool GetHasSeat()
+    {
+        return hasSeat;
+    }
+
     public event Action OnShowPreview;
     public event Action OnHidePreview;
     public event Action OnPurchased;

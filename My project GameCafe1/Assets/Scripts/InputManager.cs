@@ -1,3 +1,4 @@
+using MFPC.Example;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public class InputManager : MonoBehaviour
     private int lookFingerIndex = -1;
     private Vector2 touchDelta;
     private Vector2 previousTouchPos;
+    float deadZone = 0.1f;
 
     private void Awake()
     {
@@ -38,7 +40,7 @@ public class InputManager : MonoBehaviour
 
     private void InteractWithPicked_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        InteractWithPicked?.Invoke();
+        OnInteractWithPicked?.Invoke();
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -64,6 +66,11 @@ public class InputManager : MonoBehaviour
     }
     public Vector2 GetLookVector()
     {
+        if (Mathf.Abs(touchDelta.x) < deadZone && Mathf.Abs(touchDelta.y) < deadZone)
+        {
+            return Vector2.zero;
+        }
+
         return touchDelta;
     }
 

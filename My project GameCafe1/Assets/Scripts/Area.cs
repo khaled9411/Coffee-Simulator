@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
@@ -24,8 +25,32 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     [SerializeField] private Collider DeviceCollider;
     private bool isPurchased = false;
 
-    [field : SerializeField] public float minPriceInTheArea { get; set; }
-    [field: SerializeField] public float maxPriceInTheArea { get; set; }
+    [SerializeField] private float minPriceInTheArea;
+    [SerializeField] private float maxPriceInTheArea;
+    [SerializeField] private int maxCustomerCount;
+
+    public float GetMinPriceInTheArea()
+    {
+        return minPriceInTheArea + (minPriceInTheArea * (pricePercentageMultiplicand / 100f));
+    }
+
+    public float GetMaxPriceInTheArea() 
+    {
+        return maxPriceInTheArea + (maxPriceInTheArea * (pricePercentageMultiplicand / 100f));
+    }
+
+    public int GetMaxCustomerCount()
+    {
+        return maxCustomerCount;
+    }
+
+    private float _pricePercentageMultiplicand;
+    public float pricePercentageMultiplicand
+    { 
+        get { return _pricePercentageMultiplicand; } 
+        set {
+            _pricePercentageMultiplicand = Mathf.Clamp(value, -50, 100); 
+        } }
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");

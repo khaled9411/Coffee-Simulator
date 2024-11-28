@@ -226,6 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2406667191173002906, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
+      propertyPath: hasSeat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406667191173002906, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
       propertyPath: visualsParent
       value: 
       objectReference: {fileID: 3189642798026860127}
