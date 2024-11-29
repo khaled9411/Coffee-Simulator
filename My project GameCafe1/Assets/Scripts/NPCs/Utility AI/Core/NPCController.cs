@@ -6,6 +6,7 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using TL.UtilityAI.Actions;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 
 namespace TL.Core
 {
@@ -33,8 +34,9 @@ namespace TL.Core
 
         public Context context;
 
-
         private State currentState;
+        private NPCVisualController visualController;
+        private NPCAnimationEvents animationEvents;
 
         public State GetCurrentState() { return currentState; }
         public void SetCurrentState(State state)
@@ -78,11 +80,14 @@ namespace TL.Core
             mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
             stats = GetComponent<NPCStats>();
+            visualController = GetComponent<NPCVisualController>();
+            animationEvents = GetComponent<NPCAnimationEvents>();
 
-            if(type == NPCType.Troublemaker)
+            SetupAnimationEventListeners();
+
+            if (type == NPCType.Troublemaker)
                 troublemaker = GetComponent<TroublemakerNPC>();
         }
-
         // Update is called once per frame
         void Update()
         {
@@ -93,7 +98,7 @@ namespace TL.Core
         }
 
         public void FSMTick()
-        { 
+        {
             if (GetCurrentState() == State.decide)
             {
                 aiBrain.previouBsestAction = aiBrain.bestAction;
@@ -143,7 +148,21 @@ namespace TL.Core
             }
         }
 
-       
+        private void SetupAnimationEventListeners()
+        {
+            if (animationEvents != null)
+            {
+                animationEvents.animationEvents.onStartWalking.AddListener(() =>
+                {
+                    visualController.SetWalkingState(true);
+                });
+
+                animationEvents.animationEvents.onStopWalking.AddListener(() =>
+                {
+                    visualController.SetWalkingState(false);
+                });
+            }
+        }
 
         #region Workhorse methods
 
@@ -230,23 +249,64 @@ namespace TL.Core
         IEnumerator PlayCoroutine(int time)
         {
             currentDevice = mover.destination.GetComponentInParent<Device>();
-            GetComponentInChildren<Animator>().SetBool("Sitting", (currentDevice as Device).GetHasSeat());
+
+            if (currentDevice == null)
+            {
+                Debug.LogWarning("No device found for the customer.");
+                yield break;
+            }
+
+
+            bool hasSeat = (currentDevice as Device).GetHasSeat();
+
+            visualController.SetSittingState(hasSeat);
+            animationEvents.TriggerStartSitting();
+
+
+            Transform leftHandPos = (currentDevice as Device).GetLeftHandPos();
+            Transform rightHandPos = (currentDevice as Device).GetRightHandPos();
+
+            if (leftHandPos != null && rightHandPos != null)
+            {
+                visualController.SetHandIKTargets(leftHandPos, rightHandPos);
+            }
+
+
+            for (float weight = 0f; weight < 1f; weight += Time.deltaTime)
+            {
+                visualController.AdjustIKWeight(weight);
+                yield return null;
+            }
+
 
             yield return new WaitForSeconds(time);
+
 
             stats.hunger += 10f;
             stats.money -= 20f;
             stats.energy -= 10f;
             stats.cafe -= 10f;
 
-            GetComponentInChildren<Animator>().SetBool("Sitting", false);
+
+            for (float weight = 1f; weight > 0f; weight -= Time.deltaTime)
+            {
+                visualController.AdjustIKWeight(weight);
+                yield return null;
+            }
+
+            visualController.SetSittingState(false);
+            animationEvents.TriggerStopSitting();
+
+
+            yield return new WaitUntil(() => visualController.IsIdleAnimationActive());
+
 
             CashierManager.instance.AddCustomer(this.transform);
 
-
-            //aiBrain.finishedExecutingBestAction = true;
             yield break;
         }
+
+
 
         IEnumerator EatCoroutine(int time)
         {

@@ -60,6 +60,14 @@ public class CafeManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        for (int i = 1; i < areaItemsList.Count; i++)
+        {
+            if (areaItemsList[i].area.IsPurchased())
+                currentAreaIndex++;
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) 

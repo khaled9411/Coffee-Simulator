@@ -56,6 +56,18 @@ public class Device : MonoBehaviour, IShowable, IBuyableRespondable, ISaveable
         return hasSeat;
     }
 
+    [SerializeField] private Transform rightHandPos;
+    public Transform GetRightHandPos()
+    {
+        return rightHandPos;
+    }
+
+    [SerializeField] private Transform leftHandPos;
+    public Transform GetLeftHandPos()
+    {
+        return leftHandPos;
+    }
+
     public event Action OnShowPreview;
     public event Action OnHidePreview;
     public event Action OnPurchased;
