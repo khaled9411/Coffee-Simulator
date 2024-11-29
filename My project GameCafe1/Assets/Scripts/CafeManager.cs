@@ -13,7 +13,7 @@ public class CafeManager : MonoBehaviour
         public Area area;
         public List<MonoBehaviour> items;
     }
-
+    // is the cofe open 
     private bool _isOpen;
     public bool isOpen { 
         get { return _isOpen; } 
