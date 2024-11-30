@@ -257,10 +257,13 @@ namespace TL.Core
             }
 
 
+            DeviceScreen deviceScreen = (currentDevice as Device).GetComponent<DeviceScreen>();
             bool hasSeat = (currentDevice as Device).GetHasSeat();
+            Debug.Log($"deviceScreen is {deviceScreen}", deviceScreen);
 
             visualController.SetSittingState(hasSeat);
             animationEvents.TriggerStartSitting();
+            deviceScreen?.PlayVideo();
 
 
             Transform leftHandPos = (currentDevice as Device).GetLeftHandPos();
@@ -296,6 +299,7 @@ namespace TL.Core
 
             visualController.SetSittingState(false);
             animationEvents.TriggerStopSitting();
+            deviceScreen.StopVideo();
 
 
             yield return new WaitUntil(() => visualController.IsIdleAnimationActive());
