@@ -47,7 +47,7 @@ public static class SaveSystem
     {
         try
         {
-            File.WriteAllText(saveFilePath, "");
+            File.Delete(saveFilePath);
         }
         catch (System.Exception e)
         {

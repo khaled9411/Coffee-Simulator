@@ -8,7 +8,7 @@ public class Broom : MonoBehaviour , IInteractable
 
     public void Interact()
     {
-        Player.Instance.interactHandler.PickBroom();
+        Player.Instance.interactHandler.PickBroom(transform);
     }
 
 }

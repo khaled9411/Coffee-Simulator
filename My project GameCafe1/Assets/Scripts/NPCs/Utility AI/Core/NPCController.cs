@@ -56,11 +56,13 @@ namespace TL.Core
 
                 if (aiBrain.bestAction is Playe)
                 {
+                    CafeManager.instance.OnIsOpenChanage -= ChangeMindForPlay;
                     Transform seat = mover.destination;
                     transform.position = seat.position;
                     transform.rotation = seat.rotation;
                     GetComponent<NavMeshAgent>().enabled = false;
                 }
+
             }
             else if (currentState == State.move)
             {
@@ -74,6 +76,8 @@ namespace TL.Core
         public Transform currentDestination;
 
         public TroublemakerNPC troublemaker { get; private set; }
+
+        private DeviceScreen deviceScreen;
         // Start is called before the first frame update
         void Start()
         {
@@ -104,6 +108,19 @@ namespace TL.Core
                 aiBrain.previouBsestAction = aiBrain.bestAction;
                 aiBrain.DecideBestAction();
 
+                if (aiBrain.bestAction is Playe)
+                {
+                    CafeManager.instance.OnIsOpenChanage += ChangeMindForPlay;
+                    Faint.Instance.onFaint += ResetMindForPlay;
+                    Bed.Instance.onSleep += ResetMindForPlay;
+                }
+                else
+                {
+                    CafeManager.instance.OnIsOpenChanage -= ChangeMindForPlay;
+                    Faint.Instance.onFaint -= ResetMindForPlay;
+                    Bed.Instance.onSleep -= ResetMindForPlay;
+                }
+
                 //Don't play twice
                 if (aiBrain.previouBsestAction == aiBrain.bestAction && aiBrain.bestAction is Playe)
                 {
@@ -125,6 +142,7 @@ namespace TL.Core
             }
             else if (GetCurrentState() == State.move)
             {
+
                 float distance = Vector3.Distance(mover.destination.position, this.transform.position);
                 if (distance < 1f)
                 {
@@ -162,6 +180,24 @@ namespace TL.Core
                     visualController.SetWalkingState(false);
                 });
             }
+        }
+
+        private void ChangeMindForPlay(bool cafeIsOpen)
+        {
+            if (!cafeIsOpen)
+            {
+                SetCurrentState(State.decide);
+            }
+        }
+
+        private void ResetMindForPlay()
+        {
+            visualController.AdjustIKWeight(0);
+            visualController.SetSittingState(false);
+            animationEvents.TriggerStopSitting();
+            deviceScreen?.StopVideo();
+            SetCurrentState(State.decide);
+            aiBrain.finishedExecutingBestAction = true;
         }
 
         #region Workhorse methods
@@ -257,15 +293,8 @@ namespace TL.Core
             }
 
 
-            DeviceScreen deviceScreen = (currentDevice as Device).GetComponent<DeviceScreen>();
+            deviceScreen = (currentDevice as Device).GetComponent<DeviceScreen>();
             bool hasSeat = (currentDevice as Device).GetHasSeat();
-            Debug.Log($"deviceScreen is {deviceScreen}", deviceScreen);
-
-            visualController.SetSittingState(hasSeat);
-            animationEvents.TriggerStartSitting();
-            deviceScreen?.PlayVideo();
-
-
             Transform leftHandPos = (currentDevice as Device).GetLeftHandPos();
             Transform rightHandPos = (currentDevice as Device).GetRightHandPos();
 
@@ -273,6 +302,10 @@ namespace TL.Core
             {
                 visualController.SetHandIKTargets(leftHandPos, rightHandPos);
             }
+
+            visualController.SetSittingState(hasSeat);
+            animationEvents.TriggerStartSitting();
+            deviceScreen?.PlayVideo();
 
 
             for (float weight = 0f; weight < 1f; weight += Time.deltaTime)
@@ -299,12 +332,12 @@ namespace TL.Core
 
             visualController.SetSittingState(false);
             animationEvents.TriggerStopSitting();
-            deviceScreen.StopVideo();
+            deviceScreen?.StopVideo();
 
 
             yield return new WaitUntil(() => visualController.IsIdleAnimationActive());
 
-
+            deviceScreen = null;
             CashierManager.instance.AddCustomer(this.transform);
 
             yield break;

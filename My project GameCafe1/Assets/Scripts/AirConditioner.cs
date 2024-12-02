@@ -21,8 +21,11 @@ public class AirConditioner : MonoBehaviour , ISaveable
         {
             _isPurchased = value;
             visual?.SetActive(_isPurchased);
+            ownArea.UpdateTemperature();
         }
     }
+
+    public Area ownArea { get; set; }
 
     [SerializeField] private GameObject visual;
 

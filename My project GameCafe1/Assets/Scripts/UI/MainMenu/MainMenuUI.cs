@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public static MainMenuUI instance {  get; private set; }
+    public static MainMenuUI instance { get; private set; }
 
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueButton;
@@ -15,18 +17,13 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        CheckSaveFileAndUpdateButtons();
     }
+
     private void Start()
     {
-        // check if first time to close the continue button
-        newGameButton.onClick.AddListener(() =>
-        {
-
-        });
-        continueButton.onClick.AddListener(() =>
-        {
-
-        });
+        newGameButton.onClick.AddListener(StartNewGame);
+        continueButton.onClick.AddListener(ContinueGame);
         settingButton.onClick.AddListener(() =>
         {
             SettingMenuUI.Instance.Show(null);
@@ -35,7 +32,29 @@ public class MainMenuUI : MonoBehaviour
         {
             Application.Quit();
         });
-
     }
-  
-} 
+
+    private void CheckSaveFileAndUpdateButtons()
+    {
+        string saveFilePath = Application.persistentDataPath + "/savefile.json";
+
+        bool hasSaveFile = File.Exists(saveFilePath) && new FileInfo(saveFilePath).Length > 0;
+
+        continueButton.interactable = hasSaveFile;
+        continueButton.gameObject.SetActive(hasSaveFile);
+    }
+
+    private void StartNewGame()
+    {
+        SaveSystem.ClearData();
+
+        //CheckSaveFileAndUpdateButtons();
+
+        SceneManager.LoadScene("Main");
+    }
+
+    private void ContinueGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+}

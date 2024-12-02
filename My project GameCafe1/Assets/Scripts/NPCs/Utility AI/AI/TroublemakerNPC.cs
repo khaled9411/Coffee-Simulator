@@ -20,7 +20,7 @@ public class TroublemakerNPC : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             SetCanMakeTroubleFALSE();
             GetComponent<AIBrain>().finishedExecutingBestAction = true;
@@ -31,7 +31,7 @@ public class TroublemakerNPC : MonoBehaviour
     {
         if (canMakeTrouble)
         {
-            _canMakeTrouble = false;
+            canMakeTrouble = false;
             StartCoroutine(ResetBoolAfterDelay());
         }
     }

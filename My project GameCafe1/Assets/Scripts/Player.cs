@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement { get; private set; }
 
     [SerializeField] private Transform spwanPoint;
+    [SerializeField] private Transform PickUpPoint;
     private void Awake()
     {
         if (Instance == null)
@@ -37,5 +38,11 @@ public class Player : MonoBehaviour
     public void SetPos(Vector3 pos)
     {
         transform.position = pos;
+    }
+
+    public void SetPickUpPos(Transform pickedItem)
+    {
+        pickedItem.SetParent(PickUpPoint);
+        pickedItem.localPosition = Vector3.zero;
     }
 }

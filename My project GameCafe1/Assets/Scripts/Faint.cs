@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class Faint : MonoBehaviour
     public static Faint Instance;
     [SerializeField] private int moneyPenalty = 10;
 
+    public Action onFaint;
+
     private void Awake()
     {
         Instance = this;
@@ -14,6 +17,7 @@ public class Faint : MonoBehaviour
 
     private void FadeEvent_OnFadeInEnd()
     {
+        onFaint?.Invoke();
         GameTimeManager.instance.ResetDayTime();
         Player.Instance.SpwanInStartPoint();
         FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;

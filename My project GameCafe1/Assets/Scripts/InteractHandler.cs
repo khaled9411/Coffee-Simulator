@@ -147,8 +147,20 @@ public class InteractHandler : MonoBehaviour
     {
         return interactable is Ibuyable;
     }
-    public void PickBroom()
+    public void PickBroom(Transform broom)
     {
+        Player.Instance.SetPickUpPos(broom);
+        broom.GetComponent<Collider>().isTrigger = true;
+        broom.GetComponent<Rigidbody>().isKinematic = true;
+        broom.GetComponent<BroomAnimation>().StartPos();
         hasBroom = true;
     } 
+
+    public void DropBroom(Transform broom)
+    {
+        broom.parent = null;
+        broom.GetComponent<Collider>().isTrigger = false;
+        broom.GetComponent<Rigidbody>().isKinematic = false;
+        hasBroom = false;
+    }
 }

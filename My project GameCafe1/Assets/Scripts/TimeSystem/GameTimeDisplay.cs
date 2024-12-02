@@ -4,13 +4,13 @@ using UnityEngine;
 public class GameTimeDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timeDisplay;
+    [SerializeField] private GameObject bedImage;
 
     void Start()
     {
-        if (GameTimeManager.instance != null)
-        {
-            GameTimeManager.instance.OnTimeUpdated += UpdateTimeDisplay;
-        }
+        GameTimeManager.instance.OnTimeUpdated += UpdateTimeDisplay;
+        NightfallManager.Instance.onNightTimeWarning += ShowBedImage;
+        FadeEvent.OnFadeInEnd += HideBedImage;
     }
     private void OnEnable()
     {
@@ -30,5 +30,15 @@ public class GameTimeDisplay : MonoBehaviour
     private void UpdateTimeDisplay(int hour, int minute)
     {
         timeDisplay.text = GameTimeManager.instance.GetFormattedTime();
+    }
+
+    private void ShowBedImage()
+    {
+        bedImage.SetActive(true);
+    }
+
+    private void HideBedImage()
+    {
+        bedImage?.SetActive(false);
     }
 }

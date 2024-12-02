@@ -29,6 +29,10 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     [SerializeField] private float maxPriceInTheArea;
     [SerializeField] private int maxCustomerCount;
 
+
+    public int itemCount { get; set; }
+    public int acCount { get; set; }
+
     public float GetMinPriceInTheArea()
     {
         return minPriceInTheArea + (minPriceInTheArea * (pricePercentageMultiplicand / 100f));
@@ -51,6 +55,9 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
         set {
             _pricePercentageMultiplicand = Mathf.Clamp(value, -50, 100); 
         } }
+
+    public float temperature { get; set; }
+
     public void Respond()
     {
         Debug.Log($"you bought a new {respondableName} with {price}$");
@@ -92,6 +99,33 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     private void DisableCollider()
     {
         DeviceCollider.enabled = false;
+    }
+
+    public void UpdateTemperature()
+    {
+
+        if (acCount == 0)
+        {
+            temperature = 40f;
+        }
+        else
+        {
+            float threshold = (float)itemCount / (acCount + 1);
+
+            if (threshold < itemCount * 0.33f)
+            {
+                temperature = 18f;
+            }
+            else if (threshold < itemCount * 0.66f)
+            {
+                temperature = 25f;
+            }
+            else
+            {
+                temperature = 30f;
+            }
+        }
+
     }
 
     public SaveData SaveData()

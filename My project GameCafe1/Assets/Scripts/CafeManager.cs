@@ -12,6 +12,8 @@ public class CafeManager : MonoBehaviour
     {
         public Area area;
         public List<MonoBehaviour> items;
+        public List<AirConditioner> airConditions;
+        public List<GameObject> posters;
     }
     // is the cofe open 
     private bool _isOpen;
@@ -38,6 +40,8 @@ public class CafeManager : MonoBehaviour
     public Action<bool> OnIsOpenChanage;
     public Action OnAreaOppened;
 
+
+
     private void Awake()
     {
         instance = this;
@@ -54,6 +58,15 @@ public class CafeManager : MonoBehaviour
                     device.OnPurchased += Device_OnPurchased;
                 }
             }
+
+            foreach (var ac in areaItemsList[i].airConditions)
+            {
+                ac.ownArea = areaItemsList[i].area;
+            }
+
+            areaItemsList[i].area.acCount = areaItemsList[i].airConditions.Count;
+            areaItemsList[i].area.itemCount = areaItemsList[i].items.Count;
+
             buyableZone[i] = areaItemsList[i].area.GetComponentInChildren<BuyableInteractionZone>()?.gameObject;
             buyableZone[i]?.SetActive(false);
         }
@@ -62,6 +75,10 @@ public class CafeManager : MonoBehaviour
 
     private void Start()
     {
+
+        Faint.Instance.onFaint += RestCafe;
+        Bed.Instance.onSleep += RestCafe;
+
         for (int i = 1; i < areaItemsList.Count; i++)
         {
             if (areaItemsList[i].area.IsPurchased())
@@ -78,6 +95,8 @@ public class CafeManager : MonoBehaviour
     }
     private void Device_OnPurchased()
     {
+        areaItemsList[currentAreaIndex].area.UpdateTemperature();
+
         if ((currentAreaIndex + 1) >= areaItemsList.Count) return;
 
         foreach (var item in areaItemsList[currentAreaIndex].items)
@@ -104,6 +123,8 @@ public class CafeManager : MonoBehaviour
         return Mathf.Clamp(totalPercentage / areaItemsList.Count, -50, 100);
     }
 
+
+
     public bool CanOpenNextArea()
     {
 
@@ -114,18 +135,27 @@ public class CafeManager : MonoBehaviour
                 if (item is IBuyableRespondable buyableItem && !buyableItem.IsPurchased())
                     return false;
             }
-            //float requiredPrice = areaItemsList[currentAreaIndex + 1].area.price;
-            //if (MoneyManager.Instance.TryBuy(requiredPrice))
-            //{
-            //    currentAreaIndex++;
-            //    Debug.Log($"Opened new area: {areaItemsList[currentAreaIndex].area.respondableName}");
-            //    return true;
-            //}
         }
 
         return true;
     }
+    
+    private void RestCafe()
+    {
+        isOpen = false; 
+        currentCustomerCount = 0;
 
+        for (int i = 0; i <= currentAreaIndex; i++)
+        {
+            foreach (var item in areaItemsList[i].items)
+            {
+                if (item is IBuyableRespondable buyableItem && buyableItem.IsPurchased())
+                {
+                    buyableItem.isAvailable = true;
+                }
+            }
+        }
+    }
 
     public bool HasAvailableSeats()
     {
@@ -234,4 +264,6 @@ public class CafeManager : MonoBehaviour
         currentAreaIndex++;
         OnAreaOppened?.Invoke();
     }
+
+    
 }
