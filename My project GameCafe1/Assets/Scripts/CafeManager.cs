@@ -15,6 +15,7 @@ public class CafeManager : MonoBehaviour
         public List<MonoBehaviour> items;
         public List<AirConditioner> airConditions;
         public List<GameObject> posters;
+        public List<DepartmentAdditionsSO> Items;
     }
     // is the cofe open 
     private bool _isOpen;
