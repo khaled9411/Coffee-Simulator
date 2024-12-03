@@ -21,7 +21,7 @@ public class CustomerSatisfaction : MonoBehaviour
     void Update()
     {
         UpdateSatisfactionEmoji();
-        CalculateOverallSatisfaction();
+        //CalculateOverallSatisfaction();
         FaceCamera();
     }
 
@@ -63,7 +63,7 @@ public class CustomerSatisfaction : MonoBehaviour
         }
     }
 
-    void CalculateOverallSatisfaction()
+    public void CalculateOverallSatisfaction()
     {
         float temperaturePercentage = CafeManager.instance.GetOverallTemperaturePercentage();
         float trashPercentage = CafeManager.instance.GetOverallTrashPercentage();

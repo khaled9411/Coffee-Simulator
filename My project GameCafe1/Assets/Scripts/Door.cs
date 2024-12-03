@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TL.UtilityAI.Actions;
+using HUDIndicator;
 
 public class Door : MonoBehaviour, IInteractable
 {
+
+    public static bool IsCafeTutorialDone = false;
+
     [field: SerializeField] public string verbName { get; set; }
 
     private bool isOpen = false;
@@ -15,8 +19,15 @@ public class Door : MonoBehaviour, IInteractable
     public float closeAngle = 0f;
     public float animationDuration = 1f;
 
+    [SerializeField] private IndicatorOffScreen indicatorOffScreen;
+    [SerializeField] private IndicatorOnScreen indicatorOnScreen;
     private void Start()
     {
+
+        IsCafeTutorialDone = PlayerPrefs.GetInt("IsCafeTutorialDone", 0) == 1;
+        indicatorOnScreen.visible = !IsCafeTutorialDone;
+        indicatorOffScreen.visible = !IsCafeTutorialDone;
+
         Faint.Instance.onFaint += CloseDoor;
         Bed.Instance.onSleep += CloseDoor;
 
@@ -66,6 +77,15 @@ public class Door : MonoBehaviour, IInteractable
 
         isOpen = true;
         verbName = "Close";
+
+        if (!IsCafeTutorialDone)
+        {
+            IsCafeTutorialDone = true;
+            PlayerPrefs.SetInt("IsCafeTutorialDone", 1);
+
+            indicatorOnScreen.visible = !IsCafeTutorialDone;
+            indicatorOffScreen.visible = !IsCafeTutorialDone;
+        }
     }
 
     public void CloseDoor()

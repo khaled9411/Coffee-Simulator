@@ -343,6 +343,8 @@ namespace TL.Core
 
             yield return new WaitUntil(() => visualController.IsIdleAnimationActive());
 
+            customerSatisfaction.CalculateOverallSatisfaction();
+
             if (foodOrderSystem.CheckIfOrderServed()) // if Served add to Satisfaction
             {
                 customerSatisfaction.UpdateSatisfactionLevel(0.1f);

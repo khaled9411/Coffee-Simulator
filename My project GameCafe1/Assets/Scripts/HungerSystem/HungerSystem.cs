@@ -38,7 +38,7 @@ public class HungerSystem : MonoBehaviour, IHungerSystem, ISaveable
         OnEatFood += IncreaseHunger;
 
         if (currentHunger <= 0)
-            currentHunger = 100;
+            currentHunger = 11;
     }
 
     public float GetCurrentHunger()
@@ -90,7 +90,7 @@ public class HungerSystem : MonoBehaviour, IHungerSystem, ISaveable
             currentHunger = floatData.value;
 
             if (currentHunger <= 0)
-                currentHunger = 10;
+                currentHunger = 11;
 
             Debug.Log($"Loaded hunger value: {currentHunger}");
         }

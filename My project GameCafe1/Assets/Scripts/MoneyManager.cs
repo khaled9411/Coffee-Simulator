@@ -19,7 +19,6 @@ public class MoneyManager : MonoBehaviour, ISaveable
         private set
         {
             _money = value;
-            Debug.Log($"Money updated: {_money}");
             OnMoneyChange?.Invoke();
         }
     }
@@ -28,6 +27,8 @@ public class MoneyManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
+        Money = 5030;
+
         if (Instance == null)
         {
             Instance = this;
@@ -42,7 +43,7 @@ public class MoneyManager : MonoBehaviour, ISaveable
     public void AddMoney(float amount)
     {
         Money += amount;
-        Debug.Log($"Added {amount} money. New total: {Money}");
+        //Debug.Log($"Added {amount} money. New total: {Money}");
     }
 
     public void SubtractMoney(float amount)
@@ -50,7 +51,7 @@ public class MoneyManager : MonoBehaviour, ISaveable
         if (Money >= amount)
         {
             Money -= amount;
-            Debug.Log($"Subtracted {amount} money. New total: {Money}");
+            //Debug.Log($"Subtracted {amount} money. New total: {Money}");
         }
         else
         {
@@ -63,7 +64,7 @@ public class MoneyManager : MonoBehaviour, ISaveable
         if (Money >= amount)
         {
             Money -= amount;
-            Debug.Log($"Subtracted {amount} money. New total: {Money}");
+            //Debug.Log($"Subtracted {amount} money. New total: {Money}");
         }
         else
         {
@@ -76,7 +77,7 @@ public class MoneyManager : MonoBehaviour, ISaveable
         if (Money >= amount)
         {
             Money -= amount;
-            Debug.Log($"Subtracted {amount} money. New total: {Money}");
+            //Debug.Log($"Subtracted {amount} money. New total: {Money}");
             return true;
         }
         else

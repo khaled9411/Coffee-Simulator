@@ -10,8 +10,18 @@ public class HungerManager : MonoBehaviour
         HungerSystem.Instance.OnHungerAmountChange += EvaluateHunger;
     }
 
+    bool once = true;
     private void EvaluateHunger(float hungerAmount)
     {
+
+        if (!Food.IsFoodTutorialDone && hungerAmount < 10 && once) 
+        {
+            TutorialSystem.instance.OpenTutorialPopupByIndex(0);
+            once = false;
+        }
+
+
+
         if (hungerAmount <= 0) 
         {
             Faint.Instance.StartFaint();

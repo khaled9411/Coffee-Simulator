@@ -11,6 +11,14 @@ public class GoTo : MonoBehaviour, IRespondable
 
     public void Respond()
     {
+        if (!NightfallManager.IsSleepTutorialDone && respondableName == "Home")
+        {
+            NightfallManager.IsSleepTutorialDone = true;
+            PlayerPrefs.SetInt("IsSleepTutorialDone", 1);
+            TutorialSystem.instance.parts[1].indicatorOnScreen.visible = false;
+            TutorialSystem.instance.parts[1].indicatorOffScreen.visible = false;
+        }
+
         FadeEvent.OnFadeInEnd += FadeEvent_OnFadeInEnd;
         FadeEvent.TriggerFadeInStart();
     }

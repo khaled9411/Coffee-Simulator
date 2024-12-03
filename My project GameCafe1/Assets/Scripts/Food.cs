@@ -1,9 +1,12 @@
+using HUDIndicator;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Food : MonoBehaviour, IInteractable , Ibuyable
 {
+    public static bool IsFoodTutorialDone = false;
+
     public string verbName { get; set; } = "Eat";
     [SerializeField] private FoodSO foodSO;
     [SerializeField] private float timeToRespawn = 30;
@@ -14,7 +17,10 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
     //private bool canBuy = false;
     void Start()
     {
-        if(TryGetComponent<Targetable>(out Targetable targetable))
+        IsFoodTutorialDone = PlayerPrefs.GetInt("IsFoodTutorialDone", 0) == 1;
+
+        myCollider = GetComponent<Collider>();
+        if (TryGetComponent<Targetable>(out Targetable targetable))
         {
             targetable.SetName(foodSO.name);
         }
@@ -43,6 +49,14 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
         HungerSystem.Instance.OnEatFood?.Invoke(foodSO.hungerRecoveryAmount);
         HideVisuals();
         DisableCollider();
+
+        if (!IsFoodTutorialDone)
+        {
+            IsFoodTutorialDone = true;
+            PlayerPrefs.SetInt("IsFoodTutorialDone", 1);
+            TutorialSystem.instance.parts[0].indicatorOnScreen.visible = false;
+            TutorialSystem.instance.parts[0].indicatorOffScreen.visible = false;
+        }
     }
     private void ShowVisuals()
     {
