@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CafeManager : MonoBehaviour
 {
@@ -123,6 +124,31 @@ public class CafeManager : MonoBehaviour
         return Mathf.Clamp(totalPercentage / areaItemsList.Count, -50, 100);
     }
 
+    public float GetOverallTemperaturePercentage()
+    {
+        if (areaItemsList.Count == 0)
+            return 0;
+
+        float totalPercentage = 0;
+        foreach (var item in areaItemsList)
+        {
+            // Remap temperature from 18-30 to 1-0
+            float normalizedTemp = 1 - Mathf.InverseLerp(18f, 30f, item.area.temperature);
+            totalPercentage += normalizedTemp;
+        }
+
+        return Mathf.Clamp01(totalPercentage / areaItemsList.Count);
+    }
+    public float GetOverallTrashPercentage()
+    {
+        if (TrashSpawnPoint.spawnPointsCounter == 0)
+            return 1; // Avoid division by zero, return max if no spawn points
+
+        // Normalize trash count to 0-1 range, where fewer trash items approach 1
+        float normalizedTrashPercentage = 1 - (float)TrashSpawnPoint.trashCounter / TrashSpawnPoint.spawnPointsCounter;
+
+        return Mathf.Clamp01(normalizedTrashPercentage);
+    }
 
 
     public bool CanOpenNextArea()
@@ -142,19 +168,23 @@ public class CafeManager : MonoBehaviour
     
     private void RestCafe()
     {
-        isOpen = false; 
-        currentCustomerCount = 0;
+        //isOpen = false; 
+        //currentCustomerCount = 0;
 
-        for (int i = 0; i <= currentAreaIndex; i++)
-        {
-            foreach (var item in areaItemsList[i].items)
-            {
-                if (item is IBuyableRespondable buyableItem && buyableItem.IsPurchased())
-                {
-                    buyableItem.isAvailable = true;
-                }
-            }
-        }
+        //for (int i = 0; i <= currentAreaIndex; i++)
+        //{
+        //    foreach (var item in areaItemsList[i].items)
+        //    {
+        //        if (item is IBuyableRespondable buyableItem && buyableItem.IsPurchased())
+        //        {
+        //            buyableItem.isAvailable = true;
+        //        }
+        //    }
+        //}
+
+        //CashierManager.instance.ResetCashier();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public bool HasAvailableSeats()

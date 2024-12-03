@@ -19,12 +19,13 @@ public class GameTimeDisplay : MonoBehaviour
             GameTimeManager.instance.OnTimeUpdated += UpdateTimeDisplay;
         }
     }
-    void OnDisable()
+    void OnDestroy()
     {
         if (GameTimeManager.instance != null)
         {
             GameTimeManager.instance.OnTimeUpdated -= UpdateTimeDisplay;
         }
+        FadeEvent.OnFadeInEnd -= HideBedImage;
     }
 
     private void UpdateTimeDisplay(int hour, int minute)

@@ -37,6 +37,8 @@ namespace TL.Core
         private State currentState;
         private NPCVisualController visualController;
         private NPCAnimationEvents animationEvents;
+        private FoodOrderSystem foodOrderSystem;
+        private CustomerSatisfaction customerSatisfaction;
 
         public State GetCurrentState() { return currentState; }
         public void SetCurrentState(State state)
@@ -86,6 +88,8 @@ namespace TL.Core
             stats = GetComponent<NPCStats>();
             visualController = GetComponent<NPCVisualController>();
             animationEvents = GetComponent<NPCAnimationEvents>();
+            foodOrderSystem = GetComponent<FoodOrderSystem>();
+            customerSatisfaction = GetComponent<CustomerSatisfaction>();
 
             SetupAnimationEventListeners();
 
@@ -315,6 +319,8 @@ namespace TL.Core
             }
 
 
+            foodOrderSystem.CreateOrder();
+
             yield return new WaitForSeconds(time);
 
 
@@ -336,6 +342,15 @@ namespace TL.Core
 
 
             yield return new WaitUntil(() => visualController.IsIdleAnimationActive());
+
+            if (foodOrderSystem.CheckIfOrderServed()) // if Served add to Satisfaction
+            {
+                customerSatisfaction.UpdateSatisfactionLevel(0.1f);
+            }
+            else
+            {
+                customerSatisfaction.UpdateSatisfactionLevel(-0.1f);
+            }
 
             deviceScreen = null;
             CashierManager.instance.AddCustomer(this.transform);

@@ -138,6 +138,15 @@ public class CashierManager : MonoBehaviour
         }
     }
 
+    public void ResetCashier()
+    {
+        customerPos = null;
+        customerPos = new List<Tuple<Transform, Transform>>();
+        foreach (Transform pos in queuePositions)
+        {
+            customerPos.Add(new Tuple<Transform, Transform>(pos, null));
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

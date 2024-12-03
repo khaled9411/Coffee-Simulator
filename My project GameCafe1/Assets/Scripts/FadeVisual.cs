@@ -16,7 +16,7 @@ public class FadeVisual : MonoBehaviour
         FadeEvent.OnFadeInStart += PlayEffect;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         FadeEvent.OnFadeInStart -= PlayEffect;
     }

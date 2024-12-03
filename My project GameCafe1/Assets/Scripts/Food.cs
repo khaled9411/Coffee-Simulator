@@ -6,7 +6,7 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
 {
     public string verbName { get; set; } = "Eat";
     [SerializeField] private FoodSO foodSO;
-    [SerializeField] private float timeToRespawn = 5;
+    [SerializeField] private float timeToRespawn = 30;
     [SerializeField] private GameObject visual;
     private float currentTime;
     private Collider myCollider;
@@ -51,6 +51,8 @@ public class Food : MonoBehaviour, IInteractable , Ibuyable
     private void HideVisuals()
     {
         visual.SetActive(false);
+        Invoke("ShowVisuals", timeToRespawn);
+        Invoke("EnableCollider", timeToRespawn);
     }
     private void EnableCollider()
     {
