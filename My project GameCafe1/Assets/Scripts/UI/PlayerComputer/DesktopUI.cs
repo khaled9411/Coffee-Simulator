@@ -10,6 +10,7 @@ public class DesktopUI : MonoBehaviour
     [SerializeField] private Button priceListButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button servicesButton;
+    [SerializeField] private Button LeaveComputerButton;
 
     private void Start()
     {
@@ -31,6 +32,10 @@ public class DesktopUI : MonoBehaviour
 
         servicesButton.onClick.AddListener(() => {
             ServicesUI.Instance.Show();
+        });
+        LeaveComputerButton.onClick.AddListener(() =>
+        {
+            Focus.Instance.ExitComputerView();
         });
     }
 }

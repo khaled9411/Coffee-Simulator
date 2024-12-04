@@ -4,6 +4,8 @@ using DG.Tweening;
 
 public class Focus : MonoBehaviour, IInteractable
 {
+    public static Focus Instance { get; private set; }
+
     [field: SerializeField] public string verbName { get; set; }
 
     [Header("Camera Setup")]
@@ -30,6 +32,11 @@ public class Focus : MonoBehaviour, IInteractable
     {
         EnterComputerView();
     }
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     // Start is called before the first frame update
     private void Start()
