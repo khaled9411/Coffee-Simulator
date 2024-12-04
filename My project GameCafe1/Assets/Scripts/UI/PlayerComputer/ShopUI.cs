@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,12 +40,13 @@ public class ShopUI : MonoBehaviour
                 {
                     AdditionsButton button = Instantiate(itemButtonPrefab, itemsButtonParent.transform).GetComponent<AdditionsButton>();
                     button.Setup(AreaItemsList[index].ItemsSO[j].price, AreaItemsList[index].ItemsSO[j].icon, AreaItemsList[index].ItemsSO[j].itemName, AreaItemsList[index].Additions[j].isPurchased);
+                    int index1 = j;
                     button.button.onClick.AddListener(() =>
                     {
-                        if (MoneyManager.Instance.TryBuy(AreaItemsList[index].ItemsSO[j].price))
+                        if (MoneyManager.Instance.TryBuy(AreaItemsList[index].ItemsSO[index1].price))
                         {
                             button.ShowPurchasedPanel();
-                            AreaItemsList[index].Additions[j].isPurchased = true;
+                            AreaItemsList[index].Additions[index1].isPurchased = true;
                         }
                     });
                 }
