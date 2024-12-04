@@ -80,6 +80,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractWithPicked1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c599df48-44e2-4d01-9e2f-b88d6d27abf4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,6 +234,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""InteractWithPicked"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94129394-48f5-4f84-a609-db07a3fb10bb"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractWithPicked1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +259,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_InteractWithPicked = m_Player.FindAction("InteractWithPicked", throwIfNotFound: true);
+        m_Player_InteractWithPicked1 = m_Player.FindAction("InteractWithPicked1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +327,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_InteractWithPicked;
+    private readonly InputAction m_Player_InteractWithPicked1;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -316,6 +338,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @InteractWithPicked => m_Wrapper.m_Player_InteractWithPicked;
+        public InputAction @InteractWithPicked1 => m_Wrapper.m_Player_InteractWithPicked1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -343,6 +366,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @InteractWithPicked.started += instance.OnInteractWithPicked;
             @InteractWithPicked.performed += instance.OnInteractWithPicked;
             @InteractWithPicked.canceled += instance.OnInteractWithPicked;
+            @InteractWithPicked1.started += instance.OnInteractWithPicked1;
+            @InteractWithPicked1.performed += instance.OnInteractWithPicked1;
+            @InteractWithPicked1.canceled += instance.OnInteractWithPicked1;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -365,6 +391,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @InteractWithPicked.started -= instance.OnInteractWithPicked;
             @InteractWithPicked.performed -= instance.OnInteractWithPicked;
             @InteractWithPicked.canceled -= instance.OnInteractWithPicked;
+            @InteractWithPicked1.started -= instance.OnInteractWithPicked1;
+            @InteractWithPicked1.performed -= instance.OnInteractWithPicked1;
+            @InteractWithPicked1.canceled -= instance.OnInteractWithPicked1;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -390,5 +419,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInteractWithPicked(InputAction.CallbackContext context);
+        void OnInteractWithPicked1(InputAction.CallbackContext context);
     }
 }

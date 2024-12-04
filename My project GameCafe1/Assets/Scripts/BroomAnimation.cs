@@ -11,25 +11,42 @@ public class BroomAnimation : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 initialRotation;
 
+    private void Start()
+    {
+        InputManager.Instance.OnInteractWithPicked1 += Instance_OnInteractWithPicked1;
+    }
+
+    private void Instance_OnInteractWithPicked1()
+    {
+        if (!Player.Instance.interactHandler.hasBroom) return;
+        StopAnimation();
+        PlayAttackingAnimation();
+       
+    }
+
     public void StartPos()
     {
         initialPosition = transform.localPosition;
         initialRotation = transform.localEulerAngles;
+
+        StopAnimation();
+        PlayCleaningAnimation();
+        
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StopAnimation();
-            PlayCleaningAnimation();
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            StopAnimation();
-            PlayAttackingAnimation();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Z))
+    //    {
+    //        StopAnimation();
+    //        PlayCleaningAnimation();
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.X))
+    //    {
+    //        StopAnimation();
+    //        PlayAttackingAnimation();
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -74,8 +91,10 @@ public class BroomAnimation : MonoBehaviour
     {
         hitCollider.enabled = true;
 
-        yield return attackingDuration / 2;
+        yield return new WaitForSeconds(attackingDuration);
 
-        hitCollider.enabled = false;
+        hitCollider.enabled = false; 
+        StopAnimation();
+        PlayCleaningAnimation();
     }
 }

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Broom : MonoBehaviour , IInteractable
 {
-    [field: SerializeField] public string verbName { get; set; } = "Pick";
-    BroomAnimation animation;
+    public static Broom Instance { get; private set; }
 
-    private void Start()
+    [field: SerializeField] public string verbName { get; set; } = "Pick";
+    
+
+    private void Awake()
     {
-        animation = GetComponent<BroomAnimation>();
+        Instance = this;
     }
+    
     public void Interact()
     {
-        Player.Instance.interactHandler.PickBroom(transform);
-        animation.StopAnimation();
-        animation.PlayCleaningAnimation();
+        if (Player.Instance.interactHandler.hasBroom) return;
+        Player.Instance.interactHandler.PickBroom();
     }
 
 }

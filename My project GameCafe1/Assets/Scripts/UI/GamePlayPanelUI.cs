@@ -13,7 +13,8 @@ public class GamePlayPanelUI : MonoBehaviour
     [SerializeField] Button interactButton;
     [SerializeField] Button storeButton;
     [SerializeField] Button pauseButton;
-
+    [SerializeField] Button dropBroomButton;
+    [SerializeField] Button hitWithBroomButton;
 
 
     private void Start()
@@ -22,12 +23,17 @@ public class GamePlayPanelUI : MonoBehaviour
         HideInteractButton();
         HideBuyablePriceText();
         UpdateMoneyText();
+        dropBroomButton.gameObject.SetActive(false);
+        hitWithBroomButton.gameObject.SetActive(false);
+
 
         MoneyManager.Instance.OnMoneyChange += UpdateMoneyText;
         Player.Instance.interactHandler.OnTargetTarget += ShowTargetName;
         Player.Instance.interactHandler.OnTargetInteractbale += ShowInteractButton;
         Player.Instance.interactHandler.OnTargetBuyable += ShowBuyablePriceText;
         Player.Instance.interactHandler.OnNoTarget += InteractHandler_OnNoTarget;
+        Player.Instance.interactHandler.OnPickBroom += InteractHandler_OnPickBroom;
+        Player.Instance.interactHandler.OnDropBroom += InteractHandler_OnDropBroom;
 
         storeButton.onClick.AddListener(() =>
         {
@@ -40,6 +46,19 @@ public class GamePlayPanelUI : MonoBehaviour
             SettingMenuUI.Instance.Show(PlayTime);
         });
     }
+
+    private void InteractHandler_OnDropBroom()
+    {
+        dropBroomButton.gameObject.SetActive(false);
+        hitWithBroomButton.gameObject.SetActive(false);
+    }
+
+    private void InteractHandler_OnPickBroom()
+    {
+        dropBroomButton.gameObject.SetActive(true);
+        hitWithBroomButton.gameObject.SetActive(true);
+    }
+
     // it should be static function in one of the game managers
     private void StopTime()
     {

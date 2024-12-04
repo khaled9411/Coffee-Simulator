@@ -16,7 +16,11 @@ public class InteractHandler : MonoBehaviour
     public event Action<string> OnTargetInteractbale;
     public event Action<float> OnTargetBuyable;
     public event Action OnNoTarget;
-    private bool hasBroom;
+    public event Action OnPickBroom;
+    public event Action OnDropBroom;
+
+
+    public bool hasBroom { get; private set; }
     void Start()
     {
         InputManager.Instance.OnInteract += InputManager_OnInteract;
@@ -31,10 +35,7 @@ public class InteractHandler : MonoBehaviour
 
     private void InputManager_OnInteractWithPicked()
     {
-        if(hasBroom)
-        {
-            hasBroom = false;
-        }
+        DropBroom();
     }
 
     private void PlayerCollision_OnplayerTriggerExitFromInteractZone()
@@ -138,6 +139,14 @@ public class InteractHandler : MonoBehaviour
     {
         OnTargetBuyable?.Invoke(price);
     }
+    private void ShowBroomButtons()
+    {
+        OnPickBroom?.Invoke();
+    }
+    private void HideBroomButtons()
+    {
+        OnDropBroom?.Invoke();
+    }
     private void HideAllUIElements()
     {
         Debug.Log("hide");
@@ -147,20 +156,29 @@ public class InteractHandler : MonoBehaviour
     {
         return interactable is Ibuyable;
     }
-    public void PickBroom(Transform broom)
+    public void PickBroom()
     {
-        Player.Instance.SetPickUpPos(broom);
-        broom.GetComponent<Collider>().isTrigger = true;
-        broom.GetComponent<Rigidbody>().isKinematic = true;
-        broom.GetComponent<BroomAnimation>().StartPos();
+        if (hasBroom) return;
+        ShowBroomButtons();
+        Player.Instance.SetPickUpPos(Broom.Instance.transform);
+        Broom.Instance.transform.GetComponent<Collider>().isTrigger = true;
+        Broom.Instance.transform.GetComponent<Rigidbody>().isKinematic = true;
+        BroomAnimation broomAnimation = Broom.Instance.transform.GetComponent<BroomAnimation>();
+        broomAnimation.StartPos();
         hasBroom = true;
     } 
 
-    public void DropBroom(Transform broom)
+    public void DropBroom()
     {
-        broom.parent = null;
-        broom.GetComponent<Collider>().isTrigger = false;
-        broom.GetComponent<Rigidbody>().isKinematic = false;
+        if (!hasBroom) return;
+        HideBroomButtons();
+        Broom.Instance.transform.parent = null;
+        Broom.Instance.transform.GetComponent<Collider>().isTrigger = false;
+        Rigidbody broomRigidbody = Broom.Instance.GetComponent<Rigidbody>();
+        broomRigidbody.isKinematic = false;
+        int forceAmount = 5;
+        broomRigidbody.AddForce(Vector3.up * forceAmount, ForceMode.Impulse);
+        Broom.Instance.GetComponent<BroomAnimation>().StopAnimation();
         hasBroom = false;
     }
 }
