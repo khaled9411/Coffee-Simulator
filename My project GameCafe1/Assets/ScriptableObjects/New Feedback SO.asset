@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: New Feedback SO
+  m_EditorClassIdentifier: Assembly-CSharp::FeedbackSO
+  goodFeedback:
+  - Good place!
+  - The arcade machines are amazing.
+  - The price is great for the service!
+  - The computers are really fast.
+  - The staff is very friendly.
+  normalFeedback:
+  - The place is okay.
+  - "It\u2019s decent for its price."
+  - Nothing special, but it works.
+  - I enjoyed my time here.
+  badFeedback:
+  - The place needs more improvement.
+  - The machines lag sometimes.
+  - The service could be better.
+  - Not worth the price.
+  placeCleanFeedback:
+  - The place is spotless.
+  - Everything looks tidy and organized.
+  - I appreciate how clean it is here.
+  placeNotCleanFeedback:
+  - The place could use some cleaning.
+  - "There\u2019s too much mess around."
+  - Tables and chairs need to be cleaned more often.
+  temperatureColdFeedback:
+  - "It\u2019s too cold in here."
+  - The AC is working too well.
+  - "Can you adjust the temperature? It\u2019s freezing."
+  temperatureHotFeedback:
+  - "It\u2019s too hot inside."
+  - "The AC isn\u2019t working properly."
+  - Feels uncomfortable because of the heat.

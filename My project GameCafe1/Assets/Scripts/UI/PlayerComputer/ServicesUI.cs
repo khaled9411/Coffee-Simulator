@@ -11,7 +11,7 @@ public class ServicesUI : MonoBehaviour
     [SerializeField] private ServiceButton cashierButton;
     [SerializeField] private ServiceButton cafeteriaWorkerButton;
     [SerializeField] private ServiceButton janitorButton;
-
+    [SerializeField] private ServiceButton marktingButton;
     public Action OnBuyJanitor;
 
     private void Awake()
@@ -50,6 +50,14 @@ public class ServicesUI : MonoBehaviour
             {
                 OnBuyJanitor?.Invoke();
                 janitorButton.Buy();
+            }
+        });
+        marktingButton.Button.onClick.AddListener(() =>
+        {
+            if (MoneyManager.Instance.TryBuy(marktingButton.GetPrice()))
+            {
+                CafeManager.instance.ApplyMarktingOffer();
+                marktingButton.Buy();
             }
         });
         Hide();

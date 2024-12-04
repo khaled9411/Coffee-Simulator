@@ -47,6 +47,10 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
     {
         return maxCustomerCount;
     }
+    public void SetMaxCustomerCount(int maxCustomerCount)
+    {
+        this.maxCustomerCount = maxCustomerCount;
+    }
 
     private float _pricePercentageMultiplicand;
     public float pricePercentageMultiplicand
@@ -56,7 +60,7 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
             _pricePercentageMultiplicand = Mathf.Clamp(value, -50, 100); 
         } }
 
-    public float temperature { get; set; }
+    public int temperature { get; set; }
 
     public void Respond()
     {
@@ -106,7 +110,7 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
 
         if (acCount == 0)
         {
-            temperature = 40f;
+            temperature = 40;
         }
         else
         {
@@ -114,15 +118,15 @@ public class Area : MonoBehaviour, IBuyableRespondable, ISaveable
 
             if (threshold < itemCount * 0.33f)
             {
-                temperature = 18f;
+                temperature = 18;
             }
             else if (threshold < itemCount * 0.66f)
             {
-                temperature = 25f;
+                temperature = 25;
             }
             else
             {
-                temperature = 30f;
+                temperature = 30;
             }
         }
 

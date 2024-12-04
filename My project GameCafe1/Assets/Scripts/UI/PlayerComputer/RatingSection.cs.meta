@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e34673d02c9fc7b45ba65c05cfd3d593
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - closedStarSprite: {fileID: 21300000, guid: d64c6e101f7f64d0e9feea9963536fb5, type: 3}
+  - starSprite: {fileID: 21300000, guid: 936b92855fc8241889c774051aecc71e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

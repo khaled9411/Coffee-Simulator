@@ -168,6 +168,11 @@ public class CafeManager : MonoBehaviour
 
         return true;
     }
+    public void ApplyMarktingOffer()
+    {
+        areaItemsList[currentAreaIndex].area.SetMaxCustomerCount( Mathf.RoundToInt(areaItemsList[currentAreaIndex].area.GetMaxCustomerCount() * 1.5f));
+
+    }
     
     private void RestCafe()
     {
@@ -298,5 +303,13 @@ public class CafeManager : MonoBehaviour
         OnAreaOppened?.Invoke();
     }
 
+    public int GetAreaNumber(Area area)
+    {
+        for (int i = 0; i < areaItemsList.Count; i++)
+        {
+            if (areaItemsList[i].area == area) return i;
+        }
+        return -1;
+    }
     
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,12 +27,37 @@ public class PriceListUI : MonoBehaviour
         for (int i = 0; i < sliders.Length; i++)
         {
             sliders[i].value = AreaItemsList[i].area.pricePercentageMultiplicand;
-            slidersText[i].text = $"{Mathf.Floor(sliders[i].value)}%";
+            string Sign;
+            if (Mathf.Floor(sliders[i].value) < 0)
+            {
+                Sign = "-";
+            }else if(Mathf.Floor(sliders[i].value) > 0)
+            {
+                Sign = "+";
+            }
+            else
+            {
+                Sign = "";
+            }
+            slidersText[i].text = $"{Sign}{Mathf.Floor(sliders[i].value)}%";
 
             int index = i;
             sliders[i].onValueChanged.AddListener((float value) =>
             {
-                slidersText[index].text = $"{Mathf.Floor(value)}%";
+                string Sign;
+                if (Mathf.Floor(sliders[i].value) < 0)
+                {
+                    Sign = "-";
+                }
+                else if (Mathf.Floor(sliders[i].value) > 0)
+                {
+                    Sign = "+";
+                }
+                else
+                {
+                    Sign = "";
+                }
+                slidersText[index].text = $"{Sign}{Mathf.Floor(value)}%";
                 
                 AreaItemsList[index].area.pricePercentageMultiplicand = value;
             });

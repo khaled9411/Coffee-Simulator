@@ -160,6 +160,9 @@ namespace TL.Core
                         Debug.Log($"Releasing device after execution for NPC {gameObject.name}");
                         CafeManager.instance.LeaveItem(currentDevice);
                         CafeManager.instance.AddMoney((Device)currentDevice);
+                        // add feedback
+                        FeedbackSystem.Instance.HandleFeedback(((Device)currentDevice).ownArea.temperature, customerSatisfaction.satisfactionLevel, TrashSpawnPoint.IsClean(CafeManager.instance.GetAreaNumber(((Device)currentDevice).ownArea)));
+
                         currentDevice = null;
                     }
                     SetCurrentState(State.decide);

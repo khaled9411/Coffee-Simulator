@@ -6,6 +6,20 @@ public class TrashSpawnPoint : MonoBehaviour
 {
     public static int trashCounter { get; private set; } = 0;
     public static int spawnPointsCounter { get; private set; } = 0;
+    public static int[] areasSpawnPointsCounter = new int[6];
+    public static int[] areasTrashCounter = new int[6];
+    public static int IsClean(int departmentNumber)
+    {
+        float cleanPercentage = areasTrashCounter[departmentNumber]/ areasSpawnPointsCounter[departmentNumber];
+        if (cleanPercentage > .5f)
+        {
+            return -1;
+        }else if (cleanPercentage == 0 ) // no trash at all
+        {
+            return 1;
+        }
+        return 0;
+    }
 
     [SerializeField] private GameObject[] trashGameObjects;
     [SerializeField] private int myDepartmentNumber;
@@ -19,6 +33,7 @@ public class TrashSpawnPoint : MonoBehaviour
     private void Awake()
     {
         spawnPointsCounter++;
+        areasSpawnPointsCounter[myDepartmentNumber]++;
     }
 
     private void Start()
@@ -63,6 +78,7 @@ public class TrashSpawnPoint : MonoBehaviour
         if (CanSpawnTrash())
         {
             trashCounter++;
+            areasTrashCounter[myDepartmentNumber]++;
             activeTrash = trashGameObjects[Random.Range(0, trashGameObjects.Length)];
             activeTrash.SetActive(true);
             Debug.Log("trash Number: " + trashCounter);
@@ -91,6 +107,7 @@ public class TrashSpawnPoint : MonoBehaviour
         activeTrash.SetActive(false);
         activeTrash = null;
         trashCounter--;
+        areasTrashCounter[myDepartmentNumber]--;
         Debug.Log("trash Number: " + trashCounter);
         Invoke("SpawnTrash", Random.Range(minSpawnTime, maxSpawnTime));
     }
