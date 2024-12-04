@@ -23,32 +23,35 @@ public class ShopUI : MonoBehaviour
         {
             Hide();
         });
-        Hide();
+        
         List<CafeManager.AreaItems> AreaItemsList = CafeManager.instance.GetAreaItemsList();
-        for (int i = 0; i < areasButtons.Length; i++)
+        for (int i = 0; i < AreaItemsList.Count; i++)
         {
-            areasButtons[i].onClick.AddListener(()=>{ 
+            int index = i;
+            areasButtons[i].onClick.AddListener(()=>{
+                Debug.Log("pressed" + index);
                 for(int j = 0; j< itemsButtonParent.transform.childCount; j++)
                 {
                     Destroy(itemsButtonParent.transform.GetChild(j).gameObject);
                 }
-                
-                for(int j = 0; j< AreaItemsList.Count;j++) 
+                Debug.Log("item number is " + AreaItemsList[index].ItemsSO.Count);
+                for(int j = 0; j < AreaItemsList[index].ItemsSO.Count;j++) 
                 {
                     AdditionsButton button = Instantiate(itemButtonPrefab, itemsButtonParent.transform).GetComponent<AdditionsButton>();
-                    button.Setup(AreaItemsList[i].Items[j].price, AreaItemsList[i].Items[j].icon, AreaItemsList[i].Items[j].itemName, AreaItemsList[i].Additions[j].isPurchased);
+                    button.Setup(AreaItemsList[index].ItemsSO[j].price, AreaItemsList[index].ItemsSO[j].icon, AreaItemsList[index].ItemsSO[j].itemName, AreaItemsList[index].Additions[j].isPurchased);
                     button.button.onClick.AddListener(() =>
                     {
-                        if (MoneyManager.Instance.TryBuy(AreaItemsList[i].Items[j].price))
+                        if (MoneyManager.Instance.TryBuy(AreaItemsList[index].ItemsSO[j].price))
                         {
                             button.ShowPurchasedPanel();
-                            AreaItemsList[i].Additions[j].isPurchased = true;
+                            AreaItemsList[index].Additions[j].isPurchased = true;
                         }
                     });
                 }
             });
         }
-
+        areasButtons[0].onClick?.Invoke();
+        Hide();
     }
     public void Show()
     {

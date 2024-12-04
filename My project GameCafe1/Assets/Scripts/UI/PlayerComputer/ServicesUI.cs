@@ -25,7 +25,7 @@ public class ServicesUI : MonoBehaviour
         {
             Hide();
         });
-        Hide();
+        
         cashierButton.Button.onClick.AddListener(() =>
         {
             if (MoneyManager.Instance.TryBuy(cashierButton.GetPrice()))
@@ -52,6 +52,7 @@ public class ServicesUI : MonoBehaviour
                 janitorButton.Buy();
             }
         });
+        Hide();
     }
     public void Show()
     {
