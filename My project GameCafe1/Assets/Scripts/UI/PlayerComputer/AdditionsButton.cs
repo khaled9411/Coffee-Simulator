@@ -25,7 +25,7 @@ public class AdditionsButton : MonoBehaviour
         {
             HidepurchasedPanel();
         }
-        button.interactable = isPurchased;
+        button.interactable = !isPurchased;
     }
     public void ShowPurchasedPanel()
     {

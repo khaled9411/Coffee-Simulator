@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject itemButtonPrefab;
     [SerializeField] private GameObject itemsButtonParent;
     [SerializeField] private Button closeButton;
+    [SerializeField] private GameObject lockDepartmentPanel;
+    [SerializeField] private TextMeshProUGUI departmentTitleText;
 
     private void Awake()
     {
@@ -24,13 +27,22 @@ public class ShopUI : MonoBehaviour
         {
             Hide();
         });
-        
+        lockDepartmentPanel.SetActive(false);
         List<CafeManager.AreaItems> AreaItemsList = CafeManager.instance.GetAreaItemsList();
         for (int i = 0; i < AreaItemsList.Count; i++)
         {
             int index = i;
             areasButtons[i].onClick.AddListener(()=>{
                 Debug.Log("pressed" + index);
+                departmentTitleText.text = $"Department {index+1}";
+                if (CafeManager.instance.GetCurrentAreaIndex() >= index)
+                {
+                    lockDepartmentPanel.SetActive(false);
+                }
+                else
+                {
+                    lockDepartmentPanel.SetActive(true);
+                }
                 for(int j = 0; j< itemsButtonParent.transform.childCount; j++)
                 {
                     Destroy(itemsButtonParent.transform.GetChild(j).gameObject);
@@ -52,7 +64,7 @@ public class ShopUI : MonoBehaviour
                 }
             });
         }
-        areasButtons[0].onClick?.Invoke();
+        areasButtons[4].onClick?.Invoke();
         Hide();
     }
     public void Show()

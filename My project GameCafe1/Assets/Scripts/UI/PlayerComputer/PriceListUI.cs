@@ -22,14 +22,20 @@ public class PriceListUI : MonoBehaviour
         {
             Hide();
         });
-        for(int i = 0; i < sliders.Length; i++)
+        List<CafeManager.AreaItems> AreaItemsList = CafeManager.instance.GetAreaItemsList();
+        for (int i = 0; i < sliders.Length; i++)
         {
+            sliders[i].value = AreaItemsList[i].area.pricePercentageMultiplicand;
+            slidersText[i].text = $"{Mathf.Floor(sliders[i].value)}%";
+
             int index = i;
             sliders[i].onValueChanged.AddListener((float value) =>
             {
                 slidersText[index].text = $"{Mathf.Floor(value)}%";
-                // change the price here
+                
+                AreaItemsList[index].area.pricePercentageMultiplicand = value;
             });
+            
         }
 
 
