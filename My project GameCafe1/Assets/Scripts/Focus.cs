@@ -10,6 +10,7 @@ public class Focus : MonoBehaviour, IInteractable
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Transform normalCameraPosition;
     [SerializeField] private Transform computerViewPosition;
+    [SerializeField] private GameObject lookField;
 
     [Header("Camera Settings")]
     [SerializeField] private float transitionDuration = 1.0f;
@@ -54,7 +55,7 @@ public class Focus : MonoBehaviour, IInteractable
     public void EnterComputerView()
     {
         if (isViewingComputer) return;
-
+        lookField.SetActive(false);
         PlayerMovement.Instance.SetCanMove(false);
 
         // Smooth rotation to center
@@ -77,6 +78,7 @@ public class Focus : MonoBehaviour, IInteractable
     public void ExitComputerView()
     {
         if (!isViewingComputer) return;
+        lookField.SetActive(true);
 
         PlayerMovement.Instance.SetCanMove(true);
 
