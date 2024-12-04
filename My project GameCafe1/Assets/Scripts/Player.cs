@@ -44,5 +44,6 @@ public class Player : MonoBehaviour
     {
         pickedItem.SetParent(PickUpPoint);
         pickedItem.localPosition = Vector3.zero;
+        pickedItem.rotation = Quaternion.identity;
     }
 }

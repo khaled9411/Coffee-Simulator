@@ -25,13 +25,18 @@ public class ServiceButton : MonoBehaviour , ISaveable
         private set { uniqueID = value; }
     }
 
+    private void Awake()
+    {
+        Button = GetComponent<Button>();
+    }
+
     private void Start()
     {
         CafeManager.instance.OnAreaOppened += CafeManager_OnAreaOppent;
 
         areaText.text = $"Open Area {areaNumber + 1}"; // this one to start the cound from 1 to the user
 
-        Button = GetComponent<Button>();
+       
 
 
         CafeManager_OnAreaOppent();

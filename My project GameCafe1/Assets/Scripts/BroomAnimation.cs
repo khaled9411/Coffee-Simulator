@@ -27,7 +27,7 @@ public class BroomAnimation : MonoBehaviour
     public void StartPos()
     {
         initialPosition = transform.localPosition;
-        initialRotation = transform.localEulerAngles;
+        initialRotation = new Vector3(-60, 0, 0);
 
         StopAnimation();
         PlayCleaningAnimation();

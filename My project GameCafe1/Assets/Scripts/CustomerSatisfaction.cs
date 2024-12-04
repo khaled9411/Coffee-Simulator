@@ -13,9 +13,8 @@ public class CustomerSatisfaction : MonoBehaviour
 
     void Start()
     {
-        satisfactionLevel= Random.Range(0f, 1f);
         mainCamera = Camera.main;
-        UpdateSatisfactionEmoji();
+        InvokeRepeating("RandomizeSatisfactionLevel", 1, 100);
     }
 
     void Update()
@@ -23,6 +22,12 @@ public class CustomerSatisfaction : MonoBehaviour
         UpdateSatisfactionEmoji();
         //CalculateOverallSatisfaction();
         FaceCamera();
+    }
+
+    public void RandomizeSatisfactionLevel()
+    {
+        satisfactionLevel = Random.Range(0f, 1f);
+        UpdateSatisfactionEmoji();
     }
 
     void FaceCamera()

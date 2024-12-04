@@ -45,11 +45,11 @@ public class PriceListUI : MonoBehaviour
             sliders[i].onValueChanged.AddListener((float value) =>
             {
                 string Sign;
-                if (Mathf.Floor(sliders[i].value) < 0)
+                if (Mathf.Floor(sliders[index].value) < 0)
                 {
                     Sign = "-";
                 }
-                else if (Mathf.Floor(sliders[i].value) > 0)
+                else if (Mathf.Floor(sliders[index].value) > 0)
                 {
                     Sign = "+";
                 }

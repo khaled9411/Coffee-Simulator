@@ -6,9 +6,17 @@ using UnityEngine.UI;
 
 public class CafeFeedbackUI : MonoBehaviour
 {
+    public static CafeFeedbackUI instance { get; private set; }
+
+
     [SerializeField] private Button closeButton;
     [SerializeField] private Transform feedbackParent;
     [SerializeField] private GameObject feedbackPrefab;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -42,7 +50,7 @@ public class CafeFeedbackUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Show()
+    public void Show()
     {
         gameObject.SetActive(true);
     }

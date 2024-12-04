@@ -8,7 +8,7 @@ using UnityEngine;
 public class FeedbackSystem : MonoBehaviour , ISaveable
 {
     public static FeedbackSystem Instance {  get; private set; }
-    private List<string> myCaffeFeedback;
+    [SerializeField] private List<string> myCaffeFeedback = new List<string>();
     [SerializeField] private int maxFeedback;
     [SerializeField] private FeedbackSO feedbackSO;
 
@@ -41,6 +41,7 @@ public class FeedbackSystem : MonoBehaviour , ISaveable
     }
     public void HandleFeedback(int tempreature , float satisfaction, int isClean)
     {
+        Debug.Log($"goodFeedback is {feedbackSO.goodFeedback.Count()}");
         List<string> availableFeedbacks = new List<string>();
         
         //clean
@@ -84,7 +85,7 @@ public class FeedbackSystem : MonoBehaviour , ISaveable
         {
             myCaffeFeedback.RemoveAt(0);
         }
-        myCaffeFeedback.Append(feedbackStrings[UnityEngine.Random.Range(0, feedbackStrings.Count)]);
+        myCaffeFeedback.Add(feedbackStrings[UnityEngine.Random.Range(0, feedbackStrings.Count)]);
         OnMyCaffeFeedbackChange?.Invoke();
     }
     public FeedbackSO GetFeedbackSO()

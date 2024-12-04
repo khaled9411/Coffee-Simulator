@@ -21,7 +21,7 @@ public class RatingSection : MonoBehaviour
         }
 
         // open the stars based on current area number
-        for (int i = 0;i<= CafeManager.instance.GetCurrentAreaIndex(); i++)
+        for (int i = 0;i < CafeManager.instance.GetCurrentAreaIndex(); i++)
         {
             OpenStar(i);
         }

@@ -10,7 +10,8 @@ public class DesktopUI : MonoBehaviour
     [SerializeField] private Button priceListButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button servicesButton;
-    [SerializeField] private Button LeaveComputerButton;
+    [SerializeField] private Button leaveComputerButton;
+    [SerializeField] private Button cafeFeedbackButton;
 
     private void Start()
     {
@@ -22,20 +23,25 @@ public class DesktopUI : MonoBehaviour
             CafeteriaUI.Instance.Show();
         });
 
-        priceListButton.onClick.AddListener(() => { 
+        priceListButton.onClick.AddListener(() => {
             PriceListUI.Instance.Show();
         });
 
-        shopButton.onClick.AddListener(() => { 
+        shopButton.onClick.AddListener(() => {
             ShopUI.Instance.Show();
         });
 
         servicesButton.onClick.AddListener(() => {
             ServicesUI.Instance.Show();
         });
-        LeaveComputerButton.onClick.AddListener(() =>
+        leaveComputerButton.onClick.AddListener(() =>
         {
             Focus.Instance.ExitComputerView();
+        });
+
+        cafeFeedbackButton.onClick.AddListener(() => { 
+        
+            CafeFeedbackUI.instance.Show();
         });
     }
 }
