@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CashierWorker : MonoBehaviour, ISaveable
 {
+    public static CashierWorker Instance { get; private set; }
     [SerializeField]
     private string uniqueID;
 
@@ -25,6 +26,10 @@ public class CashierWorker : MonoBehaviour, ISaveable
 
     [SerializeField] private GameObject cashierVisual;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void LoadData(SaveData data)
     {
         if (data is BoolSaveData boolData)

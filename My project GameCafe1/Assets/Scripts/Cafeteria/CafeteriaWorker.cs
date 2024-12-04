@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class CafeteriaWorker : MonoBehaviour, ISaveable
 {
+    public static CafeteriaWorker Instance { get; private set; }
+
     [SerializeField]
     private string uniqueID;
 
@@ -33,7 +35,10 @@ public class CafeteriaWorker : MonoBehaviour, ISaveable
 
 
     [SerializeField] private GameObject cafeteriaVisual;
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu()]
 public class DepartmentAdditionsSO : ScriptableObject
 {
-    public Image icon;
+    public Sprite icon;
     public string itemName;
     public float price;
     

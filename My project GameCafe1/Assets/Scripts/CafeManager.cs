@@ -13,8 +13,7 @@ public class CafeManager : MonoBehaviour
     {
         public Area area;
         public List<MonoBehaviour> items;
-        public List<AirConditioner> airConditions;
-        public List<GameObject> posters;
+        public List<AirConditioner> Additions;
         public List<DepartmentAdditionsSO> Items;
     }
     // is the cofe open 
@@ -42,7 +41,10 @@ public class CafeManager : MonoBehaviour
     public Action<bool> OnIsOpenChanage;
     public Action OnAreaOppened;
 
-
+    public List<AreaItems> GetAreaItemsList()
+    {
+        return areaItemsList;
+    }
 
     private void Awake()
     {
@@ -61,12 +63,12 @@ public class CafeManager : MonoBehaviour
                 }
             }
 
-            foreach (var ac in areaItemsList[i].airConditions)
+            foreach (var ac in areaItemsList[i].Additions)
             {
                 ac.ownArea = areaItemsList[i].area;
             }
 
-            areaItemsList[i].area.acCount = areaItemsList[i].airConditions.Count;
+            areaItemsList[i].area.acCount = areaItemsList[i].Additions.Count;
             areaItemsList[i].area.itemCount = areaItemsList[i].items.Count;
 
             buyableZone[i] = areaItemsList[i].area.GetComponentInChildren<BuyableInteractionZone>()?.gameObject;

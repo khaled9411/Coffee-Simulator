@@ -14,23 +14,23 @@ public class DesktopUI : MonoBehaviour
     private void Start()
     {
         electronicStoreButton.onClick.AddListener(() => {
-        
+            EloctronicsStoreUI.Instance.Show();
         });
 
         cafeteriaButton.onClick.AddListener(() => {
-        
+            CafeteriaUI.Instance.Show();
         });
 
         priceListButton.onClick.AddListener(() => { 
-        
+            PriceListUI.Instance.Show();
         });
 
         shopButton.onClick.AddListener(() => { 
-        
+            ShopUI.Instance.Show();
         });
 
         servicesButton.onClick.AddListener(() => {
-        
+            ServicesUI.Instance.Show();
         });
     }
 }

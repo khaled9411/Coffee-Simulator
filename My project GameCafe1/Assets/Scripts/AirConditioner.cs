@@ -7,6 +7,7 @@ public class AirConditioner : MonoBehaviour , ISaveable
     [SerializeField]
     private string uniqueID;
 
+    [SerializeField] private bool isAirConditioner;
     public string UniqueID
     {
         get { return uniqueID; }
@@ -20,8 +21,18 @@ public class AirConditioner : MonoBehaviour , ISaveable
         set
         {
             _isPurchased = value;
-            visual?.SetActive(_isPurchased);
-            ownArea.UpdateTemperature();
+            if (visual != null)
+            {
+                visual.SetActive(_isPurchased);
+            }
+            else
+            {
+                GetComponent<MeshRenderer>().enabled = _isPurchased;
+            }
+            if (isAirConditioner)
+            {
+                ownArea.UpdateTemperature();
+            }
         }
     }
 
