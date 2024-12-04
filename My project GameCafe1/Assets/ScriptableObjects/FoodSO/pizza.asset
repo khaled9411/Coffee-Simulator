@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8aa4231aa7b4e44be00ef286981989, type: 3}
   m_Name: pizza
   m_EditorClassIdentifier: 
-  name: Pizza
-  price: 30
-  hungerRecoveryAmount: 50
+  foodName: 
+  price: 2
+  hungerRecoveryAmount: 10

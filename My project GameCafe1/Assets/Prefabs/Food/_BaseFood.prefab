@@ -113,5 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodSO: {fileID: 0}
-  timeToRespawn: 5
+  timeToRespawn: 30
   visual: {fileID: 606614809874538592}

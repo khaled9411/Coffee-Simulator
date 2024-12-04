@@ -500,6 +500,11 @@ PrefabInstance:
       propertyPath: visualsParent
       value: 
       objectReference: {fileID: 3189642798026860127}
+    - target: {fileID: 2406667191173002906, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
+        type: 3}
+      propertyPath: <price>k__BackingField
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 3201734872272535125, guid: 53eb1c2c2601a9245bdb8b7c2c35e09f,
         type: 3}
       propertyPath: m_LocalPosition.y
