@@ -20,6 +20,7 @@ public class EloctronicsStoreUI : MonoBehaviour
         {
             Hide();
         });
+        Hide();
     }
 
   

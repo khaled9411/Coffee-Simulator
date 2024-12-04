@@ -19,6 +19,7 @@ public class PriceListUI : MonoBehaviour
         {
             Hide();
         });
+        Hide();
     }
 
     // Update is called once per frame

@@ -23,6 +23,7 @@ public class ShopUI : MonoBehaviour
         {
             Hide();
         });
+        Hide();
         List<CafeManager.AreaItems> AreaItemsList = CafeManager.instance.GetAreaItemsList();
         for (int i = 0; i < areasButtons.Length; i++)
         {

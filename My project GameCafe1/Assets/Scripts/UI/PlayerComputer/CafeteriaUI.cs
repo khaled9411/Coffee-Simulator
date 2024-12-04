@@ -19,7 +19,7 @@ public class CafeteriaUI : MonoBehaviour
         {
             Hide();
         });
-
+        Hide();
     }
     public void Show()
     {
