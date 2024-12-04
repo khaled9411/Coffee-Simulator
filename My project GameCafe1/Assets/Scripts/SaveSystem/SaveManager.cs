@@ -14,7 +14,7 @@ public class SaveManager : MonoBehaviour
         SaveSystem.LoadGame();
     }
 
-
+#if UNITY_EDITOR
     public void ClearData()
     {
         SaveSystem.ClearData();
@@ -71,4 +71,5 @@ public class SaveManager : MonoBehaviour
         SaveSystem.SaveGame();
         SaveSystem.LoadGame();
     }
+#endif
 }
