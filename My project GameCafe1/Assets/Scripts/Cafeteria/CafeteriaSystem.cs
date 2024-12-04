@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CafeteriaSystem : MonoBehaviour
 {
     public static CafeteriaSystem instance;
 
+    public Action OnQuantityChange; // just for decrease now 
     public class CafeteriaResources
     {
         public int Meat { get; set; }
@@ -18,7 +20,7 @@ public class CafeteriaSystem : MonoBehaviour
     private Dictionary<Transform, FoodOrderSystem.FoodType> customerOrders = new Dictionary<Transform, FoodOrderSystem.FoodType>();
     private CafeteriaResources resources = new CafeteriaResources { Meat = 10, Fries = 10, Pizza = 10, Burger = 10 };
 
-    public CafeteriaResources Getesources()
+    public CafeteriaResources GetResources()
     {
         return resources;
     }
@@ -78,6 +80,7 @@ public class CafeteriaSystem : MonoBehaviour
 
     private void DeductResource(FoodOrderSystem.FoodType order)
     {
+        
         switch (order)
         {
             case FoodOrderSystem.FoodType.Meat: resources.Meat--; break;
@@ -85,6 +88,7 @@ public class CafeteriaSystem : MonoBehaviour
             case FoodOrderSystem.FoodType.Pizza: resources.Pizza--; break;
             case FoodOrderSystem.FoodType.Burger: resources.Burger--; break;
         }
+        OnQuantityChange?.Invoke();
     }
 
     public void ResetCafeteria()
