@@ -71,7 +71,20 @@ public class TrashSpawnPoint : MonoBehaviour
     private bool CanSpawnTrash()
     {
         // this should also return that the store is oppened
-        return isMyDepartmentOpen && CafeManager.instance.isOpen && activeTrash == null;
+        return IsMyDepartmentOpen() && CafeManager.instance.isOpen && activeTrash == null;
+    }
+    private bool IsMyDepartmentOpen()
+    {
+        if (CafeManager.instance.GetCurrentAreaIndex() >= myDepartmentNumber)
+        {
+            isMyDepartmentOpen = true;
+        }
+        else
+        {
+            isMyDepartmentOpen= false;
+        }
+        return isMyDepartmentOpen;
+
     }
     public void CleanTrash()
     {
