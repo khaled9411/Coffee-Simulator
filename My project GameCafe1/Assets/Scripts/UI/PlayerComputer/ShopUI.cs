@@ -15,6 +15,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private GameObject lockDepartmentPanel;
     [SerializeField] private TextMeshProUGUI departmentTitleText;
+    [SerializeField] private TextMeshProUGUI departmentTemperatureText;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class ShopUI : MonoBehaviour
         {
             int index = i;
             areasButtons[i].onClick.AddListener(()=>{
+                departmentTemperatureText.text = AreaItemsList[index].area.temperature.ToString();
                 Debug.Log("pressed" + index);
                 departmentTitleText.text = $"Department {index+1}";
                 if (CafeManager.instance.GetCurrentAreaIndex() >= index)

@@ -7,6 +7,7 @@ public class EloctronicsStoreUI : MonoBehaviour
     public static EloctronicsStoreUI Instance {  get; private set; }
 
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button leavButton;
     [SerializeField] private GameObject messagePanel;
 
     private void Awake()
@@ -20,7 +21,12 @@ public class EloctronicsStoreUI : MonoBehaviour
         {
             Hide();
         });
+        leavButton.onClick.AddListener(() =>
+        {
+            Hide();
+        });
         Hide();
+        
     }
 
   

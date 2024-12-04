@@ -12,6 +12,7 @@ public class CafeFeedbackUI : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private Transform feedbackParent;
     [SerializeField] private GameObject feedbackPrefab;
+    [SerializeField] private RectTransform layoutGroupRectTransform;
 
     private void Awake()
     {
@@ -43,6 +44,8 @@ public class CafeFeedbackUI : MonoBehaviour
         {
             Instantiate(feedbackPrefab, feedbackParent).GetComponentInChildren<TextMeshProUGUI>().text = FeedbackSystem.Instance.GetMyCaffeFeedback()[i];
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroupRectTransform);
+
     }
 
     private void Hide()
