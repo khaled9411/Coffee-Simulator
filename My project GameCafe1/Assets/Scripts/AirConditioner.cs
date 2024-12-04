@@ -42,14 +42,21 @@ public class AirConditioner : MonoBehaviour , ISaveable
 
     public SaveData SaveData()
     {
+        if (isAirConditioner)
+        {
+            PlayerPrefs.SetInt(UniqueID, isPurchased ? 1 : 0);
+        }
         return new BoolSaveData(isPurchased);
     }
 
     public void LoadData(SaveData data)
     {
-        if (data is BoolSaveData boolData)
+        if ((data is BoolSaveData boolData))
         {
-            isPurchased = boolData.value;
+            if (!isAirConditioner)
+                isPurchased = boolData.value;
+            else
+                isPurchased = PlayerPrefs.GetInt(UniqueID, 0) == 1;
         }
     }
 }

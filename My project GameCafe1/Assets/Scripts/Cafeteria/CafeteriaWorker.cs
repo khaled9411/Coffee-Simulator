@@ -139,16 +139,17 @@ public class CafeteriaWorker : MonoBehaviour, ISaveable
         MoveToCafeteria();
     }
 
-    public void LoadData(SaveData data)
-    {
-        if (data is BoolSaveData boolData)
-        {
-            hasCafeteriaWorker = boolData.value;
-        }
-    }
-
     public SaveData SaveData()
     {
-        return new BoolSaveData(hasCafeteriaWorker);
+        PlayerPrefs.SetInt(UniqueID, hasCafeteriaWorker ? 1 : 0);
+
+        return null;
+    }
+
+    public void LoadData(SaveData data)
+    {
+
+        hasCafeteriaWorker = PlayerPrefs.GetInt(UniqueID, 0) == 1;
+
     }
 }
