@@ -1,14 +1,38 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CafeteriaWorker : MonoBehaviour
+public class CafeteriaWorker : MonoBehaviour, ISaveable
 {
+    [SerializeField]
+    private string uniqueID;
+
+    public string UniqueID
+    {
+        get { return uniqueID; }
+        private set { uniqueID = value; }
+    }
+
     public Transform cafeteriaPosition;
     public Animator animator;
 
     private NavMeshAgent navMeshAgent;
     private Transform targetCustomer;
     public bool isInTheCafeteria { get; set; }
+
+    private bool _hasCafeteriaWorker;
+    public bool hasCafeteriaWorker
+    {
+        get { return _hasCafeteriaWorker; }
+
+        set
+        {
+            _hasCafeteriaWorker = value;
+            cafeteriaVisual?.SetActive(_hasCafeteriaWorker);
+        }
+    }
+
+
+    [SerializeField] private GameObject cafeteriaVisual;
 
     void Start()
     {
@@ -29,6 +53,11 @@ public class CafeteriaWorker : MonoBehaviour
 
     void Update()
     {
+
+        if(!hasCafeteriaWorker) return;
+
+
+
         if(navMeshAgent.velocity.magnitude > 0)
             animator.SetBool("IsWalking", true);
         else
@@ -103,5 +132,18 @@ public class CafeteriaWorker : MonoBehaviour
     {
         targetCustomer = null;
         MoveToCafeteria();
+    }
+
+    public void LoadData(SaveData data)
+    {
+        if (data is BoolSaveData boolData)
+        {
+            hasCafeteriaWorker = boolData.value;
+        }
+    }
+
+    public SaveData SaveData()
+    {
+        return new BoolSaveData(hasCafeteriaWorker);
     }
 }
