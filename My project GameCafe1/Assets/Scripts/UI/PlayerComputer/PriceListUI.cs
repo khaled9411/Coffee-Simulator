@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class PriceListUI : MonoBehaviour
@@ -7,6 +8,8 @@ public class PriceListUI : MonoBehaviour
     public static PriceListUI Instance {  get; private set; }
 
     [SerializeField] private Button closeButton;
+    [SerializeField] private Slider[] sliders;
+    [SerializeField] private TextMeshProUGUI[] slidersText;
 
     private void Awake()
     {
@@ -19,6 +22,17 @@ public class PriceListUI : MonoBehaviour
         {
             Hide();
         });
+        for(int i = 0; i < sliders.Length; i++)
+        {
+            int index = i;
+            sliders[i].onValueChanged.AddListener((float value) =>
+            {
+                slidersText[index].text = $"{Mathf.Floor(value)}%";
+                // change the price here
+            });
+        }
+
+
         Hide();
     }
 
