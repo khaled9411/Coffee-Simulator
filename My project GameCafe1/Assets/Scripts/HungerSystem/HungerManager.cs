@@ -24,6 +24,7 @@ public class HungerManager : MonoBehaviour
 
         if (hungerAmount <= 0) 
         {
+            Debug.Log($"hungerAmount is {hungerAmount} and StartFaint");
             Faint.Instance.StartFaint();
             HungerSystem.Instance.IncreaseHunger(10);
         }

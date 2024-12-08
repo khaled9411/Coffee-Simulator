@@ -19,6 +19,7 @@ public class GoTo : MonoBehaviour, IRespondable
             TutorialSystem.instance.parts[1].indicatorOffScreen.visible = false;
         }
 
+        FadeEvent.ResetFadeInEnd();
         FadeEvent.OnFadeInEnd += FadeEvent_OnFadeInEnd;
         FadeEvent.TriggerFadeInStart();
     }

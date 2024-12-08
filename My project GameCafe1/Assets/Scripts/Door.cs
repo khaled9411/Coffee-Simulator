@@ -100,4 +100,10 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = false;
         verbName = "Open";
     }
+
+    private void OnDestroy()
+    {
+        Faint.Instance.onFaint -= CloseDoor;
+        Bed.Instance.onSleep -= CloseDoor;
+    }
 }

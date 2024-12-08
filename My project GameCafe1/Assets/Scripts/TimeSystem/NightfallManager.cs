@@ -28,6 +28,11 @@ public class NightfallManager : MonoBehaviour
         GameTimeManager.instance.OnTimeUpdated += GameTimeManager_OnTimeUpdated;
     }
 
+    private void OnDestroy()
+    {
+        GameTimeManager.instance.OnTimeUpdated -= GameTimeManager_OnTimeUpdated;
+    }
+
     bool once = true;
     private void GameTimeManager_OnTimeUpdated(int hours, int minutes)
     {

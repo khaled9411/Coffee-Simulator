@@ -63,10 +63,10 @@ public class CafeManager : MonoBehaviour
                 }
             }
 
-            foreach (var ac in areaItemsList[i].Additions)
-            {
-                ac.ownArea = areaItemsList[i].area;
-            }
+            //foreach (var ac in areaItemsList[i].Additions)
+            //{
+            //    ac.ownArea = areaItemsList[i].area;
+            //}
 
             areaItemsList[i].area.acCount = areaItemsList[i].Additions.Count;
             areaItemsList[i].area.itemCount = areaItemsList[i].items.Count;
@@ -80,8 +80,8 @@ public class CafeManager : MonoBehaviour
     private void Start()
     {
 
-        Faint.Instance.onFaint += RestCafe;
-        Bed.Instance.onSleep += RestCafe;
+        //Faint.Instance.onFaint += RestCafe;
+        //Bed.Instance.onSleep += RestCafe;
 
         for (int i = 1; i < areaItemsList.Count; i++)
         {
@@ -174,26 +174,26 @@ public class CafeManager : MonoBehaviour
 
     }
     
-    private void RestCafe()
-    {
-        //isOpen = false; 
-        //currentCustomerCount = 0;
+    //private void RestCafe()
+    //{
+    //    //isOpen = false; 
+    //    //currentCustomerCount = 0;
 
-        //for (int i = 0; i <= currentAreaIndex; i++)
-        //{
-        //    foreach (var item in areaItemsList[i].items)
-        //    {
-        //        if (item is IBuyableRespondable buyableItem && buyableItem.IsPurchased())
-        //        {
-        //            buyableItem.isAvailable = true;
-        //        }
-        //    }
-        //}
+    //    //for (int i = 0; i <= currentAreaIndex; i++)
+    //    //{
+    //    //    foreach (var item in areaItemsList[i].items)
+    //    //    {
+    //    //        if (item is IBuyableRespondable buyableItem && buyableItem.IsPurchased())
+    //    //        {
+    //    //            buyableItem.isAvailable = true;
+    //    //        }
+    //    //    }
+    //    //}
 
-        //CashierManager.instance.ResetCashier();
+    //    //CashierManager.instance.ResetCashier();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    //    //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //}
 
     public bool HasAvailableSeats()
     {

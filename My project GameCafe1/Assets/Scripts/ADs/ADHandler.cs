@@ -10,7 +10,6 @@ public class ADHandler : MonoBehaviour
 
     //Events
     public event Action<ADHandler> _OnRewardedADFinsh;
-    public event Action<ADHandler> _OnPLayedThreeLevel;
 
     //buy AD Blocker
     private bool paidAD = false;

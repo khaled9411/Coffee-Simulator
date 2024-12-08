@@ -5,35 +5,35 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FeedbackSystem : MonoBehaviour , ISaveable
+public class FeedbackSystem : MonoBehaviour /*, ISaveable*/
 {
     public static FeedbackSystem Instance {  get; private set; }
     [SerializeField] private List<string> myCaffeFeedback = new List<string>();
     [SerializeField] private int maxFeedback;
     [SerializeField] private FeedbackSO feedbackSO;
 
-    [SerializeField]
-    private string uniqueID;
-
     public event Action OnMyCaffeFeedbackChange;
-    public string UniqueID
-    {
-        get { return uniqueID; }
-        private set { uniqueID = value; }
-    }
+    //[SerializeField]
+    //private string uniqueID;
 
-    public void LoadData(SaveData data)
-    {
-        if(data is ListOfStringsSaveData listOfStringsSaveData)
-        {
-            myCaffeFeedback = listOfStringsSaveData.value;
-        }
-    }
+    //public string UniqueID
+    //{
+    //    get { return uniqueID; }
+    //    private set { uniqueID = value; }
+    //}
 
-    public SaveData SaveData()
-    {
-        return new ListOfStringsSaveData(myCaffeFeedback);
-    }
+    //public void LoadData(SaveData data)
+    //{
+    //    if(data is ListOfStringsSaveData listOfStringsSaveData)
+    //    {
+    //        myCaffeFeedback = listOfStringsSaveData.value;
+    //    }
+    //}
+
+    //public SaveData SaveData()
+    //{
+    //    return new ListOfStringsSaveData(myCaffeFeedback);
+    //}
 
     private void Awake()
     {

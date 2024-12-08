@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bed : MonoBehaviour, IInteractable
 {
@@ -22,10 +23,11 @@ public class Bed : MonoBehaviour, IInteractable
 
     private void FadeEvent_OnFadeInEnd()
     {
+        FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;
         onSleep?.Invoke();
         GameTimeManager.instance.ResetDayTime();
         Player.Instance.SpwanInStartPoint();
-        FadeEvent.OnFadeInEnd -= FadeEvent_OnFadeInEnd;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void OnDestroy()
     {

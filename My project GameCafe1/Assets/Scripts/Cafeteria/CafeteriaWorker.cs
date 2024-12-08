@@ -143,7 +143,7 @@ public class CafeteriaWorker : MonoBehaviour, ISaveable
     {
         PlayerPrefs.SetInt(UniqueID, hasCafeteriaWorker ? 1 : 0);
 
-        return null;
+        return new BoolSaveData(true); ;
     }
 
     public void LoadData(SaveData data)

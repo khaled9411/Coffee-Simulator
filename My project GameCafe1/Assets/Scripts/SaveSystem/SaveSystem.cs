@@ -16,13 +16,15 @@ public static class SaveSystem
             return;
         }
 
-        try
-        {
+        //try
+        //{
             List<GameData> allData = new List<GameData>();
             foreach (ISaveable saveable in SaveableObjects)
             {
                 var saveData = saveable.SaveData();
                 string jsonData = JsonUtility.ToJson(saveData);
+
+                Debug.Log(saveable);
                 allData.Add(new GameData
                 {
                     uniqueID = saveable.UniqueID,
@@ -36,11 +38,11 @@ public static class SaveSystem
             string finalJson = JsonUtility.ToJson(new SerializationWrapper { allData = allData });
             File.WriteAllText(saveFilePath, finalJson);
             Debug.Log($"Game Saved successfully. Saved {SaveableObjects.Count} objects.");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"Error saving game: {e.Message}");
-        }
+        //}
+        //catch (System.Exception e)
+        //{
+        //    Debug.LogError($"Error saving game: {e.Message}");
+        //}
     }
 
     public static void ClearData()

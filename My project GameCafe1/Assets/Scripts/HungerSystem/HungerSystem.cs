@@ -30,15 +30,15 @@ public class HungerSystem : MonoBehaviour, IHungerSystem, ISaveable
         {
             Destroy(gameObject);
         }
+
+        if (currentHunger <= 0)
+            currentHunger = 11;
     }
 
     void Start()
     {
         StartCoroutine(HungerDecay());
         OnEatFood += IncreaseHunger;
-
-        if (currentHunger <= 0)
-            currentHunger = 11;
     }
 
     public float GetCurrentHunger()

@@ -21,7 +21,7 @@ public class BroomAnimation : MonoBehaviour
         if (!Player.Instance.interactHandler.hasBroom) return;
         StopAnimation();
         PlayAttackingAnimation();
-       
+
     }
 
     public void StartPos()
@@ -31,7 +31,7 @@ public class BroomAnimation : MonoBehaviour
 
         StopAnimation();
         PlayCleaningAnimation();
-        
+
     }
 
     //private void Update()
@@ -50,7 +50,7 @@ public class BroomAnimation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<TroublemakerNPC>(out TroublemakerNPC npc))
+        if (other.TryGetComponent<TroublemakerNPC>(out TroublemakerNPC npc))
         {
             npc.SetCanMakeTroubleFALSE();
         }
@@ -93,8 +93,14 @@ public class BroomAnimation : MonoBehaviour
 
         yield return new WaitForSeconds(attackingDuration);
 
-        hitCollider.enabled = false; 
+        hitCollider.enabled = false;
         StopAnimation();
         PlayCleaningAnimation();
     }
+
+    private void OnDestroy()
+    {
+        StopAnimation();
+    }
+
 }
