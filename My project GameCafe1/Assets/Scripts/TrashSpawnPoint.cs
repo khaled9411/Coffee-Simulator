@@ -41,7 +41,15 @@ public class TrashSpawnPoint : MonoBehaviour
         Debug.Log("number of Trash Spawn Points: " + spawnPointsCounter);
         CafeManager.instance.OnAreaOppened += CafeManager_OnAreaOppened;
         CafeManager.instance.OnIsOpenChanage += CafeManager_OnIsOpenChange;
+
+        ServicesUI.Instance.OnBuyJanitor += ServicesUI_OnBuyJanitor;
     }
+
+    private void ServicesUI_OnBuyJanitor()
+    {
+        CleanTrash();
+    }
+
     private void CafeManager_OnAreaOppened()
     {
         if(CafeManager.instance.GetCurrentAreaIndex() >= myDepartmentNumber)

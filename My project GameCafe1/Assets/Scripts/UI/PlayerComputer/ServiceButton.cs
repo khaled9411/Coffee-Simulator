@@ -36,7 +36,7 @@ public class ServiceButton : MonoBehaviour , ISaveable
 
         areaText.text = $"Open Area {areaNumber + 1}"; // this one to start the cound from 1 to the user
 
-       
+        priceText.text = price.ToString() + "$";
 
 
         CafeManager_OnAreaOppent();

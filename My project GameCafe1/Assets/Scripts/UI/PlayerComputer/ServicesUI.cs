@@ -12,7 +12,7 @@ public class ServicesUI : MonoBehaviour
     [SerializeField] private ServiceButton cafeteriaWorkerButton;
     [SerializeField] private ServiceButton janitorButton;
     [SerializeField] private ServiceButton marktingButton;
-    public Action OnBuyJanitor;
+    public event Action OnBuyJanitor;
 
     private void Awake()
     {
