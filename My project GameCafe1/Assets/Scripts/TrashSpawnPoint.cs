@@ -47,7 +47,8 @@ public class TrashSpawnPoint : MonoBehaviour
 
     private void ServicesUI_OnBuyJanitor()
     {
-        CleanTrash();
+        if(activeTrash != null)
+            CleanTrash();
     }
 
     private void CafeManager_OnAreaOppened()

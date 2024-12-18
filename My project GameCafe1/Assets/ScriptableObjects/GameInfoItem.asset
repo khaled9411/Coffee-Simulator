@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11b8c8cf79f14b4f8a2cd69f685a1c7, type: 3}
+  m_Name: GameInfoItem
+  m_EditorClassIdentifier: 
+  gameAreas:
+  - name: Game Cafe
+    description: A place where players can buy gaming devices and expand their business.
+      Manage temperature, services, and customer satisfaction.
+    category: Area
+    icon: {fileID: 0}
+  - name: Computer Area
+    description: A section for player feedback and customer reviews. Monitor customer
+      satisfaction and improve services.
+    category: Area
+    icon: {fileID: 0}
+  services:
+  - name: Cashier Service
+    description: Hire a cashier to handle customer transactions automatically. Reduces
+      player's direct involvement in cash management.
+    category: Service
+    icon: {fileID: 0}
+    costToBuy: 2000
+  - name: Cafeteria Worker
+    description: Hire a Cafeteria worker to serve food and drinks to customers. Improves
+      customer experience and reduces player's workload.
+    category: Service
+    icon: {fileID: 0}
+    costToBuy: 2000
+  - name: Cleaning Service
+    description: Hire a cleaning worker to maintain cafe hygiene once per day. Prevents
+      negative customer reviews and maintains cafe reputation.
+    category: Service
+    icon: {fileID: 0}
+    costToBuy: 10
+  - name: Promotion Service
+    description: Increase customer count by investing in marketing and promotions.
+      Attracts more customers to your game cafe.
+    category: Service
+    icon: {fileID: 0}
+    costToBuy: 50
+  gameMechanics:
+  - name: Energy System
+    description: Player has a hunger bar. If it depletes, player faints and loses
+      30 coins. Must eat and rest to maintain energy levels.
+    category: Mechanic
+    icon: {fileID: 0}
+  - name: Sleep Mechanic
+    description: Player must go to bed by 10 PM. Fainting occurs at midnight, losing
+      30 coins. Sleeping saves daily achievements and purchases.
+    category: Mechanic
+    icon: {fileID: 0}
+  locations:
+  - name: Home
+    description: Player's primary residence where they sleep and recover. Respawn
+      point after fainting.
+    category: Location
+    icon: {fileID: 0}
+  - name: Restaurant
+    description: Place to buy food and replenish energy. Essential for maintaining
+      player's health and avoiding fainting.
+    category: Location
+    icon: {fileID: 0}
+  equipment:
+  - name: Air Conditioning
+    description: Must be purchased to regulate temperature as device count increases.
+      Prevents customer discomfort in crowded areas.
+    category: Equipment
+    icon: {fileID: 0}
+    costToBuy: 200

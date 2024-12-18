@@ -50,11 +50,11 @@ public class MainMenuUI : MonoBehaviour
 
         //CheckSaveFileAndUpdateButtons();
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Loading");
     }
 
     private void ContinueGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Loading");
     }
 }
