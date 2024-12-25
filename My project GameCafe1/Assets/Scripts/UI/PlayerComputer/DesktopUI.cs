@@ -12,6 +12,7 @@ public class DesktopUI : MonoBehaviour
     [SerializeField] private Button servicesButton;
     [SerializeField] private Button leaveComputerButton;
     [SerializeField] private Button cafeFeedbackButton;
+    [SerializeField] private Button tutorialMenuButton;
 
     private void Start()
     {
@@ -42,6 +43,10 @@ public class DesktopUI : MonoBehaviour
         cafeFeedbackButton.onClick.AddListener(() => { 
         
             CafeFeedbackUI.instance.Show();
+        });
+        tutorialMenuButton.onClick.AddListener(() =>
+        {
+
         });
     }
 }

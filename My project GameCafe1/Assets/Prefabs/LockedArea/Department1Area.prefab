@@ -75,6 +75,9 @@ MonoBehaviour:
   <verbName>k__BackingField: Buy
   visualsParent: {fileID: 2862992804684045089}
   DeviceCollider: {fileID: 7743707046874912923}
+  minPriceInTheArea: 0
+  maxPriceInTheArea: 0
+  maxCustomerCount: 0
 --- !u!114 &4920339165423479220
 MonoBehaviour:
   m_ObjectHideFlags: 0
